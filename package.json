@@ -2,6 +2,24 @@
   "name": "react-demo",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "build:tailwind": "tailwindcss build src/tailwind.css -o ./public/tailwind.output.css",
+    "prestart": "npm run build:tailwind",
+    "prebuild": "npm run build:tailwind",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "components-update": "components-update --out src/components/tailwind-ui -i"
+  },
+  "devDependencies": {
+    "@tailwindcss/ui": "^0.7.2",
+    "@zakodium/components-update": "^1.4.0",
+    "@zakodium/tailwind-config": "^2.0.1",
+    "postcss": "^8.1.10",
+    "prettier": "^2.2.1",
+    "tailwindcss": "^2.0.1"
+  },
   "dependencies": {
     "@headlessui/react": "^0.2.0",
     "@lukeed/uuid": "^2.0.0",
@@ -25,13 +43,6 @@
     "typescript": "^4.1.2",
     "web-vitals": "^0.2.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "components-update": "components-update --out src/components/tailwind-ui -i"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -49,10 +60,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@zakodium/components-update": "^1.4.0",
-    "@zakodium/tailwind-config": "^2.0.1",
-    "tailwindcss": "^2.0.1"
   }
 }

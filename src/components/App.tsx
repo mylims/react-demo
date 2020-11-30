@@ -1,23 +1,14 @@
 import React from 'react';
+import { Step, Stepper } from './tailwind-ui/navigation/Stepper';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const steps: Array<Step> = [];
+
+  for (let i = 0; i <= 4; i++) {
+    steps.push({ label: `steps-${i}`, description: `${i}` });
+  }
+
+  return <Stepper steps={steps} current={1} />;
 }
 
 export default App;
