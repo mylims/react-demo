@@ -1,14 +1,35 @@
-import React from 'react';
-import { Step, Stepper } from './tailwind-ui/navigation/Stepper';
+import React, { useState } from 'react';
+import Plot from './Plot';
+import { Dropzone } from './tailwind-ui/forms/basic/Dropzone';
+import { DropzoneList } from './tailwind-ui/forms/basic/DropzoneList';
+import { useSingleFileDrozone } from './tailwind-ui/hooks/useDropzone';
 
-function App() {
-  const steps: Array<Step> = [];
+export default function App() {
+  const [text, setText] = useState<string | null>(null);
+  const {
+    dropzoneProps,
+    dropzoneListProps: { files, onRemove },
+  } = useSingleFileDrozone({
+    accept: '.csv',
+    maxSize: 10000000,
+  });
 
-  for (let i = 0; i <= 4; i++) {
-    steps.push({ label: `steps-${i}`, description: `${i}` });
+  if (files[0]) {
+    const file = files[0];
+    file.text().then((text) => setText(text));
   }
 
-  return <Stepper steps={steps} current={1} />;
+  return (
+    <div>
+      <Dropzone {...dropzoneProps} />
+      <DropzoneList
+        files={files}
+        onRemove={(file) => {
+          setText(null);
+          onRemove(file);
+        }}
+      />
+      {text && <Plot text={text} />}
+    </div>
+  );
 }
-
-export default App;
