@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Plot from './Plot';
+import Plot from './Info';
 import { Dropzone } from './tailwind-ui/forms/basic/Dropzone';
 import { DropzoneList } from './tailwind-ui/forms/basic/DropzoneList';
 import { useSingleFileDrozone } from './tailwind-ui/hooks/useDropzone';
