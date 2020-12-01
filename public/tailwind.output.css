@@ -25222,7 +25222,6 @@ kbd {
 
 .select-all {
   -webkit-user-select: all;
-      -ms-user-select: all;
           user-select: all;
 }
 
@@ -53964,7 +53963,6 @@ kbd {
 
   .sm\:select-all {
     -webkit-user-select: all;
-        -ms-user-select: all;
             user-select: all;
   }
 
@@ -82676,7 +82674,6 @@ kbd {
 
   .md\:select-all {
     -webkit-user-select: all;
-        -ms-user-select: all;
             user-select: all;
   }
 
@@ -111388,7 +111385,6 @@ kbd {
 
   .lg\:select-all {
     -webkit-user-select: all;
-        -ms-user-select: all;
             user-select: all;
   }
 
@@ -140100,7 +140096,6 @@ kbd {
 
   .xl\:select-all {
     -webkit-user-select: all;
-        -ms-user-select: all;
             user-select: all;
   }
 
@@ -168812,7 +168807,6 @@ kbd {
 
   .\32xl\:select-all {
     -webkit-user-select: all;
-        -ms-user-select: all;
             user-select: all;
   }
 
