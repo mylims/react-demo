@@ -20,15 +20,17 @@ export default function App() {
   }
 
   return (
-    <div>
-      <Dropzone {...dropzoneProps} />
-      <DropzoneList
-        files={files}
-        onRemove={(file) => {
-          setText(null);
-          onRemove(file);
-        }}
-      />
+    <div className="bg-gray-100">
+      <div className="max-w-lg mx-auto my-5">
+        <Dropzone {...dropzoneProps} />
+        <DropzoneList
+          files={files}
+          onRemove={(file) => {
+            setText(null);
+            onRemove(file);
+          }}
+        />
+      </div>
       {text && <Plot text={text} />}
     </div>
   );
