@@ -16,7 +16,7 @@ export default function App() {
             <nav className="flex-1 px-2 space-y-1 bg-white">
               <ul>
                 <li className={itemClass}>
-                  <Link to="/ivcurve">IV curve</Link>
+                  <Link to="/ivcurve">IV spectra</Link>
                 </li>
               </ul>
             </nav>
