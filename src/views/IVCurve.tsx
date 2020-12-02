@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import Plot from './Info';
-import { Dropzone } from './tailwind-ui/forms/basic/Dropzone';
-import { DropzoneList } from './tailwind-ui/forms/basic/DropzoneList';
-import { useSingleFileDrozone } from './tailwind-ui/hooks/useDropzone';
 
-export default function App() {
+import Info from '../components/Info';
+import { Dropzone } from '../components/tailwind-ui/forms/basic/Dropzone';
+import { DropzoneList } from '../components/tailwind-ui/forms/basic/DropzoneList';
+import { useSingleFileDrozone } from '../components/tailwind-ui/hooks/useDropzone';
+
+export default function IVCurve() {
   const [text, setText] = useState<string | null>(null);
   const {
     dropzoneProps,
     dropzoneListProps: { files, onRemove },
-  } = useSingleFileDrozone({
-    accept: '.csv',
-    maxSize: 10000000,
-  });
+  } = useSingleFileDrozone({ accept: ['.csv', '.txt'], maxSize: 10000000 });
 
   if (files[0]) {
     const file = files[0];
@@ -31,7 +29,7 @@ export default function App() {
           }}
         />
       </div>
-      {text && <Plot text={text} />}
+      {text && <Info text={text} />}
     </div>
   );
 }
