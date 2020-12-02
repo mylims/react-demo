@@ -9,7 +9,7 @@ interface InfoProps {
   text: string;
 }
 
-export default function Info({ text }: InfoProps) {
+export default function ExtractedInfo({ text }: InfoProps) {
   const { data, meta } = ndParse(text);
 
   return (

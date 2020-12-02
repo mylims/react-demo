@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
-import Info from '../components/Info';
-import { Dropzone } from '../components/tailwind-ui/forms/basic/Dropzone';
-import { DropzoneList } from '../components/tailwind-ui/forms/basic/DropzoneList';
-import { useSingleFileDrozone } from '../components/tailwind-ui/hooks/useDropzone';
+import ExtractedInfo from '../components/ExtractedInfo';
+import {
+  Dropzone,
+  DropzoneList,
+  useSingleFileDrozone,
+} from '../components/tailwind-ui';
 
 export default function IVCurve() {
   const [text, setText] = useState<string | null>(null);
@@ -29,7 +31,7 @@ export default function IVCurve() {
           }}
         />
       </div>
-      {text && <Info text={text} />}
+      {text && <ExtractedInfo text={text} />}
     </div>
   );
 }
