@@ -1,7 +1,6 @@
 import React from 'react';
-import { ndParse } from 'ndim-parser';
+import { fromCVd } from 'iv-spectrum';
 import { Plot, LineSeries, XAxis, YAxis } from 'react-plot';
-import { formatPrefix } from 'd3-format';
 
 import MetaTable from './MetaTable';
 
@@ -10,7 +9,13 @@ interface InfoProps {
 }
 
 export default function ExtractedInfo({ text }: InfoProps) {
-  const { data, meta } = ndParse(text);
+  const analysis = fromCVd(text);
+  const { variables, meta } = analysis.getXYSpectrum({
+    xLabel: 'Vd',
+    xUnits: 'V',
+    yLabel: 'C',
+    yUnits: 'fF',
+  });
 
   return (
     <div className="flex flex-wrap justify-center">
@@ -19,17 +24,19 @@ export default function ExtractedInfo({ text }: InfoProps) {
         <Plot
           width={500}
           height={500}
-          margin={{ bottom: 70, left: 100, top: 10, right: 10 }}
+          margin={{ bottom: 50, left: 80, top: 20, right: 20 }}
         >
           <LineSeries
-            data={{ x: data.x.data, y: data.y.data }}
+            data={{ x: variables.x.data, y: variables.y.data }}
             label="Vg = 3V"
           />
-          <XAxis label={`${data.x.label} [V]`} showGridLines={true} />
-          <YAxis
-            label={`${data.y.label} [fF]`}
+          <XAxis
+            label={`${variables.x.label} [${variables.x.units}]`}
             showGridLines={true}
-            tickFormat={formatPrefix(',.00', 1e-13)}
+          />
+          <YAxis
+            label={`${variables.y.label} [${variables.y.units}]`}
+            showGridLines={true}
             labelSpace={50}
           />
         </Plot>
