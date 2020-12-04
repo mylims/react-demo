@@ -157,20 +157,20 @@ export default function ExtractedInfo({ text }: InfoProps) {
           </div>
         </div>
       </div>
-      <div>
-        <div className="flex flex-wrap justify-center">
-          {jcamp && (
+      {jcamp && (
+        <div>
+          <div className="flex flex-wrap justify-center">
             <div className="p-5 m-2 shadow sm:rounded-lg">
               <div className="text-xl font-semibold text-blue-500 border-b">
                 JCAMP
               </div>
-              <div className="inline-block max-w-2xl overflow-auto border-gray-200 h-96">
+              <div className="inline-block max-w-2xl overflow-auto whitespace-pre-wrap border-gray-200 h-96">
                 {jcamp}
               </div>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
