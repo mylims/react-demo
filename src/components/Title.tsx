@@ -7,7 +7,7 @@ export default function Title() {
     '/ivcurve': 'IV spectra',
   };
   return (
-    <h1 className="m-4 text-xl font-bold text-blue-500">
+    <h1 className="m-4 text-xl font-bold text-primary-500">
       {paths[location.pathname] || 'Demo'}
     </h1>
   );
