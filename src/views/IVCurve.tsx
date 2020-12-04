@@ -23,7 +23,7 @@ export default function IVCurve() {
   });
 
   return (
-    <div className="bg-gray-100">
+    <div>
       <div className="flex flex-wrap justify-around my-5">
         <div className="block m-4">
           <div>List of test files</div>
