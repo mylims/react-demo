@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ExtractedInfo from '../components/ExtractedInfo';
 import {
@@ -15,10 +15,12 @@ export default function IVCurve() {
     dropzoneListProps: { files, onRemove },
   } = useSingleFileDrozone({ accept: ['.csv', '.txt'], maxSize: 10000000 });
 
-  if (files[0]) {
-    const file = files[0];
-    file.text().then((text) => setText(text));
-  }
+  useEffect(() => {
+    if (files[0]) {
+      const file = files[0];
+      file.text().then((text) => setText(text));
+    }
+  });
 
   return (
     <div className="bg-gray-100">

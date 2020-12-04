@@ -23,6 +23,7 @@ export default function ExtractedInfo({ text }: InfoProps) {
     const analysis = fromCVd(text);
     return [analysis, listVariables(analysis.spectra[0].variables)];
   }, [text]);
+
   const [state, setState] = useState({
     xLabel: 'Vd',
     xUnits: 'V',
@@ -30,7 +31,10 @@ export default function ExtractedInfo({ text }: InfoProps) {
     yUnits: 'fF',
   });
 
-  const { variables, meta } = analysis.getXYSpectrum(state) || {};
+  const { variables, meta } = useMemo(
+    () => analysis.getXYSpectrum(state) || {},
+    [analysis, state],
+  );
 
   return (
     <div className="flex flex-wrap justify-center">
