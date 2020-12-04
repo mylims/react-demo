@@ -3,7 +3,7 @@ import { fromCVd } from 'iv-spectrum';
 import { Plot, LineSeries, XAxis, YAxis } from 'react-plot';
 
 import MetaTable from './MetaTable';
-import { Input, Select } from './tailwind-ui';
+import { Input, Select, Toggle } from './tailwind-ui';
 
 interface InfoProps {
   text: string;
@@ -24,16 +24,20 @@ export default function ExtractedInfo({ text }: InfoProps) {
     return [analysis, listVariables(analysis.spectra[0].variables)];
   }, [text]);
 
-  const [state, setState] = useState({
+  const [variablesState, setVariablesState] = useState({
     xLabel: 'Vd',
     xUnits: 'V',
     yLabel: 'C',
     yUnits: 'fF',
   });
+  const [plotState, setPlotState] = useState({
+    showGridLines: true,
+    showMarkers: false,
+  });
 
   const { variables, meta } = useMemo(
-    () => analysis.getXYSpectrum(state) || {},
-    [analysis, state],
+    () => analysis.getXYSpectrum(variablesState) || {},
+    [analysis, variablesState],
   );
 
   return (
@@ -46,14 +50,17 @@ export default function ExtractedInfo({ text }: InfoProps) {
             height={500}
             margin={{ bottom: 50, left: 80, top: 20, right: 20 }}
           >
-            <LineSeries data={{ x: variables.x.data, y: variables.y.data }} />
+            <LineSeries
+              data={{ x: variables.x.data, y: variables.y.data }}
+              displayMarker={plotState.showMarkers}
+            />
             <XAxis
               label={`${variables.x.label} [${variables.x.units}]`}
-              showGridLines={true}
+              showGridLines={plotState.showGridLines}
             />
             <YAxis
               label={`${variables.y.label} [${variables.y.units}]`}
-              showGridLines={true}
+              showGridLines={plotState.showGridLines}
               labelSpace={50}
             />
           </Plot>
@@ -67,11 +74,14 @@ export default function ExtractedInfo({ text }: InfoProps) {
               label,
               value: label,
             }))}
-            selected={{ label: state.xLabel, value: state.xLabel }}
+            selected={{
+              label: variablesState.xLabel,
+              value: variablesState.xLabel,
+            }}
             onSelect={(selected) => {
               const { label = 'Vd' } = selected || {};
-              setState({
-                ...state,
+              setVariablesState({
+                ...variablesState,
                 xLabel: label,
                 xUnits: allVariables[label] || 'V',
               });
@@ -81,10 +91,10 @@ export default function ExtractedInfo({ text }: InfoProps) {
             name="xUnits"
             label="X units"
             placeholder="X units"
-            value={state.xUnits}
+            value={variablesState.xUnits}
             onChange={(e) => {
               const { value: xUnits = 'V' } = e.currentTarget;
-              setState({ ...state, xUnits });
+              setVariablesState({ ...variablesState, xUnits });
             }}
           />
         </div>
@@ -96,11 +106,14 @@ export default function ExtractedInfo({ text }: InfoProps) {
               label,
               value: label,
             }))}
-            selected={{ label: state.yLabel, value: state.yLabel }}
+            selected={{
+              label: variablesState.yLabel,
+              value: variablesState.yLabel,
+            }}
             onSelect={(selected) => {
               const { label = 'C' } = selected || {};
-              setState({
-                ...state,
+              setVariablesState({
+                ...variablesState,
                 yLabel: label,
                 yUnits: allVariables[label] || 'fF',
               });
@@ -110,10 +123,32 @@ export default function ExtractedInfo({ text }: InfoProps) {
             name="yUnits"
             label="Y units"
             placeholder="Y units"
-            value={state.yUnits}
+            value={variablesState.yUnits}
             onChange={(e) => {
               const { value: yUnits = 'fF' } = e.currentTarget;
-              setState({ ...state, yUnits });
+              setVariablesState({ ...variablesState, yUnits });
+            }}
+          />
+        </div>
+        <div className="p-2 m-2">
+          <Toggle
+            label="Show grid lines"
+            activated={plotState.showGridLines}
+            onToggle={() => {
+              setPlotState({
+                ...plotState,
+                showGridLines: !plotState.showGridLines,
+              });
+            }}
+          />
+          <Toggle
+            label="Show markers"
+            activated={plotState.showMarkers}
+            onToggle={() => {
+              setPlotState({
+                ...plotState,
+                showMarkers: !plotState.showMarkers,
+              });
             }}
           />
         </div>
