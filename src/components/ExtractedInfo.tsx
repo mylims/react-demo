@@ -164,7 +164,7 @@ export default function ExtractedInfo({ text }: InfoProps) {
               <div className="text-xl font-semibold border-b text-primary-500">
                 JCAMP
               </div>
-              <div className="inline-block max-w-2xl overflow-auto whitespace-pre-wrap h-96">
+              <div className="inline-block max-w-2xl overflow-auto font-mono whitespace-pre-wrap h-96">
                 {jcamp}
               </div>
             </div>
