@@ -2,17 +2,24 @@
 import clsx from 'clsx';
 import React, { ReactNode } from 'react';
 
-export interface HorizontalNavigationOptions<T = string> {
+export type HorizontalNavigationRenderOptionCallback<T> = (
+  children: ReactNode,
+  option: Omit<HorizontalNavigationOption<T>, 'renderOption'> & {
+    isSelected: boolean;
+  },
+) => JSX.Element;
+export interface HorizontalNavigationOption<T = string> {
   value: T;
   label?: ReactNode;
+  renderOption?: HorizontalNavigationRenderOptionCallback<T>;
 }
 
 export interface HorizontalNavigationProps<T> {
-  options: Array<HorizontalNavigationOptions<T>>;
-  selected: HorizontalNavigationOptions<T> | undefined;
+  options: Array<HorizontalNavigationOption<T>>;
+  selected: HorizontalNavigationOption<T> | undefined;
   onSelect: (
-    clicked: HorizontalNavigationOptions<T>,
-    options: Array<HorizontalNavigationOptions<T>>,
+    clicked: HorizontalNavigationOption<T>,
+    options: Array<HorizontalNavigationOption<T>>,
   ) => void;
 }
 
@@ -56,6 +63,7 @@ export function HorizontalNavigation<T>({
                 callback={() => onSelect(element, opts)}
                 element={element}
                 selected={selected}
+                renderOption={element.renderOption}
               />
             ))}
           </nav>
@@ -66,22 +74,30 @@ export function HorizontalNavigation<T>({
 }
 
 interface NavigationProps<T> {
-  element: HorizontalNavigationOptions<T>;
-  selected: HorizontalNavigationOptions<T> | undefined;
+  element: HorizontalNavigationOption<T>;
+  selected: HorizontalNavigationOption<T> | undefined;
   callback: () => void;
+  renderOption?: HorizontalNavigationRenderOptionCallback<T>;
 }
 
 function Navigation<T>(props: NavigationProps<T>): JSX.Element {
   const isSelected = props.element.value === props.selected?.value;
-  return (
-    <span
+  const option = (
+    <div
       onClick={props.callback}
       className={clsx(
-        'cursor-pointer whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm',
+        'inline-block cursor-pointer whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm',
         isSelected ? activated : notActivated,
       )}
     >
       {props.element.label}
-    </span>
+    </div>
   );
+
+  return props.renderOption
+    ? props.renderOption(option, {
+        ...props.element,
+        isSelected,
+      })
+    : option;
 }

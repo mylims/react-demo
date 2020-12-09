@@ -11,7 +11,7 @@ interface ErrorPageProps {
 export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
   return (
     <div className="max-w-2xl m-auto md:max-w-4xl">
-      <div className="flex justify-between mx-2 mt-4">
+      <div className="flex justify-between px-2 pt-4">
         <div className="min-w-0">
           <h1 className="text-5xl font-bold sm:mt-16 text-primary-900">
             {props.title}

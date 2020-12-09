@@ -6,7 +6,7 @@ import { helpColor, labelColor, labelDisabledColor } from './common';
 export interface CheckboxProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   name: string;
-  label: string;
+  label?: string;
   help?: string;
 }
 
@@ -32,16 +32,20 @@ export function Checkbox(props: CheckboxProps): JSX.Element {
           className="w-4 h-4 rounded focus:ring-primary-500 border-neutral-300 text-primary-600 disabled:text-neutral-300"
         />
       </div>
+
       <div className="ml-3 text-sm">
-        <label
-          htmlFor={id}
-          className={clsx(
-            'font-medium',
-            props.disabled ? labelDisabledColor : labelColor,
-          )}
-        >
-          {label}
-        </label>
+        {label && (
+          <label
+            htmlFor={id}
+            className={clsx(
+              'font-medium',
+              props.disabled ? labelDisabledColor : labelColor,
+            )}
+          >
+            {label}
+          </label>
+        )}
+
         {help && <p className={helpColor}>{help}</p>}
       </div>
     </div>

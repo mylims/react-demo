@@ -32,6 +32,10 @@ function getSteps(steps: Array<Step>, current: number): Utils {
   };
 }
 
+function getLabelSteps(index: number): string {
+  return String(index + 1).padStart(2, '0');
+}
+
 function getStepComponent(step: StepWithId, utils: Utils): JSX.Element {
   if (utils.actual === step) return <StepCurrent step={step} />;
   if (utils.done.includes(step)) return <StepDone step={step} />;
@@ -68,7 +72,7 @@ function StepCurrent(props: {
       <span className="flex-shrink-0">
         <span className="flex items-center justify-center w-10 h-10 border-2 rounded-full border-primary-600">
           <span className="text-primary-600">
-            {`0${props.step.id}`.slice(-2)}
+            {getLabelSteps(props.step.id)}
           </span>
         </span>
       </span>
@@ -90,7 +94,7 @@ function StepToDoComponent(props: { step: StepWithId }): JSX.Element {
       <span className="flex-shrink-0">
         <span className="flex items-center justify-center w-10 h-10 border-2 rounded-full border-neutral-300">
           <span className="text-neutral-500">
-            {`0${props.step.id}`.slice(-2)}
+            {getLabelSteps(props.step.id)}
           </span>
         </span>
       </span>

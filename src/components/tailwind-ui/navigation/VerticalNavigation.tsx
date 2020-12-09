@@ -3,7 +3,13 @@ import React, { ReactNode } from 'react';
 
 import { useOnOff } from '../hooks/useOnOff';
 
-export interface VerticalNavigationGroupOption<T = string> {
+export type VerticalNavigationRenderOptionCallback<T> = (
+  children: ReactNode,
+  option: Omit<VerticalNavigationOption<T>, 'renderOption'> & {
+    isSelected: boolean;
+  },
+) => ReactNode;
+export interface VerticalNavigationGroupOption<T> {
   type: 'group';
   id: string;
   label: ReactNode;
@@ -11,15 +17,16 @@ export interface VerticalNavigationGroupOption<T = string> {
   options: VerticalNavigationOption<T>[];
 }
 
-export interface VerticalNavigationOption<T = string> {
+export interface VerticalNavigationOption<T> {
   type: 'option';
   id: string;
   value: T;
   label?: ReactNode;
   icon?: ReactNode;
+  renderOption?: VerticalNavigationRenderOptionCallback<T>;
 }
 
-export type VerticalNavigationOptions<T = string> =
+export type VerticalNavigationOptions<T> =
   | VerticalNavigationGroupOption<T>
   | VerticalNavigationOption<T>;
 
@@ -34,7 +41,9 @@ type SelectOptionCallback<T> = (selected: VerticalNavigationOption<T>) => void;
 export function VerticalNavigation<T>(
   props: VerticalNavigationProps<T>,
 ): JSX.Element {
-  const opts = props.options.map((element) => {
+  const { onSelect, selected, options } = props;
+
+  const opts = options.map((element) => {
     if (element.type === 'option') {
       return {
         ...element,
@@ -52,10 +61,11 @@ export function VerticalNavigation<T>(
             return (
               <Navigation
                 key={element.id}
-                onSelect={() => props.onSelect(element)}
+                onSelect={() => onSelect(element)}
                 element={element}
-                selected={props.selected}
+                selected={selected}
                 offset={false}
+                renderOption={element.renderOption}
               />
             );
           } else {
@@ -63,8 +73,8 @@ export function VerticalNavigation<T>(
               <NavigationGroup
                 key={element.id}
                 element={element}
-                selected={props.selected}
-                onSelect={props.onSelect}
+                selected={selected}
+                onSelect={onSelect}
               />
             );
           }
@@ -79,6 +89,7 @@ interface NavigationProps<T> {
   selected: VerticalNavigationOption<T> | undefined;
   onSelect: () => void;
   offset: boolean;
+  renderOption?: VerticalNavigationRenderOptionCallback<T>;
 }
 
 interface NavigationGroupProps<T> {
@@ -125,6 +136,7 @@ function NavigationGroup<T>(props: NavigationGroupProps<T>): JSX.Element {
               selected={selected}
               onSelect={() => onSelect(element)}
               offset
+              renderOption={element.renderOption}
             />
           ))
         : null}
@@ -133,26 +145,31 @@ function NavigationGroup<T>(props: NavigationGroupProps<T>): JSX.Element {
 }
 
 function Navigation<T>(props: NavigationProps<T>): JSX.Element {
-  return (
-    <div className="space-y-1">
-      <span
-        onClick={props.onSelect}
-        className={clsx(
-          'group w-full flex items-center py-2 text-sm font-medium rounded-md cursor-pointer hover:text-neutral-900 hover:bg-neutral-100 text-neutral-600',
-          props.selected !== undefined &&
-            props.element.value === props.selected.value
-            ? 'bg-neutral-100'
-            : 'bg-white',
-          props.offset ? 'pl-11' : 'pl-2',
-        )}
-      >
-        {props.element.icon && (
-          <div className="w-6 h-6 mr-3 text-neutral-400 group-hover:text-neutral-600">
-            {props.element.icon}
-          </div>
-        )}
-        {props.element.label}
-      </span>
-    </div>
+  const isSelected =
+    props.selected !== undefined &&
+    props.element.value === props.selected.value;
+  const item = (
+    <span
+      onClick={props.onSelect}
+      className={clsx(
+        'group w-full flex items-center py-2 text-sm font-medium rounded-md cursor-pointer hover:text-neutral-900 hover:bg-neutral-100 text-neutral-600',
+        isSelected ? 'bg-neutral-100' : 'bg-white',
+        props.offset ? 'pl-11' : 'pl-2',
+      )}
+    >
+      {props.element.icon && (
+        <div className="w-6 h-6 mr-3 text-neutral-400 group-hover:text-neutral-600">
+          {props.element.icon}
+        </div>
+      )}
+      {props.element.label}
+    </span>
   );
+  const toRender = props.renderOption
+    ? props.renderOption(item, {
+        ...props.element,
+        isSelected,
+      })
+    : item;
+  return <div className="space-y-1">{toRender}</div>;
 }
