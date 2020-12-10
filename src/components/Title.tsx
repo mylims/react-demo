@@ -2,8 +2,9 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const paths: Record<string, string | undefined> = {
-  '/ivcurve': 'IV spectra',
-  '/samplestable': 'Samples table',
+  '/samplestable': '1. Samples table',
+  '/ivcurve': '2. Single curve spectra',
+  '/multcurve': '3. Superimposed spectra',
 };
 
 export function Title() {
