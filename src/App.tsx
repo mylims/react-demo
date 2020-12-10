@@ -4,6 +4,7 @@ import { SidebarLayout } from './components/tailwind-ui';
 import { Title, paths } from './components/Title';
 
 import IVCurve from './views/IVCurve';
+import MultipleCurves from './views/MultipleCurves';
 import SamplesTable from './views/SamplesTable';
 
 export default function App() {
@@ -36,6 +37,9 @@ export default function App() {
             </Route>
             <Route path="/samplestable">
               <SamplesTable />
+            </Route>
+            <Route path="/multcurve">
+              <MultipleCurves />
             </Route>
             <Route path="/*">
               <IVCurve />
