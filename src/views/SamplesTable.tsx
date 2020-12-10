@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Wafer } from 'react-wafer';
-import { Table, Td, Th, useTable } from '../components/tailwind-ui';
+import {
+  Button,
+  Card,
+  Table,
+  Td,
+  Th,
+  useTable,
+} from '../components/tailwind-ui';
 
 interface DataType {
   id: number;
@@ -32,7 +39,8 @@ function Header(): JSX.Element {
 
 export default function SamplesTable() {
   const [data, setData] = useState<DataType[]>([]);
-  const [selected, setSelected] = useState<WaferType | null>(null);
+  const [wafer, setWafer] = useState<WaferType | null>(null);
+  const [sample, setSample] = useState<string | null>(null);
   useEffect(() => {
     const data: DataType[] = [];
     const owners = ['Remco', 'Katya', 'Luca'];
@@ -61,7 +69,12 @@ export default function SamplesTable() {
   const Row = ({ value }: { value: DataType }) => {
     const id = `#0${value.id + 270}`;
     return (
-      <tr onClick={() => setSelected({ id, taken: value.taken })}>
+      <tr
+        onClick={() => {
+          setWafer({ id, taken: value.taken });
+          setSample(null);
+        }}
+      >
         <Td>{id}</Td>
         <Td>{value.date}</Td>
         <Td>{value.owner}</Td>
@@ -83,17 +96,37 @@ export default function SamplesTable() {
             Tr={Row}
           />
         </div>
-        {selected && (
+        {wafer && (
           <div className="m-5">
-            <h2 className="text-xl font-semibold">Wafer {selected.id}</h2>
+            <h2 className="text-xl font-semibold">Wafer {wafer.id}</h2>
             <Wafer
-              pickedItems={selected.taken.map((val) => ({
-                index: String(val),
-              }))}
+              pickedItems={wafer.taken.map((val) => ({ index: String(val) }))}
               size={400}
               rows={6}
               columns={7}
+              onSelect={(_, val) => setSample(val)}
             />
+          </div>
+        )}
+        {wafer && sample && (
+          <div className="m-5">
+            <Card mobileEdgeToEdge>
+              <Card.Header>Selected sample</Card.Header>
+              <Card.Body grayBackground>
+                <ul className="px-2">
+                  <li>
+                    Sample: {wafer.id}_A{sample}
+                  </li>
+                  <li>
+                    Owner:{' '}
+                    {wafer.taken.includes(Number(sample)) ? 'Luca' : 'None'}
+                  </li>
+                </ul>
+              </Card.Body>
+              <Card.Footer>
+                <Button>Notebook &#x2192;</Button>
+              </Card.Footer>
+            </Card>
           </div>
         )}
       </div>
