@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MultipleCurvesDisplayer from '../components/MultipleCurvesDisplayer';
 
 import {
   Button,
@@ -23,7 +24,7 @@ export default function MultipleCurves() {
           <Button
             onClick={async () => {
               let promises = [];
-              for (let index = -5; index <= 6; index++) {
+              for (let index = -4; index <= 6; index++) {
                 promises.push(
                   fetch(
                     `${process.env.PUBLIC_URL}/testFiles/overlap/V${index}.csv`,
@@ -71,7 +72,9 @@ export default function MultipleCurves() {
           />
         </div>
       </div>
-      {content && <div>{Object.keys(content)}</div>}
+      {!!Object.keys(content).length && (
+        <MultipleCurvesDisplayer textList={Object.values(content)} />
+      )}
     </div>
   );
 }
