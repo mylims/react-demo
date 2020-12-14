@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { SidebarLayout } from './components/tailwind-ui';
 import { Title, paths } from './components/Title';
 
@@ -9,7 +9,7 @@ import SamplesTable from './views/SamplesTable';
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/">
       <SidebarLayout>
         <SidebarLayout.Sidebar>
           <div className="flex flex-col flex-grow mt-5">
