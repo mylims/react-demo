@@ -14,16 +14,15 @@ export default function App() {
         <SidebarLayout.Sidebar>
           <div className="flex flex-col flex-grow mt-5">
             <nav className="flex-1 px-2 space-y-1 bg-white">
-              <ul>
-                {Object.keys(paths).map((key) => (
-                  <li
-                    key={key}
-                    className="flex items-center w-full py-2 text-sm font-medium rounded-md cursor-pointer group hover:text-neutral-900 hover:bg-neutral-100 text-neutral-600"
-                  >
-                    <Link to={key}>{paths[key] || 'Demo'}</Link>
-                  </li>
-                ))}
-              </ul>
+              {Object.keys(paths).map((key) => (
+                <Link
+                  key={key}
+                  to={key}
+                  className="flex items-center w-full py-2 text-sm font-medium rounded-md cursor-pointer group hover:text-neutral-900 hover:bg-neutral-100 text-neutral-600"
+                >
+                  {paths[key] || 'Demo'}
+                </Link>
+              ))}
             </nav>
           </div>
         </SidebarLayout.Sidebar>
