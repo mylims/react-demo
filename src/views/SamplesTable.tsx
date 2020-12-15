@@ -21,6 +21,7 @@ interface DataType {
 
 interface WaferType {
   id: string;
+  owner: string;
   taken: number[];
 }
 
@@ -35,6 +36,11 @@ function Header(): JSX.Element {
       <Th>suplier</Th>
     </tr>
   );
+}
+
+function getTaken(owner: string) {
+  const top = owner === 'Remco' ? 26 : 16;
+  return [Math.ceil(Math.random() * top), Math.ceil(Math.random() * top)];
 }
 
 export default function SamplesTable() {
@@ -55,7 +61,7 @@ export default function SamplesTable() {
         heterostructure: structures[random],
         substrate: substrates[random],
         suplier: 'Enkris',
-        taken: [Math.ceil(Math.random() * 16), Math.ceil(Math.random() * 16)],
+        taken: getTaken(owners[random]),
       });
     }
     setData(data);
@@ -71,7 +77,7 @@ export default function SamplesTable() {
     return (
       <tr
         onClick={() => {
-          setWafer({ id, taken: value.taken });
+          setWafer({ id, taken: value.taken, owner: value.owner });
           setSample(null);
         }}
       >
@@ -88,6 +94,44 @@ export default function SamplesTable() {
   return (
     <div>
       <div className="flex flex-wrap justify-between">
+        {wafer && (
+          <div className="flex flex-wrap">
+            <div className="m-5">
+              <h2 className="text-xl font-semibold">Wafer {wafer.id}</h2>
+              <Wafer
+                pickedItems={wafer.taken.map((val) => ({ index: String(val) }))}
+                size={400}
+                rows={wafer.owner === 'Remco' ? 7 : 6}
+                columns={wafer.owner === 'Remco' ? 8 : 7}
+                onSelect={(_, val) => setSample(val)}
+              />
+            </div>
+
+            {sample && (
+              <div>
+                <Card mobileEdgeToEdge>
+                  <Card.Header>Selected sample</Card.Header>
+                  <Card.Body grayBackground>
+                    <ul className="px-2">
+                      <li>
+                        Sample: {wafer.id}_A{sample}
+                      </li>
+                      <li>
+                        Owner:{' '}
+                        {wafer.taken.includes(Number(sample))
+                          ? wafer.owner
+                          : 'None'}
+                      </li>
+                    </ul>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Button>Notebook &#x2192;</Button>
+                  </Card.Footer>
+                </Card>
+              </div>
+            )}
+          </div>
+        )}
         <div className="m-5">
           <Table
             pagination={pagination}
@@ -96,39 +140,6 @@ export default function SamplesTable() {
             Tr={Row}
           />
         </div>
-        {wafer && (
-          <div className="m-5">
-            <h2 className="text-xl font-semibold">Wafer {wafer.id}</h2>
-            <Wafer
-              pickedItems={wafer.taken.map((val) => ({ index: String(val) }))}
-              size={400}
-              rows={6}
-              columns={7}
-              onSelect={(_, val) => setSample(val)}
-            />
-          </div>
-        )}
-        {wafer && sample && (
-          <div className="m-5">
-            <Card mobileEdgeToEdge>
-              <Card.Header>Selected sample</Card.Header>
-              <Card.Body grayBackground>
-                <ul className="px-2">
-                  <li>
-                    Sample: {wafer.id}_A{sample}
-                  </li>
-                  <li>
-                    Owner:{' '}
-                    {wafer.taken.includes(Number(sample)) ? 'Luca' : 'None'}
-                  </li>
-                </ul>
-              </Card.Body>
-              <Card.Footer>
-                <Button>Notebook &#x2192;</Button>
-              </Card.Footer>
-            </Card>
-          </div>
-        )}
       </div>
     </div>
   );
