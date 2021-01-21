@@ -21,7 +21,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
         </div>
         <div className="hidden md:block">
           {props.hideImage ? null : (
-            <SvgSickRobot className="mt-16 ml-8" style={{ width: 300 }} />
+            <SvgSickRobot className="mt-16 ml-8" width="300" height="300" />
           )}
         </div>
       </div>

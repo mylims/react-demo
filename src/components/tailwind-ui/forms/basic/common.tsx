@@ -9,7 +9,8 @@ export const inputColor =
   'focus-within:ring-primary-500 focus-within:border-primary-500 border-neutral-300 disabled:bg-neutral-50 disabled:text-neutral-500';
 export const inputError =
   'border-danger-300 text-danger-900 placeholder-danger-500 focus-within:border-danger-500 focus-within:ring-danger-500';
-
+export const inputValid =
+  'border-success-400 text-success-900 placeholder-success-600 focus-within:border-success-600 focus-within:ring-success-600';
 export interface LabelProps {
   id: string;
   text: string;
@@ -40,6 +41,10 @@ export function Help(props: { text: string }) {
 
 export function Error(props: { text: string }) {
   return <p className="mt-2 text-sm text-danger-600">{props.text}</p>;
+}
+
+export function Valid(props: { text: string }) {
+  return <p className="mt-2 text-sm text-success-700">{props.text}</p>;
 }
 
 export function Hint(props: { text: string }) {

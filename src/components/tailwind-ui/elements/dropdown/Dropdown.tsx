@@ -103,7 +103,7 @@ export function Dropdown<T>(props: DropdownProps<T>): React.ReactElement {
                                     {option.icon !== undefined && (
                                       <span
                                         className={clsx(
-                                          'w-5 h-5 mr-3',
+                                          'text-xl mr-3',
                                           active
                                             ? 'text-neutral-500'
                                             : ' text-neutral-400',
@@ -120,7 +120,11 @@ export function Dropdown<T>(props: DropdownProps<T>): React.ReactElement {
                           );
                         } else {
                           return (
-                            <div className="px-4 py-2 text-sm">
+                            <div
+                              className="px-4 py-2 text-sm"
+                              // eslint-disable-next-line react/no-array-index-key
+                              key={`${index1}-${index2}`}
+                            >
                               {option.content}
                             </div>
                           );
