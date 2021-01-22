@@ -5,6 +5,7 @@ import { Title, paths } from './components/Title';
 
 import IVCurve from './views/IVCurve';
 import MultipleCurves from './views/MultipleCurves';
+import ThermalResistance from './views/ThermalResistance';
 import SamplesTable from './views/SamplesTable';
 
 export default function App() {
@@ -39,6 +40,9 @@ export default function App() {
             </Route>
             <Route path="/multcurve">
               <MultipleCurves />
+            </Route>
+            <Route path="/thermalresistance">
+              <ThermalResistance />
             </Route>
             <Route path="/*">
               <IVCurve />
