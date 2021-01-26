@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { fromCVd, toJcamp } from 'iv-spectrum';
-import { Plot, LineSeries, XAxis, YAxis } from 'react-plot';
+import { Plot, LineSeries, Axis } from 'react-plot';
 
 import MetaTable from './MetaTable';
 import { Input, Select, Toggle } from './tailwind-ui';
@@ -16,6 +16,14 @@ function listVariables(variables: Record<string, Record<string, string>>) {
     list[label] = units;
   }
   return list;
+}
+
+function getData(x: number[], y: number[]) {
+  let data = new Array(x.length);
+  for (let i = 0; i <= x.length; i++) {
+    data[i] = { x: x[i], y: y[i] };
+  }
+  return data;
 }
 
 export default function ExtractedInfo({ text }: InfoProps) {
@@ -41,6 +49,9 @@ export default function ExtractedInfo({ text }: InfoProps) {
   );
 
   const jcamp = useMemo(() => toJcamp(analysis), [analysis]);
+  const data = useMemo(() => getData(variables.x.data, variables.y.data), [
+    variables,
+  ]);
 
   return (
     <>
@@ -54,15 +65,14 @@ export default function ExtractedInfo({ text }: InfoProps) {
                 height={500}
                 margin={{ bottom: 50, left: 80, top: 20, right: 20 }}
               >
-                <LineSeries
-                  data={{ x: variables.x.data, y: variables.y.data }}
-                  displayMarker={plotState.showMarkers}
-                />
-                <XAxis
+                <LineSeries data={data} displayMarker={plotState.showMarkers} />
+                <Axis
+                  position="bottom"
                   label={`${variables.x.label} [${variables.x.units}]`}
                   showGridLines={plotState.showGridLines}
                 />
-                <YAxis
+                <Axis
+                  position="left"
                   label={`${variables.y.label} [${variables.y.units}]`}
                   showGridLines={plotState.showGridLines}
                   labelSpace={50}
