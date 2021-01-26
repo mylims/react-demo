@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getReactPlotJSON } from 'common-spectrum';
 import { fromPressureSweep } from 'thermal-resistance-sepctrum';
-import { Legend, LineSeries, Plot, XAxis, YAxis } from 'react-plot';
+import { PlotObject } from 'react-plot';
 
 interface MultipleProps {
   textList: string[];
@@ -12,7 +12,7 @@ interface DataType {
   label: string;
 }
 interface PlotDataType {
-  axes?: { label: string }[];
+  axes: { label: string }[];
   series: DataType[];
   meta: Record<string, unknown>[];
 }
@@ -20,7 +20,7 @@ interface PlotDataType {
 export default function ThermalResistanceDisplayer({
   textList,
 }: MultipleProps) {
-  const initState = { series: [], meta: [] };
+  const initState = { series: [], meta: [], axes: [] };
   const [powerData, setPowerData] = useState<PlotDataType>(initState);
   const [ivData, setIvData] = useState<PlotDataType>(initState);
 
@@ -53,50 +53,8 @@ export default function ThermalResistanceDisplayer({
         </ul>
       </div>
       <div className="flex">
-        <Plot
-          width={500}
-          height={400}
-          margin={{ bottom: 50, left: 70, top: 20, right: 120 }}
-        >
-          {powerData.series.map((val) => (
-            <LineSeries
-              key={val.label}
-              data={{ x: val.x, y: val.y }}
-              label={val.label}
-              lineStyle={{ strokeWidth: '3px' }}
-            />
-          ))}
-          <XAxis label={powerData.axes?.[0].label} showGridLines />
-          <YAxis
-            paddingTop={0.05}
-            label={powerData.axes?.[1].label}
-            showGridLines
-            labelSpace={40}
-          />
-          <Legend position="right" />
-        </Plot>
-        <Plot
-          width={500}
-          height={400}
-          margin={{ bottom: 50, left: 70, top: 20, right: 120 }}
-        >
-          {ivData.series.map((val) => (
-            <LineSeries
-              key={val.label}
-              data={{ x: val.x, y: val.y }}
-              label={val.label}
-              lineStyle={{ strokeWidth: '3px' }}
-            />
-          ))}
-          <XAxis label={ivData.axes?.[0].label} showGridLines />
-          <YAxis
-            paddingTop={0.05}
-            label={ivData.axes?.[1].label}
-            showGridLines
-            labelSpace={40}
-          />
-          <Legend position="right" />
-        </Plot>
+        <PlotObject plot={powerData} />
+        <PlotObject plot={ivData} />
       </div>
     </div>
   );
