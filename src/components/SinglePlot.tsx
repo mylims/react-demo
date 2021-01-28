@@ -1,35 +1,32 @@
 import { getReactPlotJSON } from 'common-spectrum';
 import React, { useEffect, useState } from 'react';
-import { PlotObject } from 'react-plot';
+import { PlotObject, PlotObjectType } from 'react-plot';
 
+type PlotState = PlotObjectType & { meta: any[] };
 interface SinglePlotProps {
   query: Record<string, unknown>;
   analyses: Array<any>;
 }
-interface PlotDataType {
-  axes: Array<{ label: string }>;
-  series: Array<Record<'x' | 'y', number>>;
-  meta: Array<Record<string, unknown>>;
-  dimentions: Record<string, unknown>;
-}
+
+const dimentions = {
+  width: 500,
+  height: 400,
+  margin: { bottom: 50, left: 80, top: 20, right: 20 },
+};
+const legend = { position: 'embedded' };
 
 export default function SinglePlot({ query, analyses }: SinglePlotProps) {
-  const initState = { series: [], meta: [], axes: [], dimentions: {} };
-  const [data, setData] = useState<PlotDataType>(initState);
+  const initState: PlotState = {
+    series: [],
+    meta: [],
+    axes: [],
+    dimentions: { width: 500, height: 500 },
+  };
+  const [data, setData] = useState<PlotState>(initState);
 
   useEffect(() => {
-    const temp = getReactPlotJSON(analyses, query);
-    const richData = {
-      ...temp,
-      dimentions: {
-        ...temp.dimentions,
-        width: 500,
-        heigth: 400,
-        margin: { bottom: 50, left: 80, top: 20, right: 20 },
-      },
-      legend: { position: 'embedded' },
-    };
-    setData(richData);
+    const plot = getReactPlotJSON(analyses, query, { dimentions });
+    setData({ ...plot, legend });
   }, [analyses, query]);
   return <PlotObject plot={data} />;
 }

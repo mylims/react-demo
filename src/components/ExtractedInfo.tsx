@@ -63,19 +63,21 @@ export default function ExtractedInfo({ text }: InfoProps) {
               <Plot
                 width={500}
                 height={500}
-                margin={{ bottom: 50, left: 80, top: 20, right: 20 }}
+                margin={{ bottom: 50, left: 90, top: 20, right: 20 }}
               >
                 <LineSeries data={data} displayMarker={plotState.showMarkers} />
                 <Axis
+                  id="x"
                   position="bottom"
                   label={`${variables.x.label} [${variables.x.units}]`}
-                  showGridLines={plotState.showGridLines}
+                  displayGridLines={plotState.showGridLines}
                 />
                 <Axis
+                  id="y"
                   position="left"
                   label={`${variables.y.label} [${variables.y.units}]`}
-                  showGridLines={plotState.showGridLines}
-                  labelSpace={50}
+                  displayGridLines={plotState.showGridLines}
+                  labelSpace={60}
                 />
               </Plot>
             )}
