@@ -5,6 +5,7 @@ export const paths: Record<string, string | undefined> = {
   '/samplestable': '1. Samples table',
   '/ivcurve': '2. Single curve spectra',
   '/multcurve': '3. Superimposed spectra',
+  '/thermalresistance': '4. Thermal resistance',
 };
 
 export function Title() {

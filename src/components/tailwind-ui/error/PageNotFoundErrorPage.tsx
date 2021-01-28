@@ -43,9 +43,7 @@ export function PageNotFoundErrorPage(props: PageNotFoundErrorPageProps) {
                     {
                       title: 'Successfully copied error report',
                       content: '',
-                      icon: (
-                        <SvgOutlineCheck className="w-5 h-5 text-success-600" />
-                      ),
+                      icon: <SvgOutlineCheck className="text-success-600" />,
                     },
                     3000,
                   );

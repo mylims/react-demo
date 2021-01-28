@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, {
   ComponentType,
   TdHTMLAttributes,
@@ -17,13 +18,22 @@ export interface TableProps<T = any> {
   Tr: ComponentType<TrProps<T>>;
   Empty?: ComponentType;
   Header?: ComponentType;
-
   pagination?: PaginationProps;
   itemsPerPage?: number;
+  tableStyle?: React.CSSProperties;
+  tableClassName?: string;
 }
 
 export function Table<T extends { id: number | string }>(props: TableProps<T>) {
-  const { data, Tr, Empty, Header, pagination } = props;
+  const {
+    data,
+    Tr,
+    Empty,
+    Header,
+    pagination,
+    tableStyle,
+    tableClassName,
+  } = props;
 
   if (data.length === 0) {
     return Empty ? <Empty /> : null;
@@ -33,7 +43,13 @@ export function Table<T extends { id: number | string }>(props: TableProps<T>) {
     <div className="flex flex-col">
       <div>
         <div className="inline-block min-w-full overflow-hidden align-middle border-b shadow border-neutral-200 sm:rounded-lg">
-          <table className="min-w-full divide-y divide-neutral-200">
+          <table
+            style={tableStyle}
+            className={clsx(
+              'min-w-full divide-y divide-neutral-200',
+              tableClassName,
+            )}
+          >
             {Header && (
               <thead>
                 <Header />
@@ -60,10 +76,14 @@ export type TdProps = TdHTMLAttributes<HTMLTableDataCellElement>;
 export type ThProps = ThHTMLAttributes<HTMLTableHeaderCellElement>;
 
 export function Td(props: TdProps) {
+  const { className, ...otherProps } = props;
   return (
     <td
-      className="px-6 py-4 text-sm font-medium whitespace-nowrap text-neutral-900"
-      {...props}
+      className={clsx(
+        'px-6 py-4 text-sm font-medium whitespace-nowrap text-neutral-900',
+        props.className,
+      )}
+      {...otherProps}
     />
   );
 }

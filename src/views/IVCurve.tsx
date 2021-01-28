@@ -5,7 +5,7 @@ import {
   Button,
   Dropzone,
   DropzoneList,
-  useSingleFileDrozone,
+  useSingleFileDropzone,
 } from '../components/tailwind-ui';
 
 export default function IVCurve() {
@@ -13,7 +13,7 @@ export default function IVCurve() {
   const {
     dropzoneProps,
     dropzoneListProps: { files, onRemove },
-  } = useSingleFileDrozone({ accept: ['.csv', '.txt'], maxSize: 10000000 });
+  } = useSingleFileDropzone({ accept: ['.csv', '.txt'], maxSize: 10000000 });
 
   useEffect(() => {
     if (files[0]) {
