@@ -1,18 +1,55 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-export const paths: Record<string, string | undefined> = {
-  '/samplestable': '1. Samples table',
-  '/ivcurve': '2. Single curve spectra',
-  '/multcurve': '3. Superimposed spectra',
-  '/thermalresistance': '4. Thermal resistance',
+import { VerticalNavigationOptions } from './tailwind-ui';
+
+interface Route {
+  name: string;
+  path: string;
+}
+export type RoutesType = Record<string, Route[] | undefined>;
+export const routes: RoutesType = {
+  base: [
+    { name: '1. Samples table', path: 'samplestable' },
+    { name: '2. Single curve spectra', path: 'ivcurve' },
+    { name: '3. Superimposed spectra', path: 'multcurve' },
+    { name: '4. Thermal resistance', path: 'thermalresistance' },
+  ],
+  b1505: [{ name: 'Breakdown', path: 'breakdown' }],
 };
 
-export function Title() {
+export const navigationRoutes: VerticalNavigationOptions<string>[] = Object.keys(
+  routes,
+).map((key) => {
+  const subRoutes = routes[key] || [];
+  return {
+    type: 'group',
+    id: key,
+    label: key.toUpperCase(),
+    options: subRoutes.map(({ name, path }) => ({
+      type: 'option',
+      id: `${key}-${path}`,
+      label: name,
+      value: `/${key}/${path}`,
+      renderOption: (childen, option) => (
+        <Link to={option.value}>{childen}</Link>
+      ),
+    })),
+  };
+});
+
+export function useGetTitle() {
   const location = useLocation();
-  return (
-    <h1 className="m-4 text-xl font-bold text-primary-500">
-      {paths[location.pathname] || 'Demo'}
-    </h1>
-  );
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, title, subtitle] = location.pathname.split('/');
+  const subRoutes = routes[title] || [];
+  const { name } = subRoutes.find(({ path }) => path === subtitle) || {
+    name: 'Demo',
+  };
+  return name;
+}
+
+export function Title() {
+  const name = useGetTitle();
+  return <h1 className="m-4 text-xl font-bold text-primary-500">{name}</h1>;
 }
