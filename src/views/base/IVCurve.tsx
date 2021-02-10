@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import ExtractedInfo from '../components/ExtractedInfo';
+import ExtractedInfo from '../../components/ExtractedInfo';
 import {
   Button,
   Dropzone,
   DropzoneList,
   useSingleFileDropzone,
-} from '../components/tailwind-ui';
+} from '../../components/tailwind-ui';
 
 export default function IVCurve() {
   const [text, setText] = useState<string | null>(null);
