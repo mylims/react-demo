@@ -1,7 +1,7 @@
 import React from 'react';
-import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { SidebarLayout } from './components/tailwind-ui';
-import { Title, paths } from './components/Title';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { SidebarLayout, VerticalNavigation } from './components/tailwind-ui';
+import { Title, navigationRoutes } from './components/Title';
 
 import IVCurve from './views/IVCurve';
 import MultipleCurves from './views/MultipleCurves';
@@ -13,35 +13,23 @@ export default function App() {
     <Router basename="/">
       <SidebarLayout>
         <SidebarLayout.Sidebar>
-          <div className="flex flex-col flex-grow mt-5">
-            <nav className="flex-1 px-2 space-y-1 bg-white">
-              {Object.keys(paths).map((key) => (
-                <Link
-                  key={key}
-                  to={key}
-                  className="flex items-center w-full py-2 text-sm font-medium rounded-md cursor-pointer group hover:text-neutral-900 hover:bg-neutral-100 text-neutral-600"
-                >
-                  {paths[key] || 'Demo'}
-                </Link>
-              ))}
-            </nav>
-          </div>
+          <VerticalNavigation selected={undefined} options={navigationRoutes} />
         </SidebarLayout.Sidebar>
         <SidebarLayout.Header>
           <Title />
         </SidebarLayout.Header>
         <SidebarLayout.Body>
           <Switch>
-            <Route path="/ivcurve">
+            <Route path="/base/ivcurve">
               <IVCurve />
             </Route>
-            <Route path="/samplestable">
+            <Route path="/base/samplestable">
               <SamplesTable />
             </Route>
-            <Route path="/multcurve">
+            <Route path="/base/multcurve">
               <MultipleCurves />
             </Route>
-            <Route path="/thermalresistance">
+            <Route path="/base/thermalresistance">
               <ThermalResistance />
             </Route>
             <Route path="/*">
