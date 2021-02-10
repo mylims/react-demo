@@ -7,7 +7,7 @@ import {
   Td,
   Th,
   useTable,
-} from '../components/tailwind-ui';
+} from '../../components/tailwind-ui';
 
 interface DataType {
   id: number;

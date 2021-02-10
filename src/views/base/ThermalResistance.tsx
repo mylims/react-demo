@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ThermalResistanceDisplayer from '../components/ThermalResistanceDisplayer';
+import ThermalResistanceDisplayer from '../../components/ThermalResistanceDisplayer';
 
 import {
   Button,
@@ -7,7 +7,7 @@ import {
   Dropzone,
   DropzoneList,
   useDropzone,
-} from '../components/tailwind-ui';
+} from '../../components/tailwind-ui';
 
 export default function ThermalResistance() {
   const {

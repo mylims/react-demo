@@ -3,10 +3,10 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { SidebarLayout, VerticalNavigation } from './components/tailwind-ui';
 import { Title, navigationRoutes } from './components/Title';
 
-import IVCurve from './views/IVCurve';
-import MultipleCurves from './views/MultipleCurves';
-import ThermalResistance from './views/ThermalResistance';
-import SamplesTable from './views/SamplesTable';
+import IVCurve from './views/base/IVCurve';
+import MultipleCurves from './views/base/MultipleCurves';
+import ThermalResistance from './views/base/ThermalResistance';
+import SamplesTable from './views/base/SamplesTable';
 
 export default function App() {
   return (
