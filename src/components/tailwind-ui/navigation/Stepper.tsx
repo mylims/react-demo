@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React from 'react';
 
 import { SvgOutlineCheck } from '../svg/heroicon/outline';
@@ -66,7 +67,10 @@ function StepCurrent(props: {
 
   return (
     <span
-      className="flex items-start px-6 py-5 text-sm font-medium lg:pl-9"
+      className={clsx(
+        'flex px-6 py-5 text-sm font-medium lg:pl-9',
+        !props.step.description ? 'items-center' : 'items-start',
+      )}
       aria-current="step"
     >
       <span className="flex-shrink-0">
@@ -80,9 +84,11 @@ function StepCurrent(props: {
         <span className="text-xs font-semibold tracking-wide uppercase text-primary-600">
           {props.step.label}
         </span>
-        <span className="text-sm font-medium text-neutral-500">
-          {props.step.description}
-        </span>
+        {props.step.description && (
+          <span className="text-sm font-medium text-neutral-500">
+            {props.step.description}
+          </span>
+        )}
       </span>
     </span>
   );
@@ -90,7 +96,12 @@ function StepCurrent(props: {
 
 function StepToDoComponent(props: { step: StepWithId }): JSX.Element {
   return (
-    <span className="flex items-start px-6 py-5 text-sm font-medium lg:pl-9">
+    <span
+      className={clsx(
+        'flex px-6 py-5 text-sm font-medium lg:pl-9',
+        !props.step.description ? 'items-center' : 'items-start',
+      )}
+    >
       <span className="flex-shrink-0">
         <span className="flex items-center justify-center w-10 h-10 border-2 rounded-full border-neutral-300">
           <span className="text-neutral-500">
@@ -112,7 +123,12 @@ function StepToDoComponent(props: { step: StepWithId }): JSX.Element {
 
 function StepDone(props: { step: StepWithId }): JSX.Element {
   return (
-    <span className="flex items-start px-6 py-5 text-sm font-medium lg:pl-9">
+    <span
+      className={clsx(
+        'flex px-6 py-5 text-sm font-medium lg:pl-9',
+        !props.step.description ? 'items-center' : 'items-start',
+      )}
+    >
       <span className="flex-shrink-0">
         <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary-600">
           <SvgOutlineCheck className="w-6 h-6 text-white" />

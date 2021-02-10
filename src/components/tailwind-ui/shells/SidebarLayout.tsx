@@ -97,7 +97,9 @@ export function SidebarLayout(props: SidebarLayoutProps) {
           </button>
           <div className="flex justify-between flex-1">{header}</div>
         </div>
-        <main className="relative z-0 flex-1 pb-8 overflow-y-auto">{body}</main>
+        <main className="relative z-0 flex flex-col flex-1 pb-8 overflow-y-auto">
+          {body}
+        </main>
       </div>
     </div>
   );
