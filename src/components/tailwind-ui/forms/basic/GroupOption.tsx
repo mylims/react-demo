@@ -3,7 +3,13 @@ import React, { ReactElement } from 'react';
 
 import { OptionField } from '../formik/GroupOptionField';
 
+import { Label } from './common';
+
 export interface GroupOptionProps {
+  label?: string;
+  disabled?: boolean;
+  hiddenLabel?: boolean;
+  required?: boolean;
   children: ReactElement<OptionProps> | Array<React.ReactElement<OptionProps>>;
 }
 
@@ -16,33 +22,41 @@ export interface OptionProps
 }
 
 export function GroupOption(props: GroupOptionProps): JSX.Element {
-  if (Array.isArray(props.children)) {
-    const lastChildIndex = props.children.length - 1;
-    return (
-      <div>
-        {props.children.map((option, index) => {
+  const lastChildIndex = Array.isArray(props.children)
+    ? props.children.length - 1
+    : 0;
+  return (
+    <div>
+      {props.label && (
+        <Label
+          text={props.label}
+          disabled={props.disabled}
+          required={props.required}
+          hidden={props.hiddenLabel}
+        />
+      )}
+      <div className="mt-1">
+        {React.Children.map(props.children, (child, index) => {
           return (
             <div
-              key={option.props.id}
+              key={child.props.id}
               className={clsx('border border-neutral-200', {
                 'rounded-tl-md rounded-tr-md': index === 0,
                 'border-b-0': index !== lastChildIndex,
                 'rounded-bl-md rounded-br border-b-1': index === lastChildIndex,
               })}
             >
-              {option}
+              {props.disabled === true
+                ? React.cloneElement(child, {
+                    disabled: props.disabled,
+                  })
+                : child}
             </div>
           );
         })}
       </div>
-    );
-  } else {
-    return (
-      <div className="border border-neutral-200 rounded-tl-md rounded-bl-md rounded-br">
-        {props.children}
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 GroupOption.Option = (props: OptionProps): JSX.Element => {
@@ -60,12 +74,12 @@ GroupOption.Option = (props: OptionProps): JSX.Element => {
             name={name}
             value={value}
             id={id}
-            className="focus:ring-primary-500 h-4 w-4 text-primary-600 cursor-pointer border-gray-300"
+            className="w-4 h-4 border-gray-300 cursor-pointer focus:ring-primary-500 text-primary-600"
             checked={checked}
             {...otherProps}
           />
         </div>
-        <label htmlFor={id} className="ml-3 flex flex-col cursor-pointer">
+        <label htmlFor={id} className="flex flex-col ml-3 cursor-pointer">
           <span
             className={clsx('block text-sm font-medium', {
               'text-neutral-900': !checked && !props.disabled,

@@ -12,7 +12,7 @@ export const inputError =
 export const inputValid =
   'border-success-400 text-success-900 placeholder-success-600 focus-within:border-success-600 focus-within:ring-success-600';
 export interface LabelProps {
-  id: string;
+  id?: string;
   text: string;
   hidden?: boolean;
   required?: boolean;

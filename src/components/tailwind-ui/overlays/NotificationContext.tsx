@@ -8,12 +8,13 @@ import {
 } from './NotificationCenter';
 
 export interface NotificationConfig {
-  title: string;
+  title?: string;
   content: ReactNode;
   icon?: ReactNode;
 
   isToast?: false;
 }
+
 export interface NotificationContextHook {
   notifications: Array<NotificationState | NotificationToastState>;
   addNotification: (
