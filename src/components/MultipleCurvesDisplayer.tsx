@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fromMulChannelCap } from 'iv-spectrum';
-import { getReactPlotJSON } from 'common-spectrum';
+import { fromMulChannelCap, getReactPlotJSON } from 'iv-spectrum';
 import { PlotObject, PlotObjectType } from 'react-plot';
 import { schemeRdYlBu } from 'd3-scale-chromatic';
 

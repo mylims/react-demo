@@ -25,7 +25,7 @@
     "tailwindcss": "^2.0.3"
   },
   "dependencies": {
-    "@headlessui/react": "^0.3.0",
+    "@headlessui/react": "^0.2.0",
     "@lukeed/uuid": "^2.0.0",
     "@popperjs/core": "^2.6.0",
     "@testing-library/jest-dom": "^5.11.9",

@@ -1,4 +1,4 @@
-import { getReactPlotJSON } from 'common-spectrum';
+import { getReactPlotJSON } from 'iv-spectrum';
 import React, { useEffect, useState } from 'react';
 import { PlotObject, PlotObjectType } from 'react-plot';
 

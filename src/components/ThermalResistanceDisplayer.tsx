@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getReactPlotJSON } from 'common-spectrum';
+import { getReactPlotJSON } from 'iv-spectrum';
 import { fromPressureSweep } from 'thermal-resistance-sepctrum';
 import SinglePlot from './SinglePlot';
 
