@@ -21,7 +21,6 @@ export default function MultipleCurvesDisplayer({ textList }: MultipleProps) {
   useEffect(() => {
     const analyses = textList.map((text) => fromMulChannelCap(text));
     const data = getReactPlotJSON(analyses, query, options);
-    console.log(data);
     setData({ ...data, colorScheme });
   }, [textList]);
 

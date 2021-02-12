@@ -7,6 +7,7 @@ import IVCurve from './views/base/IVCurve';
 import MultipleCurves from './views/base/MultipleCurves';
 import ThermalResistance from './views/base/ThermalResistance';
 import SamplesTable from './views/base/SamplesTable';
+import BaseMultiple from './views/b1505/BaseMultiple';
 
 export default function App() {
   return (
@@ -31,6 +32,9 @@ export default function App() {
             </Route>
             <Route path="/base/thermalresistance">
               <ThermalResistance />
+            </Route>
+            <Route path="/b1505/breakdown">
+              <BaseMultiple dirName="breakdown" maxIndex={9} />
             </Route>
             <Route path="/*">
               <IVCurve />
