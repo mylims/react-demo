@@ -36,6 +36,21 @@ export default function App() {
             <Route path="/b1505/breakdown">
               <BaseMultiple dirName="breakdown" maxIndex={9} />
             </Route>
+            <Route path="/b1505/hemt-breakdown">
+              <BaseMultiple dirName="HEMT_breakdown" maxIndex={8} />
+            </Route>
+            <Route path="/b1505/capacitance">
+              <BaseMultiple dirName="capacitance" maxIndex={20} />
+            </Route>
+            <Route path="/b1505/mos-capacitance">
+              <BaseMultiple dirName="MOS_capacitance" maxIndex={13} />
+            </Route>
+            <Route path="/b1505/transfer">
+              <BaseMultiple dirName="transfer" maxIndex={14} />
+            </Route>
+            <Route path="/b1505/hemt-transfer">
+              <BaseMultiple dirName="HEMT_transfer" maxIndex={38} />
+            </Route>
             <Route path="/*">
               <IVCurve />
             </Route>
