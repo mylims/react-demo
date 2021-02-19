@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { fromMulChannelCap, getReactPlotJSON } from 'iv-spectrum';
+import { fromMulChannelCap } from 'iv-spectrum';
+import { JSGraph } from 'common-spectrum';
 import { PlotObject, PlotObjectType } from 'react-plot';
 import { schemeRdYlBu } from 'd3-scale-chromatic';
 
+const { getReactPlotJSON } = JSGraph;
 interface MultipleProps {
   textList: string[];
 }
