@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getReactPlotJSON, fromBreakdown } from 'iv-spectrum';
+import { fromBreakdown } from 'iv-spectrum';
+import { JSGraph } from 'common-spectrum';
 import { PlotObject, PlotObjectType } from 'react-plot';
 
+const { getReactPlotJSON } = JSGraph;
 interface B1505Props {
   content: string[];
 }

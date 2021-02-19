@@ -1,7 +1,8 @@
-import { getReactPlotJSON } from 'iv-spectrum';
+import { JSGraph } from 'common-spectrum';
 import React, { useEffect, useState } from 'react';
 import { PlotObject, PlotObjectType } from 'react-plot';
 
+const { getReactPlotJSON } = JSGraph;
 type PlotState = PlotObjectType & { meta: any[] };
 interface SinglePlotProps {
   query: Record<string, unknown>;

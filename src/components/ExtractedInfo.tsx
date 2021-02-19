@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { fromCVd, toJcamp } from 'iv-spectrum';
+import { fromCVd } from 'iv-spectrum';
+import { toJcamp } from 'common-spectrum';
 import { Plot, LineSeries, Axis } from 'react-plot';
 
 import MetaTable from './MetaTable';
