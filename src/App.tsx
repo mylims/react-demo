@@ -93,6 +93,56 @@ export default function App() {
                 yUnits="mA/mm"
               />
             </Route>
+            <Route path="/b1505/noff-output">
+              <BaseMultiple
+                dirName="noff_output"
+                maxIndex={11}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_density"
+                yUnits="mA/mm"
+              />
+            </Route>
+            <Route path="/b1505/f-implant-output">
+              <BaseMultiple
+                dirName="f_implant_output"
+                maxIndex={13}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
+            </Route>
+            <Route path="/b1505/LPCVD-output">
+              <BaseMultiple
+                dirName="LPCVD_output"
+                maxIndex={20}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
+            </Route>
+            <Route path="/b1505/iv">
+              <BaseMultiple
+                dirName="IV"
+                maxIndex={6}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
+            </Route>
+            <Route path="/b1505/iv-diode">
+              <BaseMultiple
+                dirName="IV_diode"
+                maxIndex={14}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
+            </Route>
             <Route path="/*">
               <IVCurve />
             </Route>
