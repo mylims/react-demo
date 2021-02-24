@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Button,
@@ -31,6 +31,8 @@ export default function BaseMultiple({
     dropzoneListProps: { files, onRemove },
   } = useDropzone({ accept: ['.csv', '.txt'], maxSize: 10000000 });
   const [content, setContent] = useState<Record<string, string>>({});
+
+  useEffect(() => setContent({}), [dirName]);
 
   return (
     <div>

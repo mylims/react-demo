@@ -15,7 +15,14 @@ export const routes: RoutesType = {
     { name: '3. Superimposed spectra', path: 'multcurve' },
     { name: '4. Thermal resistance', path: 'thermalresistance' },
   ],
-  b1505: [{ name: 'Breakdown', path: 'breakdown' }],
+  b1505: [
+    { name: 'Breakdown', path: 'breakdown' },
+    { name: 'Hemt breakdown', path: 'hemt-breakdown' },
+    { name: 'Capacitance', path: 'capacitance' },
+    { name: 'MOS Capacitance', path: 'mos-capacitance' },
+    { name: 'Transfer', path: 'transfer' },
+    { name: 'NOFF Transfer', path: 'noff-transfer' },
+  ],
 };
 
 export const navigationRoutes: VerticalNavigationOptions<string>[] = Object.keys(
