@@ -22,6 +22,11 @@ export const routes: RoutesType = {
     { name: 'MOS Capacitance', path: 'mos-capacitance' },
     { name: 'Transfer', path: 'transfer' },
     { name: 'NOFF Transfer', path: 'noff-transfer' },
+    { name: 'NOFF Output', path: 'noff-output' },
+    { name: 'F Implant Output', path: 'f-implant-output' },
+    { name: 'LPCVD Output', path: 'LPCVD-output' },
+    { name: 'IV', path: 'iv' },
+    { name: 'IV Diode', path: 'iv-diode' },
   ],
 };
 
