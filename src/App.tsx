@@ -34,22 +34,64 @@ export default function App() {
               <ThermalResistance />
             </Route>
             <Route path="/b1505/breakdown">
-              <BaseMultiple dirName="breakdown" maxIndex={9} />
+              <BaseMultiple
+                dirName="breakdown"
+                maxIndex={9}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
             </Route>
             <Route path="/b1505/hemt-breakdown">
-              <BaseMultiple dirName="HEMT_breakdown" maxIndex={8} />
+              <BaseMultiple
+                dirName="HEMT_breakdown"
+                maxIndex={8}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
             </Route>
             <Route path="/b1505/capacitance">
-              <BaseMultiple dirName="capacitance" maxIndex={20} />
+              <BaseMultiple
+                dirName="capacitance"
+                maxIndex={20}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
             </Route>
             <Route path="/b1505/mos-capacitance">
-              <BaseMultiple dirName="MOS_capacitance" maxIndex={13} />
+              <BaseMultiple
+                dirName="MOS_capacitance"
+                maxIndex={13}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
             </Route>
             <Route path="/b1505/transfer">
-              <BaseMultiple dirName="transfer" maxIndex={14} />
+              <BaseMultiple
+                dirName="transfer"
+                maxIndex={14}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
             </Route>
             <Route path="/b1505/hemt-transfer">
-              <BaseMultiple dirName="HEMT_transfer" maxIndex={38} />
+              <BaseMultiple
+                dirName="HEMT_transfer"
+                maxIndex={38}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+              />
             </Route>
             <Route path="/*">
               <IVCurve />
