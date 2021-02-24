@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fromBreakdown } from 'iv-spectrum';
+import { fromB1505 } from 'iv-spectrum';
 import { JSGraph } from 'common-spectrum';
 import { PlotObject, PlotObjectType } from 'react-plot';
 import { Input, Select } from './tailwind-ui';
@@ -42,7 +42,13 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
   // Creates the data plot from the analyses
   useEffect(() => {
     const analyses = content
-      .map((text) => fromBreakdown(text))
+      .map((text) =>
+        fromB1505(text, {
+          xLabel: query.xLabel,
+          yLabel: query.yLabel,
+          scale: 'linear' as const,
+        }),
+      )
       .reduce((acc, curr) => acc.concat(curr), []);
     const data = getReactPlotJSON(analyses, query, options);
     setData({ legend: { position: 'right' }, ...data });
