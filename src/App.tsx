@@ -49,7 +49,7 @@ export default function App() {
                 maxIndex={8}
                 xLabel="Vd"
                 xUnits="V"
-                yLabel="Id_dens"
+                yLabel="Id_density"
                 yUnits="mA/mm"
               />
             </Route>
@@ -59,35 +59,35 @@ export default function App() {
                 maxIndex={20}
                 xLabel="Vd"
                 xUnits="V"
-                yLabel="Id_dens"
-                yUnits="mA/mm"
+                yLabel="C_dens"
+                yUnits="pF/mm"
               />
             </Route>
             <Route path="/b1505/mos-capacitance">
               <BaseMultiple
                 dirName="MOS_capacitance"
                 maxIndex={13}
-                xLabel="Vd"
+                xLabel="VBias"
                 xUnits="V"
-                yLabel="Id_dens"
-                yUnits="mA/mm"
+                yLabel="C_density"
+                yUnits="pF/mm"
               />
             </Route>
             <Route path="/b1505/transfer">
               <BaseMultiple
                 dirName="transfer"
                 maxIndex={14}
-                xLabel="Vd"
+                xLabel="Vg"
                 xUnits="V"
-                yLabel="Id_dens"
+                yLabel="Id_density"
                 yUnits="mA/mm"
               />
             </Route>
-            <Route path="/b1505/hemt-transfer">
+            <Route path="/b1505/noff-transfer">
               <BaseMultiple
-                dirName="HEMT_transfer"
+                dirName="noff_transfer"
                 maxIndex={38}
-                xLabel="Vd"
+                xLabel="Vg"
                 xUnits="V"
                 yLabel="Id_dens"
                 yUnits="mA/mm"

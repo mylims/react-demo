@@ -53,7 +53,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
     const data = getReactPlotJSON(analyses, query, options);
     setData({ legend: { position: 'right' }, ...data });
     setVariables(listVariables(analyses));
-  }, [content, query]);
+  }, [content, query, defaultQuery]);
 
   if (!data) return null;
   if (data.series.length === 0) return <span>Your data is empty</span>;
