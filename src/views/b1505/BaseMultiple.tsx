@@ -45,7 +45,7 @@ export default function BaseMultiple({
               for (let index = 1; index <= maxIndex; index++) {
                 promises.push(
                   fetch(
-                    `${process.env.PUBLIC_URL}/testFiles/b1505/${dirName}/${index}.csv`,
+                    `${process.env.PUBLIC_URL}/testFiles/B1505/${dirName}/${index}.csv`,
                   ),
                 );
               }
