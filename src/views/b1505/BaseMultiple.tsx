@@ -12,9 +12,20 @@ import B1505 from '../../components/B1505';
 interface BaseMultipleProps {
   dirName: string;
   maxIndex: number;
+  xLabel: string;
+  xUnits: string;
+  yLabel: string;
+  yUnits: string;
 }
 
-export default function BaseMultiple({ dirName, maxIndex }: BaseMultipleProps) {
+export default function BaseMultiple({
+  dirName,
+  maxIndex,
+  xLabel,
+  xUnits,
+  yLabel,
+  yUnits,
+}: BaseMultipleProps) {
   const {
     dropzoneProps: { onDrop, ...dropzoneProps },
     dropzoneListProps: { files, onRemove },
@@ -81,7 +92,15 @@ export default function BaseMultiple({ dirName, maxIndex }: BaseMultipleProps) {
         </div>
       </div>
       {!!Object.keys(content).length && (
-        <B1505 content={Object.values(content)} />
+        <B1505
+          content={Object.values(content)}
+          defaultQuery={{
+            xLabel,
+            xUnits,
+            yLabel,
+            yUnits,
+          }}
+        />
       )}
     </div>
   );
