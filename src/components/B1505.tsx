@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { fromB1505 } from 'iv-spectrum';
 import { JSGraph } from 'common-spectrum';
 import { PlotObject, PlotObjectType } from 'react-plot';
@@ -39,6 +39,11 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
   const [variables, setVariables] = useState<Record<string, string>>({});
   const [query, setQuery] = useState<QueryType>(defaultQuery);
 
+  const optionsVariables = useMemo(
+    () => Object.keys(variables).map((label) => ({ label, value: label })),
+    [variables],
+  );
+
   // Creates the data plot from the analyses
   useEffect(() => {
     const analyses = content
@@ -56,7 +61,14 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
   }, [content, query, defaultQuery]);
 
   if (!data) return null;
-  if (data.series.length === 0) return <span>Your data is empty</span>;
+  if (data.series.length === 0) {
+    return (
+      <div className="flex flex-col items-center">
+        <span>Your data is empty</span>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-row">
@@ -64,14 +76,8 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
           <Select
             className="w-full"
             label="X variable"
-            options={Object.keys(variables).map((label) => ({
-              label,
-              value: label,
-            }))}
-            selected={{
-              label: query.xLabel,
-              value: query.xLabel,
-            }}
+            options={optionsVariables}
+            selected={{ label: query.xLabel, value: query.xLabel }}
             onSelect={(selected) => {
               const { label = defaultQuery.xLabel } = selected || {};
               setQuery({
@@ -97,14 +103,8 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
           <Select
             className="w-full"
             label="Y variable"
-            options={Object.keys(variables).map((label) => ({
-              label,
-              value: label,
-            }))}
-            selected={{
-              label: query.yLabel,
-              value: query.yLabel,
-            }}
+            options={optionsVariables}
+            selected={{ label: query.xLabel, value: query.xLabel }}
             onSelect={(selected) => {
               const { label = defaultQuery.yLabel } = selected || {};
               setQuery({
