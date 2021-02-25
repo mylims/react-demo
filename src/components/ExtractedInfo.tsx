@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { fromCVd } from 'iv-spectrum';
+import { fromCapacitance } from 'iv-spectrum';
 import { toJcamp } from 'common-spectrum';
 import { Plot, LineSeries, Axis } from 'react-plot';
 
@@ -29,7 +29,7 @@ function getData(x: number[], y: number[]) {
 
 export default function ExtractedInfo({ text }: InfoProps) {
   const [analysis, allVariables] = useMemo(() => {
-    const analysis = fromCVd(text);
+    const [analysis] = fromCapacitance(text);
     return [analysis, listVariables(analysis.spectra[0].variables)];
   }, [text]);
 

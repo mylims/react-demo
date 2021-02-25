@@ -15,7 +15,7 @@ export default function MetaTable({ meta }: MetaTableProps) {
           {Object.keys(meta).map((key) => (
             <tr key={key}>
               <td className="font-medium">{key}</td>
-              <td>{meta[key]}</td>
+              <td>{JSON.stringify(meta[key])}</td>
             </tr>
           ))}
         </tbody>
