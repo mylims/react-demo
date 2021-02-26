@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { fromB1505 } from 'iv-spectrum';
 import { JSGraph } from 'common-spectrum';
 import { PlotObject, PlotObjectType } from 'react-plot';
-import { Input, Select } from '../tailwind-ui';
+import { Variables } from './Variables';
 
 const { getReactPlotJSON } = JSGraph;
 interface B1505Props {
@@ -71,61 +71,29 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-row">
-        <div className="flex flex-col m-3">
-          <Select
-            className="w-full"
-            label="X variable"
-            options={optionsVariables}
-            selected={{ label: query.xLabel, value: query.xLabel }}
-            onSelect={(selected) => {
-              const { label = defaultQuery.xLabel } = selected || {};
-              setQuery({
-                ...query,
-                xLabel: label,
-                xUnits: variables[label] || defaultQuery.xUnits,
-              });
-            }}
-          />
-          <Input
-            className="w-full"
-            name="xUnits"
-            label="X units"
-            placeholder="X units"
-            value={query.xUnits}
-            onChange={(e) => {
-              const { value: xUnits } = e.currentTarget;
-              setQuery({ ...query, xUnits });
-            }}
-          />
-        </div>
-        <div className="flex flex-col m-3">
-          <Select
-            className="w-full"
-            label="Y variable"
-            options={optionsVariables}
-            selected={{ label: query.xLabel, value: query.xLabel }}
-            onSelect={(selected) => {
-              const { label = defaultQuery.yLabel } = selected || {};
-              setQuery({
-                ...query,
-                yLabel: label,
-                yUnits: variables[label] || defaultQuery.yUnits,
-              });
-            }}
-          />
-          <Input
-            className="w-full"
-            name="yUnits"
-            label="Y units"
-            placeholder="Y units"
-            value={query.yUnits}
-            onChange={(e) => {
-              const { value: yUnits } = e.currentTarget;
-              setQuery({ ...query, yUnits });
-            }}
-          />
-        </div>
+      <div className="flex flex-col">
+        <Variables
+          label="X"
+          optionsVariables={optionsVariables}
+          name={query.xLabel}
+          onChangeName={(label = defaultQuery.xLabel) => {
+            const xUnits = variables[label] || defaultQuery.xUnits;
+            setQuery({ ...query, xLabel: label, xUnits });
+          }}
+          units={query.xUnits}
+          onChangeUnits={(xUnits) => setQuery({ ...query, xUnits })}
+        />
+        <Variables
+          label="Y"
+          optionsVariables={optionsVariables}
+          name={query.yLabel}
+          onChangeName={(label = defaultQuery.yLabel) => {
+            const yUnits = variables[label] || defaultQuery.yUnits;
+            setQuery({ ...query, yLabel: label, yUnits });
+          }}
+          units={query.yUnits}
+          onChangeUnits={(yUnits) => setQuery({ ...query, yUnits })}
+        />
       </div>
       <PlotObject plot={data} />
     </div>
