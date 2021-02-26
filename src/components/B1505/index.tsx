@@ -2,7 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { fromB1505 } from 'iv-spectrum';
 import { JSGraph } from 'common-spectrum';
 import { PlotObject, PlotObjectType } from 'react-plot';
+
 import { Variables } from './Variables';
+import { Table } from './Table';
 
 const { getReactPlotJSON } = JSGraph;
 interface B1505Props {
@@ -46,14 +48,10 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
 
   // Creates the data plot from the analyses
   useEffect(() => {
+    const { xLabel, yLabel } = query;
+    const parserOptions = { xLabel, yLabel, scale: 'linear' as const };
     const analyses = content
-      .map((text) =>
-        fromB1505(text, {
-          xLabel: query.xLabel,
-          yLabel: query.yLabel,
-          scale: 'linear' as const,
-        }),
-      )
+      .map((text) => fromB1505(text, parserOptions))
       .reduce((acc, curr) => acc.concat(curr), []);
     const data = getReactPlotJSON(analyses, query, options);
     setData({ legend: { position: 'right' }, ...data });
@@ -97,6 +95,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
         />
       </div>
       <PlotObject plot={data} />
+      <Table data={data} content={content} />
     </div>
   );
 }
