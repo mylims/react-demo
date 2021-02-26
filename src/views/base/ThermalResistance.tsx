@@ -32,7 +32,6 @@ export default function ThermalResistance() {
                 ),
               );
               const texts = await Promise.all(results.map((res) => res.text()));
-              console.log(texts);
 
               let state: Record<string, string> = {};
               for (let index = 0; index < results.length; index++) {
