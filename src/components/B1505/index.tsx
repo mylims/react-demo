@@ -60,6 +60,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
     setVariables(listVariables(analyses));
   }, [content, query, defaultQuery]);
 
+  // Data validation
   if (!data) return null;
   if (data.series.length === 0) {
     return (
