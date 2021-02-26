@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { fromB1505 } from 'iv-spectrum';
 import { JSGraph } from 'common-spectrum';
 import { PlotObject, PlotObjectType } from 'react-plot';
-import { Input, Select } from './tailwind-ui';
+import { Input, Select } from '../tailwind-ui';
 
 const { getReactPlotJSON } = JSGraph;
 interface B1505Props {
