@@ -27,7 +27,7 @@ export interface DropdownProps<T> {
 }
 
 const titleClassName =
-  'inline-flex justify-center w-full rounded-md border border-neutral-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-neutral-700 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-100 focus:ring-primary-500';
+  'inline-flex justify-center w-full rounded-md border border-neutral-300 shadow-sm px-4 py-2 bg-white text-sm font-semibold text-neutral-700 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-100 focus:ring-primary-500';
 const iconClassName =
   'rounded-full flex items-center text-neutral-400 hover:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-100 focus:ring-primary-500';
 
@@ -35,7 +35,7 @@ export function Dropdown<T>(props: DropdownProps<T>): React.ReactElement {
   return (
     <div className="relative inline-block text-left">
       <Menu>
-        {({ open }) => (
+        {(menu) => (
           <>
             <Menu.Button
               className={props.children ? iconClassName : titleClassName}
@@ -51,7 +51,7 @@ export function Dropdown<T>(props: DropdownProps<T>): React.ReactElement {
             </Menu.Button>
 
             <Transition
-              show={open}
+              show={menu.open}
               enter="transition ease-out duration-100"
               enterFrom="transform opacity-0 scale-95"
               enterTo="transform opacity-100 scale-100"

@@ -2,15 +2,17 @@ import { Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import React, { ReactNode, useEffect, ReactElement } from 'react';
 
-import { useOnOff } from '../hooks/useOnOff';
 import { SvgOutlineMenuAlt1, SvgOutlineX } from '../svg/heroicon/outline';
 
 interface SidebarLayoutProps {
   children: ReactElement[];
+  open: () => void;
+  close: () => void;
+  isOpen: boolean;
 }
 
 export function SidebarLayout(props: SidebarLayoutProps) {
-  const [isOpen, open, close] = useOnOff();
+  const { open, close, isOpen, children } = props;
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -21,15 +23,11 @@ export function SidebarLayout(props: SidebarLayoutProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [close]);
 
-  const sidebar = props.children.find(
+  const sidebar = children.find(
     (child) => child.type === SidebarLayout.Sidebar,
   );
-  const header = props.children.find(
-    (child) => child.type === SidebarLayout.Header,
-  );
-  const body = props.children.find(
-    (child) => child.type === SidebarLayout.Body,
-  );
+  const header = children.find((child) => child.type === SidebarLayout.Header);
+  const body = children.find((child) => child.type === SidebarLayout.Body);
 
   return (
     <div className="flex h-screen overflow-hidden">

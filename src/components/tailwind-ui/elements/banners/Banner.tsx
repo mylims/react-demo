@@ -33,14 +33,14 @@ export function Banner<T extends React.ElementType = 'a'>(
             <span className="flex p-2 text-2xl rounded-lg bg-primary-800">
               {icon}
             </span>
-            <p className="ml-3 font-medium">
+            <p className="ml-3 font-semibold">
               <span className="md:inline">{description}</span>
             </p>
           </div>
           <div className="flex-shrink-0 order-3 w-full mt-2 sm:order-2 sm:mt-0 sm:w-auto">
             <Component
               {...linkAsProps}
-              className="flex items-center justify-center px-4 py-2 text-sm font-medium bg-white border border-transparent rounded-md shadow-sm text-primary-600 hover:bg-primary-50"
+              className="flex items-center justify-center px-4 py-2 text-sm font-semibold bg-white border border-transparent rounded-md shadow-sm text-primary-600 hover:bg-primary-50"
             >
               {buttonText}
             </Component>

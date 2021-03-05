@@ -18,7 +18,7 @@ export function DescriptionList(props: DescriptionListProps) {
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-lg font-medium leading-6 text-neutral-900">
+        <h3 className="text-lg font-semibold leading-6 text-neutral-900">
           {title}
         </h3>
         <p className="max-w-2xl mt-1 text-sm text-neutral-500">{subtitle}</p>
@@ -33,7 +33,7 @@ export function DescriptionList(props: DescriptionListProps) {
                 stripes && idx % 2 === 0 ? 'bg-neutral-50' : '',
               )}
             >
-              <dt className="text-sm font-medium text-neutral-500">
+              <dt className="text-sm font-semibold text-neutral-500">
                 {attribute.title}
               </dt>
               <dd className="mt-1 text-sm text-neutral-900 sm:mt-0 sm:col-span-2">
@@ -74,7 +74,7 @@ export function DescriptionAttachmentList(
           <div className="flex-shrink-0 ml-4">
             <a
               {...attachment}
-              className="font-medium text-primary-600 hover:text-primary-500"
+              className="font-semibold text-primary-600 hover:text-primary-500"
             >
               Download
             </a>

@@ -68,7 +68,7 @@ function StepCurrent(props: {
   return (
     <span
       className={clsx(
-        'flex px-6 py-5 text-sm font-medium lg:pl-9',
+        'flex px-6 py-5 text-sm font-semibold lg:pl-9',
         !props.step.description ? 'items-center' : 'items-start',
       )}
       aria-current="step"
@@ -85,7 +85,7 @@ function StepCurrent(props: {
           {props.step.label}
         </span>
         {props.step.description && (
-          <span className="text-sm font-medium text-neutral-500">
+          <span className="text-sm font-semibold text-neutral-500">
             {props.step.description}
           </span>
         )}
@@ -98,7 +98,7 @@ function StepToDoComponent(props: { step: StepWithId }): JSX.Element {
   return (
     <span
       className={clsx(
-        'flex px-6 py-5 text-sm font-medium lg:pl-9',
+        'flex px-6 py-5 text-sm font-semibold lg:pl-9',
         !props.step.description ? 'items-center' : 'items-start',
       )}
     >
@@ -113,7 +113,7 @@ function StepToDoComponent(props: { step: StepWithId }): JSX.Element {
         <span className="text-xs font-semibold tracking-wide uppercase text-neutral-500">
           {props.step.label}
         </span>
-        <span className="text-sm font-medium text-neutral-500">
+        <span className="text-sm font-semibold text-neutral-500">
           {props.step.description}
         </span>
       </span>
@@ -125,7 +125,7 @@ function StepDone(props: { step: StepWithId }): JSX.Element {
   return (
     <span
       className={clsx(
-        'flex px-6 py-5 text-sm font-medium lg:pl-9',
+        'flex px-6 py-5 text-sm font-semibold lg:pl-9',
         !props.step.description ? 'items-center' : 'items-start',
       )}
     >
@@ -138,7 +138,7 @@ function StepDone(props: { step: StepWithId }): JSX.Element {
         <span className="text-xs font-semibold tracking-wide uppercase">
           {props.step.label}
         </span>
-        <span className="text-sm font-medium text-neutral-500">
+        <span className="text-sm font-semibold text-neutral-500">
           {props.step.description}
         </span>
       </span>

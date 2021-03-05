@@ -24,7 +24,7 @@ export function Label(props: LabelProps) {
     <label
       htmlFor={props.id}
       className={clsx(
-        'block text-sm font-medium',
+        'block text-sm font-semibold',
         props.disabled ? labelDisabledColor : labelColor,
         props.hidden && 'sr-only',
       )}

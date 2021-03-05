@@ -170,7 +170,7 @@ export function Modal<T extends ElementType>(props: ModalProps<T>) {
 
 Modal.Header = function (props: { children: ReactNode }) {
   return (
-    <h3 className="text-lg font-medium text-neutral-900" id="modal-headline">
+    <h3 className="text-lg font-semibold text-neutral-900" id="modal-headline">
       {props.children}
     </h3>
   );

@@ -61,6 +61,7 @@ export * from './layout/Divider';
 export * from './layout/ListContainer';
 
 export * from './lists/DescriptionList';
+export * from './lists/Feed';
 export * from './lists/StackedList';
 export * from './lists/Table';
 

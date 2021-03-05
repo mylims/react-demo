@@ -40,10 +40,10 @@ const Question = (props: QuestionProps) => {
         <button
           onClick={onToggle}
           type="button"
-          className="text-left w-full flex justify-between items-start text-neutral-400"
+          className="flex items-start justify-between w-full text-left text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2"
         >
-          <span className="font-medium text-neutral-900">{question}</span>
-          <span className="ml-6 h-7 flex items-center">
+          <span className="font-semibold text-neutral-900">{question}</span>
+          <span className="flex items-center ml-6 h-7">
             <SvgOutlineChevronDown
               className={clsx('w-6 h-6 transform', {
                 '-rotate-180': selectedQuestionId === id,
@@ -52,8 +52,12 @@ const Question = (props: QuestionProps) => {
           </span>
         </button>
       </dt>
-      <dd className={clsx('mt-2 pr-12', { hidden: selectedQuestionId !== id })}>
-        <p className="text-base text-neutral-500">{answer}</p>
+      <dd
+        className={clsx('mt-2 pr-12', {
+          hidden: selectedQuestionId !== id,
+        })}
+      >
+        <div className="text-base text-justify text-neutral-500">{answer}</div>
       </dd>
     </div>
   );
@@ -63,24 +67,20 @@ export function Faq(props: FaqProps) {
   const { title, questions, selectedQuestionId, onSelect } = props;
 
   return (
-    <div className="bg-gray-50">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto divide-y-2 divide-gray-200">
-          <h2 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            {title}
-          </h2>
-          <dl className="mt-6 space-y-6 divide-y divide-gray-200">
-            {questions.map((question) => (
-              <Question
-                key={question.id}
-                selectedQuestionId={selectedQuestionId}
-                question={question}
-                onSelect={onSelect}
-              />
-            ))}
-          </dl>
-        </div>
-      </div>
+    <div className="max-w-3xl divide-y-2 divide-gray-200">
+      <h2 className="text-3xl font-extrabold text-center text-gray-900 sm:text-4xl">
+        {title}
+      </h2>
+      <dl className="mt-6 space-y-6 divide-y divide-gray-200">
+        {questions.map((question) => (
+          <Question
+            key={question.id}
+            selectedQuestionId={selectedQuestionId}
+            question={question}
+            onSelect={onSelect}
+          />
+        ))}
+      </dl>
     </div>
   );
 }

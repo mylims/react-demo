@@ -45,7 +45,7 @@ export function Checkbox(props: CheckboxProps): JSX.Element {
           <label
             htmlFor={id}
             className={clsx(
-              'font-medium',
+              'font-semibold',
               props.disabled ? labelDisabledColor : labelColor,
             )}
           >
