@@ -15,7 +15,7 @@ export interface NotificationProps extends NotificationState {
 export function Notification(props: NotificationProps) {
   return (
     <Transition
-      appear={true}
+      appear
       show={props.state === 'SHOWING'}
       enter="transform ease-out duration-300 transition"
       enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
@@ -34,7 +34,7 @@ export function Notification(props: NotificationProps) {
             <div className="flex-shrink-0 text-xl">{props.icon}</div>
             <div className="ml-3 w-0 flex-1 pt-0.5">
               {props.title && (
-                <p className="text-sm font-medium text-neutral-900">
+                <p className="text-sm font-semibold text-neutral-900">
                   {props.title}
                 </p>
               )}

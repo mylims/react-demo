@@ -81,7 +81,7 @@ GroupOption.Option = (props: OptionProps): JSX.Element => {
         </div>
         <label htmlFor={id} className="flex flex-col ml-3 cursor-pointer">
           <span
-            className={clsx('block text-sm font-medium', {
+            className={clsx('block text-sm font-semibold', {
               'text-neutral-900': !checked && !props.disabled,
               'text-primary-900': checked,
               'text-neutral-500': props.disabled,

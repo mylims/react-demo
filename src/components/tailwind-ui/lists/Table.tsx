@@ -72,15 +72,21 @@ export function Table<T extends { id: number | string }>(props: TableProps<T>) {
   );
 }
 
-export type TdProps = TdHTMLAttributes<HTMLTableDataCellElement>;
-export type ThProps = ThHTMLAttributes<HTMLTableHeaderCellElement>;
+export interface TdProps extends TdHTMLAttributes<HTMLTableDataCellElement> {
+  compact?: boolean;
+}
+
+export interface ThProps extends ThHTMLAttributes<HTMLTableHeaderCellElement> {
+  compact?: boolean;
+}
 
 export function Td(props: TdProps) {
-  const { className, ...otherProps } = props;
+  const { className, compact, ...otherProps } = props;
   return (
     <td
       className={clsx(
-        'px-6 py-4 text-sm font-medium whitespace-nowrap text-neutral-900',
+        'text-sm font-semibold whitespace-nowrap text-neutral-900',
+        { 'px-6 py-4': !compact },
         props.className,
       )}
       {...otherProps}
@@ -89,10 +95,17 @@ export function Td(props: TdProps) {
 }
 
 export function Th(props: ThProps) {
+  const { compact, className, ...otherProps } = props;
   return (
     <th
-      className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase text-neutral-500 bg-neutral-50"
-      {...props}
+      className={clsx(
+        'text-xs font-semibold tracking-wider text-left uppercase text-neutral-500 bg-neutral-50',
+        {
+          'px-6 py-3': !compact,
+        },
+        className,
+      )}
+      {...otherProps}
     />
   );
 }

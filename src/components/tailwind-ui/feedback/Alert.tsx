@@ -101,7 +101,7 @@ export function Alert(props: AlertProps): JSX.Element {
         <div className="flex-shrink-0 text-xl">{type.icon}</div>
         <div className="ml-3">
           {props.title && (
-            <div className={clsx('text-sm font-medium', type.theme.title)}>
+            <div className={clsx('text-sm font-semibold', type.theme.title)}>
               {props.title}
             </div>
           )}

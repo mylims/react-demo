@@ -55,7 +55,7 @@ Divider.Content = function (props: DividerContent) {
       className={clsx(
         'bg-white ',
         title
-          ? 'text-lg font-medium text-neutral-900'
+          ? 'text-lg font-semibold text-neutral-900'
           : 'text-sm text-neutral-500',
         {
           'px-3': !attached && title,
