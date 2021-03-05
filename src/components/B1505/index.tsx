@@ -4,8 +4,8 @@ import { Analysis, JSGraph } from 'common-spectrum';
 import { AxisProps, PlotObject, PlotObjectType } from 'react-plot';
 import produce from 'immer';
 
-import { Variables } from './Variables';
-import { Table } from './Table';
+import { Variables } from "./Variables";
+import { Table } from "./Table";
 
 const { getReactPlotJSON } = JSGraph;
 interface B1505Props {
@@ -53,8 +53,12 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
   const [yAxis, setYAxis] = useState<Partial<AxisProps>>({});
 
   const optionsVariables = useMemo(
-    () => Object.keys(variables).map((label) => ({ label, value: label })),
-    [variables],
+    () =>
+      Object.keys(variables).map((val: string) => {
+        const label = val.replace(/(?<label>.+) \[(?<units>.+)\]/, '$<label>');
+        return { label, value: label };
+      }),
+    [variables]
   );
 
   // Creates the data plot from the analyses
