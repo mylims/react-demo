@@ -1,5 +1,5 @@
 import { Analysis, toJcamp, toText } from 'common-spectrum';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Color,
@@ -18,6 +18,12 @@ interface TableProps {
   files: Analysis[][];
   content: string[];
 }
+interface SeriesType {
+  original: string;
+  label: string;
+  csv: string;
+  jcamp: string;
+}
 
 export function Table({ files, query, content }: TableProps) {
   const [modalContent, setModalContent] = useState<{
@@ -25,9 +31,10 @@ export function Table({ files, query, content }: TableProps) {
     title: string;
   } | null>(null);
   const [copied, setCopied] = useState(false);
+  const [series, setSeries] = useState<SeriesType[]>([]);
 
-  const series = useMemo(() => {
-    let series = [];
+  useEffect(() => {
+    let series: SeriesType[] = [];
     let titles: string[] = [];
     for (let index = 0; index < content.length; index++) {
       const original = content[index];
@@ -46,7 +53,7 @@ export function Table({ files, query, content }: TableProps) {
         });
       }
     }
-    return series;
+    setSeries(series);
   }, [files, content, query]);
 
   return (
