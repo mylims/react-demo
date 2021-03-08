@@ -1,26 +1,64 @@
-import React, { useState } from 'react';
-import { PlotObjectType } from 'react-plot';
-import { Button, Color, Modal } from '../tailwind-ui';
+import { Analysis, toJcamp, toText } from 'common-spectrum';
+import React, { useMemo, useState } from 'react';
+import {
+  Button,
+  Color,
+  Modal,
+  SvgOutlineInformationCircle,
+} from '../tailwind-ui';
 
+interface QueryType {
+  xLabel: string;
+  xUnits: string;
+  yLabel: string;
+  yUnits: string;
+}
 interface TableProps {
-  data: PlotObjectType;
+  query: QueryType;
+  files: Analysis[][];
   content: string[];
 }
-export function Table({ data, content }: TableProps) {
-  const [modalContent, setModalContent] = useState<string | null>(null);
-  const { series } = data;
+
+export function Table({ files, query, content }: TableProps) {
+  const [modalContent, setModalContent] = useState<{
+    body: string;
+    title: string;
+  } | null>(null);
+  const series = useMemo(() => {
+    let series = [];
+    let titles: string[] = [];
+    for (let index = 0; index < content.length; index++) {
+      const original = content[index];
+      for (const analysis of files[index]) {
+        const spectrum = analysis.getXYSpectrum(query);
+        let { title = `spectrum ${index}` } = spectrum || {};
+        while (titles.includes(title)) {
+          title = title + index;
+        }
+        titles.push(title);
+        series.push({
+          original,
+          label: title,
+          csv: toText(analysis).join('\n'),
+          jcamp: toJcamp(analysis),
+        });
+      }
+    }
+    return series;
+  }, [files, content, query]);
   return (
     <div className="p-5 m-2 shadow sm:rounded-lg">
       <Modal
         isOpen={!!modalContent}
         onRequestClose={() => setModalContent(null)}
-        icon={null}
+        icon={<SvgOutlineInformationCircle />}
         iconColor={Color.primary}
+        fluid={false}
       >
-        <Modal.Header>Original file</Modal.Header>
+        <Modal.Header>{modalContent?.title} file</Modal.Header>
         <Modal.Body>
-          <div className="inline-block max-w-2xl overflow-auto font-mono whitespace-pre h-96">
-            {modalContent}
+          <div className="inline-block overflow-auto font-mono whitespace-pre h-96">
+            {modalContent?.body}
           </div>
         </Modal.Body>
         <Modal.Footer align="right">
@@ -32,12 +70,32 @@ export function Table({ data, content }: TableProps) {
       </div>
       <table>
         <tbody className="inline-block max-w-2xl overflow-auto h-96">
-          {series.map(({ label = '' }, index) => (
-            <tr key={label + index}>
+          {series.map(({ label, original, csv, jcamp }) => (
+            <tr key={label}>
               <td className="p-1 font-medium">{label}</td>
               <td className="p-1">
-                <Button onClick={() => setModalContent(content[index])}>
+                <Button
+                  onClick={() =>
+                    setModalContent({ title: 'Original', body: original })
+                  }
+                >
                   Original file
+                </Button>
+              </td>
+              <td className="p-1">
+                <Button
+                  onClick={() => setModalContent({ title: 'CSV', body: csv })}
+                >
+                  CSV file
+                </Button>
+              </td>
+              <td className="p-1">
+                <Button
+                  onClick={() =>
+                    setModalContent({ title: 'JCAMP', body: jcamp })
+                  }
+                >
+                  JCAMP file
                 </Button>
               </td>
             </tr>

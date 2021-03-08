@@ -105,7 +105,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
         />
       </div>
       <PlotObject plot={data} />
-      <Table data={data} content={content} />
+      <Table files={files} content={content} query={query} />
     </div>
   );
 }
