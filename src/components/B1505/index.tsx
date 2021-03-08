@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { fromB1505 } from 'iv-spectrum';
 import { Analysis, JSGraph } from 'common-spectrum';
-import { PlotObject, PlotObjectType } from 'react-plot';
+import { AxisProps, PlotObject, PlotObjectType } from 'react-plot';
 
 import { Variables } from './Variables';
 import { Table } from './Table';
@@ -48,6 +48,8 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
   const [variables, setVariables] = useState<Record<string, string>>({});
   const [query, setQuery] = useState<QueryType>(defaultQuery);
   const [files, setFiles] = useState<Analysis[][]>([]);
+  const [xAxis, setXAxis] = useState<Partial<AxisProps>>({});
+  const [yAxis, setYAxis] = useState<Partial<AxisProps>>({});
 
   const optionsVariables = useMemo(
     () => Object.keys(variables).map((label) => ({ label, value: label })),
@@ -61,12 +63,16 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
     const parsed = content.map((text) => fromB1505(text, parserOptions));
 
     const analyses = parsed.reduce((acc, curr) => acc.concat(curr), []);
-    const data = getReactPlotJSON(analyses, query, options);
+    const data = getReactPlotJSON(analyses, query, {
+      ...options,
+      xAxis,
+      yAxis,
+    });
 
     setFiles(parsed);
     setData({ legend: { position: 'right' }, ...data });
     setVariables(listVariables(analyses));
-  }, [content, query, defaultQuery]);
+  }, [content, query, defaultQuery, xAxis, yAxis]);
 
   // Data validation
   if (!data) return null;
@@ -91,6 +97,8 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
           }}
           units={query.xUnits}
           onChangeUnits={(xUnits) => setQuery({ ...query, xUnits })}
+          axis={xAxis}
+          onChangeAxis={(val) => setXAxis(val)}
         />
         <Variables
           label="Y"
@@ -102,6 +110,8 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
           }}
           units={query.yUnits}
           onChangeUnits={(yUnits) => setQuery({ ...query, yUnits })}
+          axis={yAxis}
+          onChangeAxis={(val) => setYAxis(val)}
         />
       </div>
       <PlotObject plot={data} />

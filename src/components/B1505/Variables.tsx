@@ -1,5 +1,6 @@
 import React from 'react';
-import { Input, Select } from '../tailwind-ui';
+import { AxisProps } from 'react-plot';
+import { Input, Select, Toggle } from '../tailwind-ui';
 
 interface DataSelect {
   label: string;
@@ -12,6 +13,8 @@ interface VariablesProps {
   onChangeName: (name?: string) => void;
   units: string;
   onChangeUnits: (units: string) => void;
+  axis: Partial<AxisProps>;
+  onChangeAxis: (value: Partial<AxisProps>) => void;
 }
 
 export function Variables({
@@ -21,6 +24,8 @@ export function Variables({
   onChangeName,
   units,
   onChangeUnits,
+  axis,
+  onChangeAxis,
 }: VariablesProps) {
   return (
     <div className="flex flex-row shadow sm:rounded-lg">
@@ -39,6 +44,18 @@ export function Variables({
         placeholder="Units"
         value={units}
         onChange={(e) => onChangeUnits(e.currentTarget.value)}
+      />
+      <Toggle
+        className="m-2 w-44"
+        label="Display grid"
+        activated={!!axis.displayGridLines}
+        onToggle={(val) => onChangeAxis({ ...axis, displayGridLines: val })}
+      />
+      <Toggle
+        className="m-2 w-44"
+        label="Embed ticks"
+        activated={!!axis.tickEmbedded}
+        onToggle={(val) => onChangeAxis({ ...axis, tickEmbedded: val })}
       />
     </div>
   );
