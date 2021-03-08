@@ -24,6 +24,8 @@ export function Table({ files, query, content }: TableProps) {
     body: string;
     title: string;
   } | null>(null);
+  const [copied, setCopied] = useState(false);
+
   const series = useMemo(() => {
     let series = [];
     let titles: string[] = [];
@@ -46,11 +48,15 @@ export function Table({ files, query, content }: TableProps) {
     }
     return series;
   }, [files, content, query]);
+
   return (
     <div className="p-5 m-2 shadow sm:rounded-lg">
       <Modal
         isOpen={!!modalContent}
-        onRequestClose={() => setModalContent(null)}
+        onRequestClose={() => {
+          setCopied(false);
+          setModalContent(null);
+        }}
         icon={<SvgOutlineInformationCircle />}
         iconColor={Color.primary}
         fluid={false}
@@ -62,7 +68,26 @@ export function Table({ files, query, content }: TableProps) {
           </div>
         </Modal.Body>
         <Modal.Footer align="right">
-          <Button onClick={() => setModalContent(null)}>Close</Button>
+          <Button
+            color={copied ? Color.success : Color.neutral}
+            onClick={() => {
+              if (modalContent?.body) {
+                navigator.clipboard
+                  .writeText(modalContent?.body)
+                  .then(() => setCopied(true));
+              }
+            }}
+          >
+            Copy text
+          </Button>
+          <Button
+            onClick={() => {
+              setCopied(false);
+              setModalContent(null);
+            }}
+          >
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
       <div className="text-xl font-semibold border-b text-primary-500">
