@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { fromB1505 } from 'iv-spectrum';
 import { Analysis, JSGraph } from 'common-spectrum';
 import { AxisProps, PlotObject, PlotObjectType } from 'react-plot';
+import produce from 'immer';
 
 import { Variables } from './Variables';
 import { Table } from './Table';
@@ -115,7 +116,18 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
         />
       </div>
       <PlotObject plot={data} />
-      <Table files={files} content={content} query={query} />
+      <Table
+        files={files}
+        content={content}
+        data={data}
+        onLabelChange={(label, index) =>
+          setData(
+            produce(data, (draft) => {
+              draft.series[index].label = label;
+            }),
+          )
+        }
+      />
     </div>
   );
 }
