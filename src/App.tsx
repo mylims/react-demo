@@ -58,7 +58,7 @@ export default function App() {
                 maxIndex={8}
                 xLabel="Vd"
                 xUnits="V"
-                yLabel="Id_density"
+                yLabel="Id_dens"
                 yUnits="mA/mm"
               />
             </Route>
@@ -78,7 +78,7 @@ export default function App() {
                 maxIndex={13}
                 xLabel="VBias"
                 xUnits="V"
-                yLabel="C_density"
+                yLabel="C_dens"
                 yUnits="pF/mm"
               />
             </Route>
@@ -88,7 +88,7 @@ export default function App() {
                 maxIndex={14}
                 xLabel="Vg"
                 xUnits="V"
-                yLabel="Id_density"
+                yLabel="Id_dens"
                 yUnits="mA/mm"
               />
             </Route>
@@ -108,7 +108,7 @@ export default function App() {
                 maxIndex={11}
                 xLabel="Vd"
                 xUnits="V"
-                yLabel="Id_density"
+                yLabel="Id_dens"
                 yUnits="mA/mm"
               />
             </Route>
