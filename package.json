@@ -42,6 +42,7 @@
     "d3-scale-chromatic": "^2.0.0",
     "date-fns": "^2.19.0",
     "formik": "^2.2.6",
+    "immer": "^8.0.1",
     "iv-spectrum": "^0.9.1",
     "ndim-parser": "^0.4.0",
     "react": "^17.0.1",
