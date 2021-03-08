@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { SidebarLayout, VerticalNavigation } from './components/tailwind-ui';
 import { Title, navigationRoutes } from './components/Title';
@@ -10,11 +10,20 @@ import SamplesTable from './views/base/SamplesTable';
 import BaseMultiple from './views/b1505/BaseMultiple';
 
 export default function App() {
+  const [open, setOpen] = useState(false);
   return (
     <Router basename="/">
-      <SidebarLayout>
+      <SidebarLayout
+        isOpen={open}
+        open={() => setOpen(true)}
+        close={() => setOpen(false)}
+      >
         <SidebarLayout.Sidebar>
-          <VerticalNavigation selected={undefined} options={navigationRoutes} />
+          <VerticalNavigation
+            selected={undefined}
+            options={navigationRoutes}
+            onSelect={() => setOpen(false)}
+          />
         </SidebarLayout.Sidebar>
         <SidebarLayout.Header>
           <Title />
