@@ -14,7 +14,7 @@ const dimentions = {
   height: 400,
   margin: { bottom: 50, left: 80, top: 20, right: 20 },
 };
-const legend = { position: 'embedded' };
+const legend = { position: 'embedded' as const };
 
 export default function SinglePlot({ query, analyses }: SinglePlotProps) {
   const initState: PlotState = {
