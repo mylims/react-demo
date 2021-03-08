@@ -5,21 +5,22 @@ import { Plot, LineSeries, Axis } from 'react-plot';
 
 import MetaTable from './MetaTable';
 import { Input, Select, Toggle } from './tailwind-ui';
+import { VariableType } from 'common-spectrum/lib/types';
 
 interface InfoProps {
   text: string;
 }
 
-function listVariables(variables: Record<string, Record<string, string>>) {
+function listVariables(variables: Record<string, VariableType>) {
   let list: Record<string, string> = {};
   for (const key in variables) {
     const { label, units } = variables[key];
-    list[label] = units;
+    list[label] = units || '';
   }
   return list;
 }
 
-function getData(x: number[], y: number[]) {
+function getData(x: number[] | Float64Array, y: number[] | Float64Array) {
   let data = new Array(x.length);
   for (let i = 0; i <= x.length; i++) {
     data[i] = { x: x[i], y: y[i] };
@@ -45,7 +46,7 @@ export default function ExtractedInfo({ text }: InfoProps) {
   });
 
   const { variables, meta } = useMemo(
-    () => analysis.getXYSpectrum(variablesState) || {},
+    () => analysis.getXYSpectrum(variablesState) || { variables: {} },
     [analysis, variablesState],
   );
 

@@ -568,7 +568,6 @@ video {
       select
      {
   -webkit-appearance: none;
-     -moz-appearance: none;
           appearance: none;
   background-color: #fff;
   border-color: #6b7280;
@@ -643,7 +642,6 @@ select {
       [type='radio']
      {
   -webkit-appearance: none;
-     -moz-appearance: none;
           appearance: none;
   padding: 0;
   -webkit-print-color-adjust: exact;
@@ -654,7 +652,8 @@ select {
   -webkit-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
   height: 1rem;
   width: 1rem;
   color: #2563eb;
@@ -2268,7 +2267,6 @@ kbd {
 
 .appearance-none {
   -webkit-appearance: none;
-     -moz-appearance: none;
           appearance: none;
 }
 
@@ -9862,10 +9860,12 @@ kbd {
 }
 
 .flex {
+  display: -webkit-flex;
   display: flex;
 }
 
 .inline-flex {
+  display: -webkit-inline-flex;
   display: inline-flex;
 }
 
@@ -9926,31 +9926,38 @@ kbd {
 }
 
 .flex-row {
-  flex-direction: row;
+  -webkit-flex-direction: row;
+          flex-direction: row;
 }
 
 .flex-row-reverse {
-  flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+          flex-direction: row-reverse;
 }
 
 .flex-col {
-  flex-direction: column;
+  -webkit-flex-direction: column;
+          flex-direction: column;
 }
 
 .flex-col-reverse {
-  flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+          flex-direction: column-reverse;
 }
 
 .flex-wrap {
-  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 
 .flex-wrap-reverse {
-  flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+          flex-wrap: wrap-reverse;
 }
 
 .flex-nowrap {
-  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+          flex-wrap: nowrap;
 }
 
 .place-items-auto {
@@ -10022,67 +10029,83 @@ kbd {
 }
 
 .items-start {
-  align-items: flex-start;
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
 }
 
 .items-end {
-  align-items: flex-end;
+  -webkit-align-items: flex-end;
+          align-items: flex-end;
 }
 
 .items-center {
-  align-items: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 
 .items-baseline {
-  align-items: baseline;
+  -webkit-align-items: baseline;
+          align-items: baseline;
 }
 
 .items-stretch {
-  align-items: stretch;
+  -webkit-align-items: stretch;
+          align-items: stretch;
 }
 
 .content-center {
-  align-content: center;
+  -webkit-align-content: center;
+          align-content: center;
 }
 
 .content-start {
-  align-content: flex-start;
+  -webkit-align-content: flex-start;
+          align-content: flex-start;
 }
 
 .content-end {
-  align-content: flex-end;
+  -webkit-align-content: flex-end;
+          align-content: flex-end;
 }
 
 .content-between {
-  align-content: space-between;
+  -webkit-align-content: space-between;
+          align-content: space-between;
 }
 
 .content-around {
-  align-content: space-around;
+  -webkit-align-content: space-around;
+          align-content: space-around;
 }
 
 .content-evenly {
-  align-content: space-evenly;
+  -webkit-align-content: space-evenly;
+          align-content: space-evenly;
 }
 
 .self-auto {
-  align-self: auto;
+  -webkit-align-self: auto;
+          align-self: auto;
 }
 
 .self-start {
-  align-self: flex-start;
+  -webkit-align-self: flex-start;
+          align-self: flex-start;
 }
 
 .self-end {
-  align-self: flex-end;
+  -webkit-align-self: flex-end;
+          align-self: flex-end;
 }
 
 .self-center {
-  align-self: center;
+  -webkit-align-self: center;
+          align-self: center;
 }
 
 .self-stretch {
-  align-self: stretch;
+  -webkit-align-self: stretch;
+          align-self: stretch;
 }
 
 .justify-items-auto {
@@ -10106,27 +10129,33 @@ kbd {
 }
 
 .justify-start {
-  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+          justify-content: flex-start;
 }
 
 .justify-end {
-  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
 }
 
 .justify-center {
-  justify-content: center;
+  -webkit-justify-content: center;
+          justify-content: center;
 }
 
 .justify-between {
-  justify-content: space-between;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 
 .justify-around {
-  justify-content: space-around;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
 }
 
 .justify-evenly {
-  justify-content: space-evenly;
+  -webkit-justify-content: space-evenly;
+          justify-content: space-evenly;
 }
 
 .justify-self-auto {
@@ -10150,95 +10179,118 @@ kbd {
 }
 
 .flex-1 {
-  flex: 1 1 0%;
+  -webkit-flex: 1 1 0%;
+          flex: 1 1 0%;
 }
 
 .flex-auto {
-  flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
 .flex-initial {
-  flex: 0 1 auto;
+  -webkit-flex: 0 1 auto;
+          flex: 0 1 auto;
 }
 
 .flex-none {
-  flex: none;
+  -webkit-flex: none;
+          flex: none;
 }
 
 .flex-grow-0 {
-  flex-grow: 0;
+  -webkit-flex-grow: 0;
+          flex-grow: 0;
 }
 
 .flex-grow {
-  flex-grow: 1;
+  -webkit-flex-grow: 1;
+          flex-grow: 1;
 }
 
 .flex-shrink-0 {
-  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
 }
 
 .flex-shrink {
-  flex-shrink: 1;
+  -webkit-flex-shrink: 1;
+          flex-shrink: 1;
 }
 
 .order-1 {
-  order: 1;
+  -webkit-order: 1;
+          order: 1;
 }
 
 .order-2 {
-  order: 2;
+  -webkit-order: 2;
+          order: 2;
 }
 
 .order-3 {
-  order: 3;
+  -webkit-order: 3;
+          order: 3;
 }
 
 .order-4 {
-  order: 4;
+  -webkit-order: 4;
+          order: 4;
 }
 
 .order-5 {
-  order: 5;
+  -webkit-order: 5;
+          order: 5;
 }
 
 .order-6 {
-  order: 6;
+  -webkit-order: 6;
+          order: 6;
 }
 
 .order-7 {
-  order: 7;
+  -webkit-order: 7;
+          order: 7;
 }
 
 .order-8 {
-  order: 8;
+  -webkit-order: 8;
+          order: 8;
 }
 
 .order-9 {
-  order: 9;
+  -webkit-order: 9;
+          order: 9;
 }
 
 .order-10 {
-  order: 10;
+  -webkit-order: 10;
+          order: 10;
 }
 
 .order-11 {
-  order: 11;
+  -webkit-order: 11;
+          order: 11;
 }
 
 .order-12 {
-  order: 12;
+  -webkit-order: 12;
+          order: 12;
 }
 
 .order-first {
-  order: -9999;
+  -webkit-order: -9999;
+          order: -9999;
 }
 
 .order-last {
-  order: 9999;
+  -webkit-order: 9999;
+          order: 9999;
 }
 
 .order-none {
-  order: 0;
+  -webkit-order: 0;
+          order: 0;
 }
 
 .float-right {
@@ -13006,13 +13058,11 @@ kbd {
 
 .max-w-min {
   max-width: -webkit-min-content;
-  max-width: -moz-min-content;
   max-width: min-content;
 }
 
 .max-w-max {
   max-width: -webkit-max-content;
-  max-width: -moz-max-content;
   max-width: max-content;
 }
 
@@ -13062,13 +13112,11 @@ kbd {
 
 .min-w-min {
   min-width: -webkit-min-content;
-  min-width: -moz-min-content;
   min-width: min-content;
 }
 
 .min-w-max {
   min-width: -webkit-max-content;
-  min-width: -moz-max-content;
   min-width: max-content;
 }
 
@@ -24798,13 +24846,11 @@ kbd {
 
 .w-min {
   width: -webkit-min-content;
-  width: -moz-min-content;
   width: min-content;
 }
 
 .w-max {
   width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
 }
 
@@ -25751,7 +25797,8 @@ kbd {
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  -webkit-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+          transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .transform-gpu {
@@ -25762,47 +25809,58 @@ kbd {
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  -webkit-transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+          transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .transform-none {
-  transform: none;
+  -webkit-transform: none;
+          transform: none;
 }
 
 .origin-center {
-  transform-origin: center;
+  -webkit-transform-origin: center;
+          transform-origin: center;
 }
 
 .origin-top {
-  transform-origin: top;
+  -webkit-transform-origin: top;
+          transform-origin: top;
 }
 
 .origin-top-right {
-  transform-origin: top right;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
 }
 
 .origin-right {
-  transform-origin: right;
+  -webkit-transform-origin: right;
+          transform-origin: right;
 }
 
 .origin-bottom-right {
-  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
 }
 
 .origin-bottom {
-  transform-origin: bottom;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
 }
 
 .origin-bottom-left {
-  transform-origin: bottom left;
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
 }
 
 .origin-left {
-  transform-origin: left;
+  -webkit-transform-origin: left;
+          transform-origin: left;
 }
 
 .origin-top-left {
-  transform-origin: top left;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
 }
 
 .scale-0 {
@@ -28690,7 +28748,9 @@ kbd {
 }
 
 .transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, -webkit-transform;
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, -webkit-transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -28714,7 +28774,9 @@ kbd {
 }
 
 .transition-transform {
+  transition-property: -webkit-transform;
   transition-property: transform;
+  transition-property: transform, -webkit-transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -28799,16 +28861,39 @@ kbd {
   transition-delay: 1000ms;
 }
 
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 @keyframes spin {
   to {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes ping {
+  75%, 100% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    opacity: 0;
   }
 }
 
 @keyframes ping {
   75%, 100% {
-    transform: scale(2);
+    -webkit-transform: scale(2);
+            transform: scale(2);
     opacity: 0;
+  }
+}
+
+@-webkit-keyframes pulse {
+  50% {
+    opacity: .5;
   }
 }
 
@@ -28818,36 +28903,61 @@ kbd {
   }
 }
 
-@keyframes bounce {
+@-webkit-keyframes bounce {
   0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8,0,1,1);
+    -webkit-transform: translateY(-25%);
+            transform: translateY(-25%);
+    -webkit-animation-timing-function: cubic-bezier(0.8,0,1,1);
+            animation-timing-function: cubic-bezier(0.8,0,1,1);
   }
 
   50% {
-    transform: none;
-    animation-timing-function: cubic-bezier(0,0,0.2,1);
+    -webkit-transform: none;
+            transform: none;
+    -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
+            animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    -webkit-transform: translateY(-25%);
+            transform: translateY(-25%);
+    -webkit-animation-timing-function: cubic-bezier(0.8,0,1,1);
+            animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    -webkit-transform: none;
+            transform: none;
+    -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
+            animation-timing-function: cubic-bezier(0,0,0.2,1);
   }
 }
 
 .animate-none {
-  animation: none;
+  -webkit-animation: none;
+          animation: none;
 }
 
 .animate-spin {
-  animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
 }
 
 .animate-ping {
-  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+          animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 .animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .animate-bounce {
-  animation: bounce 1s infinite;
+  -webkit-animation: bounce 1s infinite;
+          animation: bounce 1s infinite;
 }
 
 @media (min-width: 640px) {
@@ -30270,7 +30380,6 @@ kbd {
 
   .sm\:appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -37864,10 +37973,12 @@ kbd {
   }
 
   .sm\:flex {
+    display: -webkit-flex;
     display: flex;
   }
 
   .sm\:inline-flex {
+    display: -webkit-inline-flex;
     display: inline-flex;
   }
 
@@ -37928,31 +38039,38 @@ kbd {
   }
 
   .sm\:flex-row {
-    flex-direction: row;
+    -webkit-flex-direction: row;
+            flex-direction: row;
   }
 
   .sm\:flex-row-reverse {
-    flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
   }
 
   .sm\:flex-col {
-    flex-direction: column;
+    -webkit-flex-direction: column;
+            flex-direction: column;
   }
 
   .sm\:flex-col-reverse {
-    flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 
   .sm\:flex-wrap {
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
   }
 
   .sm\:flex-wrap-reverse {
-    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+            flex-wrap: wrap-reverse;
   }
 
   .sm\:flex-nowrap {
-    flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
   }
 
   .sm\:place-items-auto {
@@ -38024,67 +38142,83 @@ kbd {
   }
 
   .sm\:items-start {
-    align-items: flex-start;
+    -webkit-align-items: flex-start;
+            align-items: flex-start;
   }
 
   .sm\:items-end {
-    align-items: flex-end;
+    -webkit-align-items: flex-end;
+            align-items: flex-end;
   }
 
   .sm\:items-center {
-    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
   }
 
   .sm\:items-baseline {
-    align-items: baseline;
+    -webkit-align-items: baseline;
+            align-items: baseline;
   }
 
   .sm\:items-stretch {
-    align-items: stretch;
+    -webkit-align-items: stretch;
+            align-items: stretch;
   }
 
   .sm\:content-center {
-    align-content: center;
+    -webkit-align-content: center;
+            align-content: center;
   }
 
   .sm\:content-start {
-    align-content: flex-start;
+    -webkit-align-content: flex-start;
+            align-content: flex-start;
   }
 
   .sm\:content-end {
-    align-content: flex-end;
+    -webkit-align-content: flex-end;
+            align-content: flex-end;
   }
 
   .sm\:content-between {
-    align-content: space-between;
+    -webkit-align-content: space-between;
+            align-content: space-between;
   }
 
   .sm\:content-around {
-    align-content: space-around;
+    -webkit-align-content: space-around;
+            align-content: space-around;
   }
 
   .sm\:content-evenly {
-    align-content: space-evenly;
+    -webkit-align-content: space-evenly;
+            align-content: space-evenly;
   }
 
   .sm\:self-auto {
-    align-self: auto;
+    -webkit-align-self: auto;
+            align-self: auto;
   }
 
   .sm\:self-start {
-    align-self: flex-start;
+    -webkit-align-self: flex-start;
+            align-self: flex-start;
   }
 
   .sm\:self-end {
-    align-self: flex-end;
+    -webkit-align-self: flex-end;
+            align-self: flex-end;
   }
 
   .sm\:self-center {
-    align-self: center;
+    -webkit-align-self: center;
+            align-self: center;
   }
 
   .sm\:self-stretch {
-    align-self: stretch;
+    -webkit-align-self: stretch;
+            align-self: stretch;
   }
 
   .sm\:justify-items-auto {
@@ -38108,27 +38242,33 @@ kbd {
   }
 
   .sm\:justify-start {
-    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
   }
 
   .sm\:justify-end {
-    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
   }
 
   .sm\:justify-center {
-    justify-content: center;
+    -webkit-justify-content: center;
+            justify-content: center;
   }
 
   .sm\:justify-between {
-    justify-content: space-between;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
   }
 
   .sm\:justify-around {
-    justify-content: space-around;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
   }
 
   .sm\:justify-evenly {
-    justify-content: space-evenly;
+    -webkit-justify-content: space-evenly;
+            justify-content: space-evenly;
   }
 
   .sm\:justify-self-auto {
@@ -38152,95 +38292,118 @@ kbd {
   }
 
   .sm\:flex-1 {
-    flex: 1 1 0%;
+    -webkit-flex: 1 1 0%;
+            flex: 1 1 0%;
   }
 
   .sm\:flex-auto {
-    flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
   }
 
   .sm\:flex-initial {
-    flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+            flex: 0 1 auto;
   }
 
   .sm\:flex-none {
-    flex: none;
+    -webkit-flex: none;
+            flex: none;
   }
 
   .sm\:flex-grow-0 {
-    flex-grow: 0;
+    -webkit-flex-grow: 0;
+            flex-grow: 0;
   }
 
   .sm\:flex-grow {
-    flex-grow: 1;
+    -webkit-flex-grow: 1;
+            flex-grow: 1;
   }
 
   .sm\:flex-shrink-0 {
-    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
   }
 
   .sm\:flex-shrink {
-    flex-shrink: 1;
+    -webkit-flex-shrink: 1;
+            flex-shrink: 1;
   }
 
   .sm\:order-1 {
-    order: 1;
+    -webkit-order: 1;
+            order: 1;
   }
 
   .sm\:order-2 {
-    order: 2;
+    -webkit-order: 2;
+            order: 2;
   }
 
   .sm\:order-3 {
-    order: 3;
+    -webkit-order: 3;
+            order: 3;
   }
 
   .sm\:order-4 {
-    order: 4;
+    -webkit-order: 4;
+            order: 4;
   }
 
   .sm\:order-5 {
-    order: 5;
+    -webkit-order: 5;
+            order: 5;
   }
 
   .sm\:order-6 {
-    order: 6;
+    -webkit-order: 6;
+            order: 6;
   }
 
   .sm\:order-7 {
-    order: 7;
+    -webkit-order: 7;
+            order: 7;
   }
 
   .sm\:order-8 {
-    order: 8;
+    -webkit-order: 8;
+            order: 8;
   }
 
   .sm\:order-9 {
-    order: 9;
+    -webkit-order: 9;
+            order: 9;
   }
 
   .sm\:order-10 {
-    order: 10;
+    -webkit-order: 10;
+            order: 10;
   }
 
   .sm\:order-11 {
-    order: 11;
+    -webkit-order: 11;
+            order: 11;
   }
 
   .sm\:order-12 {
-    order: 12;
+    -webkit-order: 12;
+            order: 12;
   }
 
   .sm\:order-first {
-    order: -9999;
+    -webkit-order: -9999;
+            order: -9999;
   }
 
   .sm\:order-last {
-    order: 9999;
+    -webkit-order: 9999;
+            order: 9999;
   }
 
   .sm\:order-none {
-    order: 0;
+    -webkit-order: 0;
+            order: 0;
   }
 
   .sm\:float-right {
@@ -41008,13 +41171,11 @@ kbd {
 
   .sm\:max-w-min {
     max-width: -webkit-min-content;
-    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .sm\:max-w-max {
     max-width: -webkit-max-content;
-    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -41064,13 +41225,11 @@ kbd {
 
   .sm\:min-w-min {
     min-width: -webkit-min-content;
-    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .sm\:min-w-max {
     min-width: -webkit-max-content;
-    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -52787,13 +52946,11 @@ kbd {
 
   .sm\:w-min {
     width: -webkit-min-content;
-    width: -moz-min-content;
     width: min-content;
   }
 
   .sm\:w-max {
     width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 
@@ -53740,7 +53897,8 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .sm\:transform-gpu {
@@ -53751,47 +53909,58 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .sm\:transform-none {
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   .sm\:origin-center {
-    transform-origin: center;
+    -webkit-transform-origin: center;
+            transform-origin: center;
   }
 
   .sm\:origin-top {
-    transform-origin: top;
+    -webkit-transform-origin: top;
+            transform-origin: top;
   }
 
   .sm\:origin-top-right {
-    transform-origin: top right;
+    -webkit-transform-origin: top right;
+            transform-origin: top right;
   }
 
   .sm\:origin-right {
-    transform-origin: right;
+    -webkit-transform-origin: right;
+            transform-origin: right;
   }
 
   .sm\:origin-bottom-right {
-    transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
+            transform-origin: bottom right;
   }
 
   .sm\:origin-bottom {
-    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+            transform-origin: bottom;
   }
 
   .sm\:origin-bottom-left {
-    transform-origin: bottom left;
+    -webkit-transform-origin: bottom left;
+            transform-origin: bottom left;
   }
 
   .sm\:origin-left {
-    transform-origin: left;
+    -webkit-transform-origin: left;
+            transform-origin: left;
   }
 
   .sm\:origin-top-left {
-    transform-origin: top left;
+    -webkit-transform-origin: top left;
+            transform-origin: top left;
   }
 
   .sm\:scale-0 {
@@ -56679,7 +56848,9 @@ kbd {
   }
 
   .sm\:transition {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, -webkit-transform;
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -56703,7 +56874,9 @@ kbd {
   }
 
   .sm\:transition-transform {
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -56789,23 +56962,28 @@ kbd {
   }
 
   .sm\:animate-none {
-    animation: none;
+    -webkit-animation: none;
+            animation: none;
   }
 
   .sm\:animate-spin {
-    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
   }
 
   .sm\:animate-ping {
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
 
   .sm\:animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .sm\:animate-bounce {
-    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+            animation: bounce 1s infinite;
   }
 }
 
@@ -58229,7 +58407,6 @@ kbd {
 
   .md\:appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -65823,10 +66000,12 @@ kbd {
   }
 
   .md\:flex {
+    display: -webkit-flex;
     display: flex;
   }
 
   .md\:inline-flex {
+    display: -webkit-inline-flex;
     display: inline-flex;
   }
 
@@ -65887,31 +66066,38 @@ kbd {
   }
 
   .md\:flex-row {
-    flex-direction: row;
+    -webkit-flex-direction: row;
+            flex-direction: row;
   }
 
   .md\:flex-row-reverse {
-    flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
   }
 
   .md\:flex-col {
-    flex-direction: column;
+    -webkit-flex-direction: column;
+            flex-direction: column;
   }
 
   .md\:flex-col-reverse {
-    flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 
   .md\:flex-wrap {
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
   }
 
   .md\:flex-wrap-reverse {
-    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+            flex-wrap: wrap-reverse;
   }
 
   .md\:flex-nowrap {
-    flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
   }
 
   .md\:place-items-auto {
@@ -65983,67 +66169,83 @@ kbd {
   }
 
   .md\:items-start {
-    align-items: flex-start;
+    -webkit-align-items: flex-start;
+            align-items: flex-start;
   }
 
   .md\:items-end {
-    align-items: flex-end;
+    -webkit-align-items: flex-end;
+            align-items: flex-end;
   }
 
   .md\:items-center {
-    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
   }
 
   .md\:items-baseline {
-    align-items: baseline;
+    -webkit-align-items: baseline;
+            align-items: baseline;
   }
 
   .md\:items-stretch {
-    align-items: stretch;
+    -webkit-align-items: stretch;
+            align-items: stretch;
   }
 
   .md\:content-center {
-    align-content: center;
+    -webkit-align-content: center;
+            align-content: center;
   }
 
   .md\:content-start {
-    align-content: flex-start;
+    -webkit-align-content: flex-start;
+            align-content: flex-start;
   }
 
   .md\:content-end {
-    align-content: flex-end;
+    -webkit-align-content: flex-end;
+            align-content: flex-end;
   }
 
   .md\:content-between {
-    align-content: space-between;
+    -webkit-align-content: space-between;
+            align-content: space-between;
   }
 
   .md\:content-around {
-    align-content: space-around;
+    -webkit-align-content: space-around;
+            align-content: space-around;
   }
 
   .md\:content-evenly {
-    align-content: space-evenly;
+    -webkit-align-content: space-evenly;
+            align-content: space-evenly;
   }
 
   .md\:self-auto {
-    align-self: auto;
+    -webkit-align-self: auto;
+            align-self: auto;
   }
 
   .md\:self-start {
-    align-self: flex-start;
+    -webkit-align-self: flex-start;
+            align-self: flex-start;
   }
 
   .md\:self-end {
-    align-self: flex-end;
+    -webkit-align-self: flex-end;
+            align-self: flex-end;
   }
 
   .md\:self-center {
-    align-self: center;
+    -webkit-align-self: center;
+            align-self: center;
   }
 
   .md\:self-stretch {
-    align-self: stretch;
+    -webkit-align-self: stretch;
+            align-self: stretch;
   }
 
   .md\:justify-items-auto {
@@ -66067,27 +66269,33 @@ kbd {
   }
 
   .md\:justify-start {
-    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
   }
 
   .md\:justify-end {
-    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
   }
 
   .md\:justify-center {
-    justify-content: center;
+    -webkit-justify-content: center;
+            justify-content: center;
   }
 
   .md\:justify-between {
-    justify-content: space-between;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
   }
 
   .md\:justify-around {
-    justify-content: space-around;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
   }
 
   .md\:justify-evenly {
-    justify-content: space-evenly;
+    -webkit-justify-content: space-evenly;
+            justify-content: space-evenly;
   }
 
   .md\:justify-self-auto {
@@ -66111,95 +66319,118 @@ kbd {
   }
 
   .md\:flex-1 {
-    flex: 1 1 0%;
+    -webkit-flex: 1 1 0%;
+            flex: 1 1 0%;
   }
 
   .md\:flex-auto {
-    flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
   }
 
   .md\:flex-initial {
-    flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+            flex: 0 1 auto;
   }
 
   .md\:flex-none {
-    flex: none;
+    -webkit-flex: none;
+            flex: none;
   }
 
   .md\:flex-grow-0 {
-    flex-grow: 0;
+    -webkit-flex-grow: 0;
+            flex-grow: 0;
   }
 
   .md\:flex-grow {
-    flex-grow: 1;
+    -webkit-flex-grow: 1;
+            flex-grow: 1;
   }
 
   .md\:flex-shrink-0 {
-    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
   }
 
   .md\:flex-shrink {
-    flex-shrink: 1;
+    -webkit-flex-shrink: 1;
+            flex-shrink: 1;
   }
 
   .md\:order-1 {
-    order: 1;
+    -webkit-order: 1;
+            order: 1;
   }
 
   .md\:order-2 {
-    order: 2;
+    -webkit-order: 2;
+            order: 2;
   }
 
   .md\:order-3 {
-    order: 3;
+    -webkit-order: 3;
+            order: 3;
   }
 
   .md\:order-4 {
-    order: 4;
+    -webkit-order: 4;
+            order: 4;
   }
 
   .md\:order-5 {
-    order: 5;
+    -webkit-order: 5;
+            order: 5;
   }
 
   .md\:order-6 {
-    order: 6;
+    -webkit-order: 6;
+            order: 6;
   }
 
   .md\:order-7 {
-    order: 7;
+    -webkit-order: 7;
+            order: 7;
   }
 
   .md\:order-8 {
-    order: 8;
+    -webkit-order: 8;
+            order: 8;
   }
 
   .md\:order-9 {
-    order: 9;
+    -webkit-order: 9;
+            order: 9;
   }
 
   .md\:order-10 {
-    order: 10;
+    -webkit-order: 10;
+            order: 10;
   }
 
   .md\:order-11 {
-    order: 11;
+    -webkit-order: 11;
+            order: 11;
   }
 
   .md\:order-12 {
-    order: 12;
+    -webkit-order: 12;
+            order: 12;
   }
 
   .md\:order-first {
-    order: -9999;
+    -webkit-order: -9999;
+            order: -9999;
   }
 
   .md\:order-last {
-    order: 9999;
+    -webkit-order: 9999;
+            order: 9999;
   }
 
   .md\:order-none {
-    order: 0;
+    -webkit-order: 0;
+            order: 0;
   }
 
   .md\:float-right {
@@ -68967,13 +69198,11 @@ kbd {
 
   .md\:max-w-min {
     max-width: -webkit-min-content;
-    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .md\:max-w-max {
     max-width: -webkit-max-content;
-    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -69023,13 +69252,11 @@ kbd {
 
   .md\:min-w-min {
     min-width: -webkit-min-content;
-    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .md\:min-w-max {
     min-width: -webkit-max-content;
-    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -80746,13 +80973,11 @@ kbd {
 
   .md\:w-min {
     width: -webkit-min-content;
-    width: -moz-min-content;
     width: min-content;
   }
 
   .md\:w-max {
     width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 
@@ -81699,7 +81924,8 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .md\:transform-gpu {
@@ -81710,47 +81936,58 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .md\:transform-none {
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   .md\:origin-center {
-    transform-origin: center;
+    -webkit-transform-origin: center;
+            transform-origin: center;
   }
 
   .md\:origin-top {
-    transform-origin: top;
+    -webkit-transform-origin: top;
+            transform-origin: top;
   }
 
   .md\:origin-top-right {
-    transform-origin: top right;
+    -webkit-transform-origin: top right;
+            transform-origin: top right;
   }
 
   .md\:origin-right {
-    transform-origin: right;
+    -webkit-transform-origin: right;
+            transform-origin: right;
   }
 
   .md\:origin-bottom-right {
-    transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
+            transform-origin: bottom right;
   }
 
   .md\:origin-bottom {
-    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+            transform-origin: bottom;
   }
 
   .md\:origin-bottom-left {
-    transform-origin: bottom left;
+    -webkit-transform-origin: bottom left;
+            transform-origin: bottom left;
   }
 
   .md\:origin-left {
-    transform-origin: left;
+    -webkit-transform-origin: left;
+            transform-origin: left;
   }
 
   .md\:origin-top-left {
-    transform-origin: top left;
+    -webkit-transform-origin: top left;
+            transform-origin: top left;
   }
 
   .md\:scale-0 {
@@ -84638,7 +84875,9 @@ kbd {
   }
 
   .md\:transition {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, -webkit-transform;
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -84662,7 +84901,9 @@ kbd {
   }
 
   .md\:transition-transform {
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -84748,23 +84989,28 @@ kbd {
   }
 
   .md\:animate-none {
-    animation: none;
+    -webkit-animation: none;
+            animation: none;
   }
 
   .md\:animate-spin {
-    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
   }
 
   .md\:animate-ping {
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
 
   .md\:animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .md\:animate-bounce {
-    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+            animation: bounce 1s infinite;
   }
 }
 
@@ -86188,7 +86434,6 @@ kbd {
 
   .lg\:appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -93782,10 +94027,12 @@ kbd {
   }
 
   .lg\:flex {
+    display: -webkit-flex;
     display: flex;
   }
 
   .lg\:inline-flex {
+    display: -webkit-inline-flex;
     display: inline-flex;
   }
 
@@ -93846,31 +94093,38 @@ kbd {
   }
 
   .lg\:flex-row {
-    flex-direction: row;
+    -webkit-flex-direction: row;
+            flex-direction: row;
   }
 
   .lg\:flex-row-reverse {
-    flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
   }
 
   .lg\:flex-col {
-    flex-direction: column;
+    -webkit-flex-direction: column;
+            flex-direction: column;
   }
 
   .lg\:flex-col-reverse {
-    flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 
   .lg\:flex-wrap {
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
   }
 
   .lg\:flex-wrap-reverse {
-    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+            flex-wrap: wrap-reverse;
   }
 
   .lg\:flex-nowrap {
-    flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
   }
 
   .lg\:place-items-auto {
@@ -93942,67 +94196,83 @@ kbd {
   }
 
   .lg\:items-start {
-    align-items: flex-start;
+    -webkit-align-items: flex-start;
+            align-items: flex-start;
   }
 
   .lg\:items-end {
-    align-items: flex-end;
+    -webkit-align-items: flex-end;
+            align-items: flex-end;
   }
 
   .lg\:items-center {
-    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
   }
 
   .lg\:items-baseline {
-    align-items: baseline;
+    -webkit-align-items: baseline;
+            align-items: baseline;
   }
 
   .lg\:items-stretch {
-    align-items: stretch;
+    -webkit-align-items: stretch;
+            align-items: stretch;
   }
 
   .lg\:content-center {
-    align-content: center;
+    -webkit-align-content: center;
+            align-content: center;
   }
 
   .lg\:content-start {
-    align-content: flex-start;
+    -webkit-align-content: flex-start;
+            align-content: flex-start;
   }
 
   .lg\:content-end {
-    align-content: flex-end;
+    -webkit-align-content: flex-end;
+            align-content: flex-end;
   }
 
   .lg\:content-between {
-    align-content: space-between;
+    -webkit-align-content: space-between;
+            align-content: space-between;
   }
 
   .lg\:content-around {
-    align-content: space-around;
+    -webkit-align-content: space-around;
+            align-content: space-around;
   }
 
   .lg\:content-evenly {
-    align-content: space-evenly;
+    -webkit-align-content: space-evenly;
+            align-content: space-evenly;
   }
 
   .lg\:self-auto {
-    align-self: auto;
+    -webkit-align-self: auto;
+            align-self: auto;
   }
 
   .lg\:self-start {
-    align-self: flex-start;
+    -webkit-align-self: flex-start;
+            align-self: flex-start;
   }
 
   .lg\:self-end {
-    align-self: flex-end;
+    -webkit-align-self: flex-end;
+            align-self: flex-end;
   }
 
   .lg\:self-center {
-    align-self: center;
+    -webkit-align-self: center;
+            align-self: center;
   }
 
   .lg\:self-stretch {
-    align-self: stretch;
+    -webkit-align-self: stretch;
+            align-self: stretch;
   }
 
   .lg\:justify-items-auto {
@@ -94026,27 +94296,33 @@ kbd {
   }
 
   .lg\:justify-start {
-    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
   }
 
   .lg\:justify-end {
-    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
   }
 
   .lg\:justify-center {
-    justify-content: center;
+    -webkit-justify-content: center;
+            justify-content: center;
   }
 
   .lg\:justify-between {
-    justify-content: space-between;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
   }
 
   .lg\:justify-around {
-    justify-content: space-around;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
   }
 
   .lg\:justify-evenly {
-    justify-content: space-evenly;
+    -webkit-justify-content: space-evenly;
+            justify-content: space-evenly;
   }
 
   .lg\:justify-self-auto {
@@ -94070,95 +94346,118 @@ kbd {
   }
 
   .lg\:flex-1 {
-    flex: 1 1 0%;
+    -webkit-flex: 1 1 0%;
+            flex: 1 1 0%;
   }
 
   .lg\:flex-auto {
-    flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
   }
 
   .lg\:flex-initial {
-    flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+            flex: 0 1 auto;
   }
 
   .lg\:flex-none {
-    flex: none;
+    -webkit-flex: none;
+            flex: none;
   }
 
   .lg\:flex-grow-0 {
-    flex-grow: 0;
+    -webkit-flex-grow: 0;
+            flex-grow: 0;
   }
 
   .lg\:flex-grow {
-    flex-grow: 1;
+    -webkit-flex-grow: 1;
+            flex-grow: 1;
   }
 
   .lg\:flex-shrink-0 {
-    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
   }
 
   .lg\:flex-shrink {
-    flex-shrink: 1;
+    -webkit-flex-shrink: 1;
+            flex-shrink: 1;
   }
 
   .lg\:order-1 {
-    order: 1;
+    -webkit-order: 1;
+            order: 1;
   }
 
   .lg\:order-2 {
-    order: 2;
+    -webkit-order: 2;
+            order: 2;
   }
 
   .lg\:order-3 {
-    order: 3;
+    -webkit-order: 3;
+            order: 3;
   }
 
   .lg\:order-4 {
-    order: 4;
+    -webkit-order: 4;
+            order: 4;
   }
 
   .lg\:order-5 {
-    order: 5;
+    -webkit-order: 5;
+            order: 5;
   }
 
   .lg\:order-6 {
-    order: 6;
+    -webkit-order: 6;
+            order: 6;
   }
 
   .lg\:order-7 {
-    order: 7;
+    -webkit-order: 7;
+            order: 7;
   }
 
   .lg\:order-8 {
-    order: 8;
+    -webkit-order: 8;
+            order: 8;
   }
 
   .lg\:order-9 {
-    order: 9;
+    -webkit-order: 9;
+            order: 9;
   }
 
   .lg\:order-10 {
-    order: 10;
+    -webkit-order: 10;
+            order: 10;
   }
 
   .lg\:order-11 {
-    order: 11;
+    -webkit-order: 11;
+            order: 11;
   }
 
   .lg\:order-12 {
-    order: 12;
+    -webkit-order: 12;
+            order: 12;
   }
 
   .lg\:order-first {
-    order: -9999;
+    -webkit-order: -9999;
+            order: -9999;
   }
 
   .lg\:order-last {
-    order: 9999;
+    -webkit-order: 9999;
+            order: 9999;
   }
 
   .lg\:order-none {
-    order: 0;
+    -webkit-order: 0;
+            order: 0;
   }
 
   .lg\:float-right {
@@ -96926,13 +97225,11 @@ kbd {
 
   .lg\:max-w-min {
     max-width: -webkit-min-content;
-    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .lg\:max-w-max {
     max-width: -webkit-max-content;
-    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -96982,13 +97279,11 @@ kbd {
 
   .lg\:min-w-min {
     min-width: -webkit-min-content;
-    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .lg\:min-w-max {
     min-width: -webkit-max-content;
-    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -108705,13 +109000,11 @@ kbd {
 
   .lg\:w-min {
     width: -webkit-min-content;
-    width: -moz-min-content;
     width: min-content;
   }
 
   .lg\:w-max {
     width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 
@@ -109658,7 +109951,8 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .lg\:transform-gpu {
@@ -109669,47 +109963,58 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .lg\:transform-none {
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   .lg\:origin-center {
-    transform-origin: center;
+    -webkit-transform-origin: center;
+            transform-origin: center;
   }
 
   .lg\:origin-top {
-    transform-origin: top;
+    -webkit-transform-origin: top;
+            transform-origin: top;
   }
 
   .lg\:origin-top-right {
-    transform-origin: top right;
+    -webkit-transform-origin: top right;
+            transform-origin: top right;
   }
 
   .lg\:origin-right {
-    transform-origin: right;
+    -webkit-transform-origin: right;
+            transform-origin: right;
   }
 
   .lg\:origin-bottom-right {
-    transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
+            transform-origin: bottom right;
   }
 
   .lg\:origin-bottom {
-    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+            transform-origin: bottom;
   }
 
   .lg\:origin-bottom-left {
-    transform-origin: bottom left;
+    -webkit-transform-origin: bottom left;
+            transform-origin: bottom left;
   }
 
   .lg\:origin-left {
-    transform-origin: left;
+    -webkit-transform-origin: left;
+            transform-origin: left;
   }
 
   .lg\:origin-top-left {
-    transform-origin: top left;
+    -webkit-transform-origin: top left;
+            transform-origin: top left;
   }
 
   .lg\:scale-0 {
@@ -112597,7 +112902,9 @@ kbd {
   }
 
   .lg\:transition {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, -webkit-transform;
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -112621,7 +112928,9 @@ kbd {
   }
 
   .lg\:transition-transform {
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -112707,23 +113016,28 @@ kbd {
   }
 
   .lg\:animate-none {
-    animation: none;
+    -webkit-animation: none;
+            animation: none;
   }
 
   .lg\:animate-spin {
-    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
   }
 
   .lg\:animate-ping {
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
 
   .lg\:animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .lg\:animate-bounce {
-    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+            animation: bounce 1s infinite;
   }
 }
 
@@ -114147,7 +114461,6 @@ kbd {
 
   .xl\:appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -121741,10 +122054,12 @@ kbd {
   }
 
   .xl\:flex {
+    display: -webkit-flex;
     display: flex;
   }
 
   .xl\:inline-flex {
+    display: -webkit-inline-flex;
     display: inline-flex;
   }
 
@@ -121805,31 +122120,38 @@ kbd {
   }
 
   .xl\:flex-row {
-    flex-direction: row;
+    -webkit-flex-direction: row;
+            flex-direction: row;
   }
 
   .xl\:flex-row-reverse {
-    flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
   }
 
   .xl\:flex-col {
-    flex-direction: column;
+    -webkit-flex-direction: column;
+            flex-direction: column;
   }
 
   .xl\:flex-col-reverse {
-    flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 
   .xl\:flex-wrap {
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
   }
 
   .xl\:flex-wrap-reverse {
-    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+            flex-wrap: wrap-reverse;
   }
 
   .xl\:flex-nowrap {
-    flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
   }
 
   .xl\:place-items-auto {
@@ -121901,67 +122223,83 @@ kbd {
   }
 
   .xl\:items-start {
-    align-items: flex-start;
+    -webkit-align-items: flex-start;
+            align-items: flex-start;
   }
 
   .xl\:items-end {
-    align-items: flex-end;
+    -webkit-align-items: flex-end;
+            align-items: flex-end;
   }
 
   .xl\:items-center {
-    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
   }
 
   .xl\:items-baseline {
-    align-items: baseline;
+    -webkit-align-items: baseline;
+            align-items: baseline;
   }
 
   .xl\:items-stretch {
-    align-items: stretch;
+    -webkit-align-items: stretch;
+            align-items: stretch;
   }
 
   .xl\:content-center {
-    align-content: center;
+    -webkit-align-content: center;
+            align-content: center;
   }
 
   .xl\:content-start {
-    align-content: flex-start;
+    -webkit-align-content: flex-start;
+            align-content: flex-start;
   }
 
   .xl\:content-end {
-    align-content: flex-end;
+    -webkit-align-content: flex-end;
+            align-content: flex-end;
   }
 
   .xl\:content-between {
-    align-content: space-between;
+    -webkit-align-content: space-between;
+            align-content: space-between;
   }
 
   .xl\:content-around {
-    align-content: space-around;
+    -webkit-align-content: space-around;
+            align-content: space-around;
   }
 
   .xl\:content-evenly {
-    align-content: space-evenly;
+    -webkit-align-content: space-evenly;
+            align-content: space-evenly;
   }
 
   .xl\:self-auto {
-    align-self: auto;
+    -webkit-align-self: auto;
+            align-self: auto;
   }
 
   .xl\:self-start {
-    align-self: flex-start;
+    -webkit-align-self: flex-start;
+            align-self: flex-start;
   }
 
   .xl\:self-end {
-    align-self: flex-end;
+    -webkit-align-self: flex-end;
+            align-self: flex-end;
   }
 
   .xl\:self-center {
-    align-self: center;
+    -webkit-align-self: center;
+            align-self: center;
   }
 
   .xl\:self-stretch {
-    align-self: stretch;
+    -webkit-align-self: stretch;
+            align-self: stretch;
   }
 
   .xl\:justify-items-auto {
@@ -121985,27 +122323,33 @@ kbd {
   }
 
   .xl\:justify-start {
-    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
   }
 
   .xl\:justify-end {
-    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
   }
 
   .xl\:justify-center {
-    justify-content: center;
+    -webkit-justify-content: center;
+            justify-content: center;
   }
 
   .xl\:justify-between {
-    justify-content: space-between;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
   }
 
   .xl\:justify-around {
-    justify-content: space-around;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
   }
 
   .xl\:justify-evenly {
-    justify-content: space-evenly;
+    -webkit-justify-content: space-evenly;
+            justify-content: space-evenly;
   }
 
   .xl\:justify-self-auto {
@@ -122029,95 +122373,118 @@ kbd {
   }
 
   .xl\:flex-1 {
-    flex: 1 1 0%;
+    -webkit-flex: 1 1 0%;
+            flex: 1 1 0%;
   }
 
   .xl\:flex-auto {
-    flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
   }
 
   .xl\:flex-initial {
-    flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+            flex: 0 1 auto;
   }
 
   .xl\:flex-none {
-    flex: none;
+    -webkit-flex: none;
+            flex: none;
   }
 
   .xl\:flex-grow-0 {
-    flex-grow: 0;
+    -webkit-flex-grow: 0;
+            flex-grow: 0;
   }
 
   .xl\:flex-grow {
-    flex-grow: 1;
+    -webkit-flex-grow: 1;
+            flex-grow: 1;
   }
 
   .xl\:flex-shrink-0 {
-    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
   }
 
   .xl\:flex-shrink {
-    flex-shrink: 1;
+    -webkit-flex-shrink: 1;
+            flex-shrink: 1;
   }
 
   .xl\:order-1 {
-    order: 1;
+    -webkit-order: 1;
+            order: 1;
   }
 
   .xl\:order-2 {
-    order: 2;
+    -webkit-order: 2;
+            order: 2;
   }
 
   .xl\:order-3 {
-    order: 3;
+    -webkit-order: 3;
+            order: 3;
   }
 
   .xl\:order-4 {
-    order: 4;
+    -webkit-order: 4;
+            order: 4;
   }
 
   .xl\:order-5 {
-    order: 5;
+    -webkit-order: 5;
+            order: 5;
   }
 
   .xl\:order-6 {
-    order: 6;
+    -webkit-order: 6;
+            order: 6;
   }
 
   .xl\:order-7 {
-    order: 7;
+    -webkit-order: 7;
+            order: 7;
   }
 
   .xl\:order-8 {
-    order: 8;
+    -webkit-order: 8;
+            order: 8;
   }
 
   .xl\:order-9 {
-    order: 9;
+    -webkit-order: 9;
+            order: 9;
   }
 
   .xl\:order-10 {
-    order: 10;
+    -webkit-order: 10;
+            order: 10;
   }
 
   .xl\:order-11 {
-    order: 11;
+    -webkit-order: 11;
+            order: 11;
   }
 
   .xl\:order-12 {
-    order: 12;
+    -webkit-order: 12;
+            order: 12;
   }
 
   .xl\:order-first {
-    order: -9999;
+    -webkit-order: -9999;
+            order: -9999;
   }
 
   .xl\:order-last {
-    order: 9999;
+    -webkit-order: 9999;
+            order: 9999;
   }
 
   .xl\:order-none {
-    order: 0;
+    -webkit-order: 0;
+            order: 0;
   }
 
   .xl\:float-right {
@@ -124885,13 +125252,11 @@ kbd {
 
   .xl\:max-w-min {
     max-width: -webkit-min-content;
-    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .xl\:max-w-max {
     max-width: -webkit-max-content;
-    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -124941,13 +125306,11 @@ kbd {
 
   .xl\:min-w-min {
     min-width: -webkit-min-content;
-    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .xl\:min-w-max {
     min-width: -webkit-max-content;
-    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -136664,13 +137027,11 @@ kbd {
 
   .xl\:w-min {
     width: -webkit-min-content;
-    width: -moz-min-content;
     width: min-content;
   }
 
   .xl\:w-max {
     width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 
@@ -137617,7 +137978,8 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .xl\:transform-gpu {
@@ -137628,47 +137990,58 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .xl\:transform-none {
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   .xl\:origin-center {
-    transform-origin: center;
+    -webkit-transform-origin: center;
+            transform-origin: center;
   }
 
   .xl\:origin-top {
-    transform-origin: top;
+    -webkit-transform-origin: top;
+            transform-origin: top;
   }
 
   .xl\:origin-top-right {
-    transform-origin: top right;
+    -webkit-transform-origin: top right;
+            transform-origin: top right;
   }
 
   .xl\:origin-right {
-    transform-origin: right;
+    -webkit-transform-origin: right;
+            transform-origin: right;
   }
 
   .xl\:origin-bottom-right {
-    transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
+            transform-origin: bottom right;
   }
 
   .xl\:origin-bottom {
-    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+            transform-origin: bottom;
   }
 
   .xl\:origin-bottom-left {
-    transform-origin: bottom left;
+    -webkit-transform-origin: bottom left;
+            transform-origin: bottom left;
   }
 
   .xl\:origin-left {
-    transform-origin: left;
+    -webkit-transform-origin: left;
+            transform-origin: left;
   }
 
   .xl\:origin-top-left {
-    transform-origin: top left;
+    -webkit-transform-origin: top left;
+            transform-origin: top left;
   }
 
   .xl\:scale-0 {
@@ -140556,7 +140929,9 @@ kbd {
   }
 
   .xl\:transition {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, -webkit-transform;
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -140580,7 +140955,9 @@ kbd {
   }
 
   .xl\:transition-transform {
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -140666,23 +141043,28 @@ kbd {
   }
 
   .xl\:animate-none {
-    animation: none;
+    -webkit-animation: none;
+            animation: none;
   }
 
   .xl\:animate-spin {
-    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
   }
 
   .xl\:animate-ping {
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
 
   .xl\:animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .xl\:animate-bounce {
-    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+            animation: bounce 1s infinite;
   }
 }
 
@@ -142106,7 +142488,6 @@ kbd {
 
   .\32xl\:appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -149700,10 +150081,12 @@ kbd {
   }
 
   .\32xl\:flex {
+    display: -webkit-flex;
     display: flex;
   }
 
   .\32xl\:inline-flex {
+    display: -webkit-inline-flex;
     display: inline-flex;
   }
 
@@ -149764,31 +150147,38 @@ kbd {
   }
 
   .\32xl\:flex-row {
-    flex-direction: row;
+    -webkit-flex-direction: row;
+            flex-direction: row;
   }
 
   .\32xl\:flex-row-reverse {
-    flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
   }
 
   .\32xl\:flex-col {
-    flex-direction: column;
+    -webkit-flex-direction: column;
+            flex-direction: column;
   }
 
   .\32xl\:flex-col-reverse {
-    flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 
   .\32xl\:flex-wrap {
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
   }
 
   .\32xl\:flex-wrap-reverse {
-    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+            flex-wrap: wrap-reverse;
   }
 
   .\32xl\:flex-nowrap {
-    flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
   }
 
   .\32xl\:place-items-auto {
@@ -149860,67 +150250,83 @@ kbd {
   }
 
   .\32xl\:items-start {
-    align-items: flex-start;
+    -webkit-align-items: flex-start;
+            align-items: flex-start;
   }
 
   .\32xl\:items-end {
-    align-items: flex-end;
+    -webkit-align-items: flex-end;
+            align-items: flex-end;
   }
 
   .\32xl\:items-center {
-    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
   }
 
   .\32xl\:items-baseline {
-    align-items: baseline;
+    -webkit-align-items: baseline;
+            align-items: baseline;
   }
 
   .\32xl\:items-stretch {
-    align-items: stretch;
+    -webkit-align-items: stretch;
+            align-items: stretch;
   }
 
   .\32xl\:content-center {
-    align-content: center;
+    -webkit-align-content: center;
+            align-content: center;
   }
 
   .\32xl\:content-start {
-    align-content: flex-start;
+    -webkit-align-content: flex-start;
+            align-content: flex-start;
   }
 
   .\32xl\:content-end {
-    align-content: flex-end;
+    -webkit-align-content: flex-end;
+            align-content: flex-end;
   }
 
   .\32xl\:content-between {
-    align-content: space-between;
+    -webkit-align-content: space-between;
+            align-content: space-between;
   }
 
   .\32xl\:content-around {
-    align-content: space-around;
+    -webkit-align-content: space-around;
+            align-content: space-around;
   }
 
   .\32xl\:content-evenly {
-    align-content: space-evenly;
+    -webkit-align-content: space-evenly;
+            align-content: space-evenly;
   }
 
   .\32xl\:self-auto {
-    align-self: auto;
+    -webkit-align-self: auto;
+            align-self: auto;
   }
 
   .\32xl\:self-start {
-    align-self: flex-start;
+    -webkit-align-self: flex-start;
+            align-self: flex-start;
   }
 
   .\32xl\:self-end {
-    align-self: flex-end;
+    -webkit-align-self: flex-end;
+            align-self: flex-end;
   }
 
   .\32xl\:self-center {
-    align-self: center;
+    -webkit-align-self: center;
+            align-self: center;
   }
 
   .\32xl\:self-stretch {
-    align-self: stretch;
+    -webkit-align-self: stretch;
+            align-self: stretch;
   }
 
   .\32xl\:justify-items-auto {
@@ -149944,27 +150350,33 @@ kbd {
   }
 
   .\32xl\:justify-start {
-    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
   }
 
   .\32xl\:justify-end {
-    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
   }
 
   .\32xl\:justify-center {
-    justify-content: center;
+    -webkit-justify-content: center;
+            justify-content: center;
   }
 
   .\32xl\:justify-between {
-    justify-content: space-between;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
   }
 
   .\32xl\:justify-around {
-    justify-content: space-around;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
   }
 
   .\32xl\:justify-evenly {
-    justify-content: space-evenly;
+    -webkit-justify-content: space-evenly;
+            justify-content: space-evenly;
   }
 
   .\32xl\:justify-self-auto {
@@ -149988,95 +150400,118 @@ kbd {
   }
 
   .\32xl\:flex-1 {
-    flex: 1 1 0%;
+    -webkit-flex: 1 1 0%;
+            flex: 1 1 0%;
   }
 
   .\32xl\:flex-auto {
-    flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
   }
 
   .\32xl\:flex-initial {
-    flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+            flex: 0 1 auto;
   }
 
   .\32xl\:flex-none {
-    flex: none;
+    -webkit-flex: none;
+            flex: none;
   }
 
   .\32xl\:flex-grow-0 {
-    flex-grow: 0;
+    -webkit-flex-grow: 0;
+            flex-grow: 0;
   }
 
   .\32xl\:flex-grow {
-    flex-grow: 1;
+    -webkit-flex-grow: 1;
+            flex-grow: 1;
   }
 
   .\32xl\:flex-shrink-0 {
-    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
   }
 
   .\32xl\:flex-shrink {
-    flex-shrink: 1;
+    -webkit-flex-shrink: 1;
+            flex-shrink: 1;
   }
 
   .\32xl\:order-1 {
-    order: 1;
+    -webkit-order: 1;
+            order: 1;
   }
 
   .\32xl\:order-2 {
-    order: 2;
+    -webkit-order: 2;
+            order: 2;
   }
 
   .\32xl\:order-3 {
-    order: 3;
+    -webkit-order: 3;
+            order: 3;
   }
 
   .\32xl\:order-4 {
-    order: 4;
+    -webkit-order: 4;
+            order: 4;
   }
 
   .\32xl\:order-5 {
-    order: 5;
+    -webkit-order: 5;
+            order: 5;
   }
 
   .\32xl\:order-6 {
-    order: 6;
+    -webkit-order: 6;
+            order: 6;
   }
 
   .\32xl\:order-7 {
-    order: 7;
+    -webkit-order: 7;
+            order: 7;
   }
 
   .\32xl\:order-8 {
-    order: 8;
+    -webkit-order: 8;
+            order: 8;
   }
 
   .\32xl\:order-9 {
-    order: 9;
+    -webkit-order: 9;
+            order: 9;
   }
 
   .\32xl\:order-10 {
-    order: 10;
+    -webkit-order: 10;
+            order: 10;
   }
 
   .\32xl\:order-11 {
-    order: 11;
+    -webkit-order: 11;
+            order: 11;
   }
 
   .\32xl\:order-12 {
-    order: 12;
+    -webkit-order: 12;
+            order: 12;
   }
 
   .\32xl\:order-first {
-    order: -9999;
+    -webkit-order: -9999;
+            order: -9999;
   }
 
   .\32xl\:order-last {
-    order: 9999;
+    -webkit-order: 9999;
+            order: 9999;
   }
 
   .\32xl\:order-none {
-    order: 0;
+    -webkit-order: 0;
+            order: 0;
   }
 
   .\32xl\:float-right {
@@ -152844,13 +153279,11 @@ kbd {
 
   .\32xl\:max-w-min {
     max-width: -webkit-min-content;
-    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .\32xl\:max-w-max {
     max-width: -webkit-max-content;
-    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -152900,13 +153333,11 @@ kbd {
 
   .\32xl\:min-w-min {
     min-width: -webkit-min-content;
-    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .\32xl\:min-w-max {
     min-width: -webkit-max-content;
-    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -164623,13 +165054,11 @@ kbd {
 
   .\32xl\:w-min {
     width: -webkit-min-content;
-    width: -moz-min-content;
     width: min-content;
   }
 
   .\32xl\:w-max {
     width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 
@@ -165576,7 +166005,8 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .\32xl\:transform-gpu {
@@ -165587,47 +166017,58 @@ kbd {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    -webkit-transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .\32xl\:transform-none {
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   .\32xl\:origin-center {
-    transform-origin: center;
+    -webkit-transform-origin: center;
+            transform-origin: center;
   }
 
   .\32xl\:origin-top {
-    transform-origin: top;
+    -webkit-transform-origin: top;
+            transform-origin: top;
   }
 
   .\32xl\:origin-top-right {
-    transform-origin: top right;
+    -webkit-transform-origin: top right;
+            transform-origin: top right;
   }
 
   .\32xl\:origin-right {
-    transform-origin: right;
+    -webkit-transform-origin: right;
+            transform-origin: right;
   }
 
   .\32xl\:origin-bottom-right {
-    transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
+            transform-origin: bottom right;
   }
 
   .\32xl\:origin-bottom {
-    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+            transform-origin: bottom;
   }
 
   .\32xl\:origin-bottom-left {
-    transform-origin: bottom left;
+    -webkit-transform-origin: bottom left;
+            transform-origin: bottom left;
   }
 
   .\32xl\:origin-left {
-    transform-origin: left;
+    -webkit-transform-origin: left;
+            transform-origin: left;
   }
 
   .\32xl\:origin-top-left {
-    transform-origin: top left;
+    -webkit-transform-origin: top left;
+            transform-origin: top left;
   }
 
   .\32xl\:scale-0 {
@@ -168515,7 +168956,9 @@ kbd {
   }
 
   .\32xl\:transition {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, -webkit-transform;
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -168539,7 +168982,9 @@ kbd {
   }
 
   .\32xl\:transition-transform {
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
@@ -168625,22 +169070,27 @@ kbd {
   }
 
   .\32xl\:animate-none {
-    animation: none;
+    -webkit-animation: none;
+            animation: none;
   }
 
   .\32xl\:animate-spin {
-    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
   }
 
   .\32xl\:animate-ping {
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
 
   .\32xl\:animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .\32xl\:animate-bounce {
-    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+            animation: bounce 1s infinite;
   }
 }
