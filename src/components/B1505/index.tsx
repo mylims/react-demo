@@ -23,7 +23,7 @@ const margin = { bottom: 50, left: 90, top: 20, right: 400 };
 const options = {
   enforceGrowing: true,
   series: { displayMarker: false },
-  dimentions: { width: 950, height: 500, margin },
+  dimensions: { width: 950, height: 500, margin },
 };
 
 function listVariables(analyses: Analysis[]) {
@@ -91,7 +91,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col">
+      <div className="flex flex-col mx-10">
         <Variables
           label="X"
           optionsVariables={optionsVariables}

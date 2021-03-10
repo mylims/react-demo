@@ -8,12 +8,6 @@ import {
   SvgOutlineInformationCircle,
 } from '../tailwind-ui';
 
-interface QueryType {
-  xLabel: string;
-  xUnits: string;
-  yLabel: string;
-  yUnits: string;
-}
 interface SeriesType {
   original: string;
   label: string;
@@ -111,7 +105,7 @@ export function Table({ files, data, content, onLabelChange }: TableProps) {
                 <div className="flex mt-1 rounded-md shadow-sm">
                   <label
                     htmlFor={`label-index${label}-units`}
-                    className="relative flex flex-row items-center flex-1 px-3 py-2 text-base placeholder-opacity-100 bg-white border rounded-md shadow-sm focus-within:ring-1 placeholder-neutral-500 sm:text-sm focus-within:ring-primary-500 focus-within:border-primary-500 border-neutral-300 disabled:bg-neutral-50 disabled:text-neutral-500"
+                    className="relative flex flex-row items-center flex-1 px-3 py-2 text-base bg-white border placeholder-opacity-100 rounded-md shadow-sm focus-within:ring-1 placeholder-neutral-500 sm:text-sm focus-within:ring-primary-500 focus-within:border-primary-500 border-neutral-300 disabled:bg-neutral-50 disabled:text-neutral-500"
                   >
                     <input
                       id={`label-index${label}-units`}
@@ -124,7 +118,7 @@ export function Table({ files, data, content, onLabelChange }: TableProps) {
                         onLabelChange(e.currentTarget.value, index)
                       }
                     />
-                    <div className="inline-flex flex-row items-center space-x-1 cursor-default"></div>
+                    <div className="inline-flex flex-row items-center cursor-default space-x-1"></div>
                   </label>
                 </div>
               </td>

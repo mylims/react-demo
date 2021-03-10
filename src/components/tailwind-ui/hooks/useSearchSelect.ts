@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
 import {
   SimpleOption,
   FilterOptions,
   defaultOptionsFilter,
-} from '../utils/search-select-utils';
+} from "../utils/search-select-utils";
 
 export interface SearchSelectHookResult<T> {
   searchValue: string;
@@ -28,18 +28,18 @@ export interface SearchSelectHookConfig<T>
 }
 
 export function useSearchSelect<T extends SimpleOption>(
-  config: SimpleSearchSelectHookConfig<T>,
+  config: SimpleSearchSelectHookConfig<T>
 ): SearchSelectHookResult<T>;
 export function useSearchSelect<T>(
-  config: SearchSelectHookConfig<T>,
+  config: SearchSelectHookConfig<T>
 ): SearchSelectHookResult<T>;
 export function useSearchSelect<T>(
   config: T extends SimpleOption
     ? SimpleSearchSelectHookConfig<T>
-    : SearchSelectHookConfig<T>,
+    : SearchSelectHookConfig<T>
 ): SearchSelectHookResult<T> {
   const { options, filterOptions = defaultOptionsFilter } = config;
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const newOptions = useMemo(() => filterOptions(searchValue, options), [
     options,
     filterOptions,

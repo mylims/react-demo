@@ -9,7 +9,7 @@ interface SinglePlotProps {
   analyses: Array<any>;
 }
 
-const dimentions = {
+const dimensions = {
   width: 500,
   height: 400,
   margin: { bottom: 50, left: 80, top: 20, right: 20 },
@@ -21,12 +21,12 @@ export default function SinglePlot({ query, analyses }: SinglePlotProps) {
     series: [],
     meta: [],
     axes: [],
-    dimentions: { width: 500, height: 500 },
+    dimensions: { width: 500, height: 500 },
   };
   const [data, setData] = useState<PlotState>(initState);
 
   useEffect(() => {
-    const plot = getReactPlotJSON(analyses, query, { dimentions });
+    const plot = getReactPlotJSON(analyses, query, { dimensions });
     setData({ ...plot, legend });
   }, [analyses, query]);
   return <PlotObject plot={data} />;

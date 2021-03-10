@@ -15,7 +15,7 @@ const margin = { bottom: 50, left: 80, top: 20, right: 120 };
 const options = {
   legend: { position: 'right' },
   series: { displayMarker: false },
-  dimentions: { width: 700, height: 500, margin },
+  dimensions: { width: 700, height: 500, margin },
 };
 
 export default function MultipleCurvesDisplayer({ textList }: MultipleProps) {
