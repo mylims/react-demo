@@ -108,7 +108,7 @@ export function Table({ files, data, content, onLabelChange, onHiddenChange }: T
               <td className="p-1 font-medium">
                 <Checkbox
                   checked={hidden}
-                  onClick={() => onHiddenChange(!hidden, index)}
+                  onChange={() => onHiddenChange(!hidden, index)}
                   name={`checkbox-index${label}-units`}
                 />
               </td>
