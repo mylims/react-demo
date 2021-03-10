@@ -568,6 +568,7 @@ video {
       select
      {
   -webkit-appearance: none;
+     -moz-appearance: none;
           appearance: none;
   background-color: #fff;
   border-color: #6b7280;
@@ -642,6 +643,7 @@ select {
       [type='radio']
      {
   -webkit-appearance: none;
+     -moz-appearance: none;
           appearance: none;
   padding: 0;
   -webkit-print-color-adjust: exact;
@@ -2267,6 +2269,7 @@ kbd {
 
 .appearance-none {
   -webkit-appearance: none;
+     -moz-appearance: none;
           appearance: none;
 }
 
@@ -13058,11 +13061,13 @@ kbd {
 
 .max-w-min {
   max-width: -webkit-min-content;
+  max-width: -moz-min-content;
   max-width: min-content;
 }
 
 .max-w-max {
   max-width: -webkit-max-content;
+  max-width: -moz-max-content;
   max-width: max-content;
 }
 
@@ -13112,11 +13117,13 @@ kbd {
 
 .min-w-min {
   min-width: -webkit-min-content;
+  min-width: -moz-min-content;
   min-width: min-content;
 }
 
 .min-w-max {
   min-width: -webkit-max-content;
+  min-width: -moz-max-content;
   min-width: max-content;
 }
 
@@ -24846,11 +24853,13 @@ kbd {
 
 .w-min {
   width: -webkit-min-content;
+  width: -moz-min-content;
   width: min-content;
 }
 
 .w-max {
   width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
 }
 
@@ -30380,6 +30389,7 @@ kbd {
 
   .sm\:appearance-none {
     -webkit-appearance: none;
+       -moz-appearance: none;
             appearance: none;
   }
 
@@ -41171,11 +41181,13 @@ kbd {
 
   .sm\:max-w-min {
     max-width: -webkit-min-content;
+    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .sm\:max-w-max {
     max-width: -webkit-max-content;
+    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -41225,11 +41237,13 @@ kbd {
 
   .sm\:min-w-min {
     min-width: -webkit-min-content;
+    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .sm\:min-w-max {
     min-width: -webkit-max-content;
+    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -52946,11 +52960,13 @@ kbd {
 
   .sm\:w-min {
     width: -webkit-min-content;
+    width: -moz-min-content;
     width: min-content;
   }
 
   .sm\:w-max {
     width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
   }
 
@@ -58407,6 +58423,7 @@ kbd {
 
   .md\:appearance-none {
     -webkit-appearance: none;
+       -moz-appearance: none;
             appearance: none;
   }
 
@@ -69198,11 +69215,13 @@ kbd {
 
   .md\:max-w-min {
     max-width: -webkit-min-content;
+    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .md\:max-w-max {
     max-width: -webkit-max-content;
+    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -69252,11 +69271,13 @@ kbd {
 
   .md\:min-w-min {
     min-width: -webkit-min-content;
+    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .md\:min-w-max {
     min-width: -webkit-max-content;
+    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -80973,11 +80994,13 @@ kbd {
 
   .md\:w-min {
     width: -webkit-min-content;
+    width: -moz-min-content;
     width: min-content;
   }
 
   .md\:w-max {
     width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
   }
 
@@ -86434,6 +86457,7 @@ kbd {
 
   .lg\:appearance-none {
     -webkit-appearance: none;
+       -moz-appearance: none;
             appearance: none;
   }
 
@@ -97225,11 +97249,13 @@ kbd {
 
   .lg\:max-w-min {
     max-width: -webkit-min-content;
+    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .lg\:max-w-max {
     max-width: -webkit-max-content;
+    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -97279,11 +97305,13 @@ kbd {
 
   .lg\:min-w-min {
     min-width: -webkit-min-content;
+    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .lg\:min-w-max {
     min-width: -webkit-max-content;
+    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -109000,11 +109028,13 @@ kbd {
 
   .lg\:w-min {
     width: -webkit-min-content;
+    width: -moz-min-content;
     width: min-content;
   }
 
   .lg\:w-max {
     width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
   }
 
@@ -114461,6 +114491,7 @@ kbd {
 
   .xl\:appearance-none {
     -webkit-appearance: none;
+       -moz-appearance: none;
             appearance: none;
   }
 
@@ -125252,11 +125283,13 @@ kbd {
 
   .xl\:max-w-min {
     max-width: -webkit-min-content;
+    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .xl\:max-w-max {
     max-width: -webkit-max-content;
+    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -125306,11 +125339,13 @@ kbd {
 
   .xl\:min-w-min {
     min-width: -webkit-min-content;
+    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .xl\:min-w-max {
     min-width: -webkit-max-content;
+    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -137027,11 +137062,13 @@ kbd {
 
   .xl\:w-min {
     width: -webkit-min-content;
+    width: -moz-min-content;
     width: min-content;
   }
 
   .xl\:w-max {
     width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
   }
 
@@ -142488,6 +142525,7 @@ kbd {
 
   .\32xl\:appearance-none {
     -webkit-appearance: none;
+       -moz-appearance: none;
             appearance: none;
   }
 
@@ -153279,11 +153317,13 @@ kbd {
 
   .\32xl\:max-w-min {
     max-width: -webkit-min-content;
+    max-width: -moz-min-content;
     max-width: min-content;
   }
 
   .\32xl\:max-w-max {
     max-width: -webkit-max-content;
+    max-width: -moz-max-content;
     max-width: max-content;
   }
 
@@ -153333,11 +153373,13 @@ kbd {
 
   .\32xl\:min-w-min {
     min-width: -webkit-min-content;
+    min-width: -moz-min-content;
     min-width: min-content;
   }
 
   .\32xl\:min-w-max {
     min-width: -webkit-max-content;
+    min-width: -moz-max-content;
     min-width: max-content;
   }
 
@@ -165054,11 +165096,13 @@ kbd {
 
   .\32xl\:w-min {
     width: -webkit-min-content;
+    width: -moz-min-content;
     width: min-content;
   }
 
   .\32xl\:w-max {
     width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
   }
 

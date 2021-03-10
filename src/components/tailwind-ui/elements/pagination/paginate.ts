@@ -1,10 +1,10 @@
-export const ELLIPSIS = '…';
+export const ELLIPSIS = "…";
 
 export function paginate(
   currentPage: number,
   totalPages: number,
   maxVisiblePages: number,
-  pagesPerSide: number,
+  pagesPerSide: number
 ) {
   const maxPagesWithoutEllipsis = pagesPerSide * 2 + 2 + maxVisiblePages;
   if (totalPages <= maxPagesWithoutEllipsis) {
@@ -23,7 +23,7 @@ export function paginate(
     pagination.push(ELLIPSIS);
     if (currentPage > totalPages - half) {
       pagination.push(
-        ...range(totalPages - half - aroundMiddle + 1, totalPages),
+        ...range(totalPages - half - aroundMiddle + 1, totalPages)
       );
       return pagination;
     } else {

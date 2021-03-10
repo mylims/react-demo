@@ -1,1 +1,1 @@
-declare module 'byte-size';
+declare module "byte-size";
