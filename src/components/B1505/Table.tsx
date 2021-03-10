@@ -1,14 +1,16 @@
-import { Analysis, toJcamp, toText } from 'common-spectrum';
-import React, { useEffect, useState } from 'react';
-import { PlotObjectType } from 'react-plot';
+import { Analysis, toJcamp, toText } from "common-spectrum";
+import React, { useEffect, useState } from "react";
+import { PlotObjectType } from "react-plot";
 import {
   Button,
+  Checkbox,
   Color,
   Modal,
   SvgOutlineInformationCircle,
-} from '../tailwind-ui';
+} from "../tailwind-ui";
 
 interface SeriesType {
+  hidden: boolean;
   original: string;
   label: string;
   csv: string;
@@ -20,9 +22,10 @@ interface TableProps {
   data: PlotObjectType;
   content: string[];
   onLabelChange: (label: string, index: number) => void;
+  onHiddenChange: (hidden: boolean, index: number) => void;
 }
 
-export function Table({ files, data, content, onLabelChange }: TableProps) {
+export function Table({ files, data, content, onLabelChange, onHiddenChange }: TableProps) {
   const [modalContent, setModalContent] = useState<{
     body: string;
     title: string;
@@ -37,15 +40,16 @@ export function Table({ files, data, content, onLabelChange }: TableProps) {
       const original = content[index];
       for (const analysis of files[index]) {
         const spectrum = data.series[index];
-        let { label = `spectrum ${index}` } = spectrum || {};
+        let { label = `spectrum ${index}`, hidden = false } = spectrum || {};
         while (titles.includes(label)) {
           label = label + index;
         }
         titles.push(label);
         series.push({
+          hidden,
           original,
           label,
-          csv: toText(analysis).join('\n'),
+          csv: toText(analysis).join("\n"),
           jcamp: toJcamp(analysis),
         });
       }
@@ -99,8 +103,15 @@ export function Table({ files, data, content, onLabelChange }: TableProps) {
       </div>
       <table>
         <tbody className="inline-block max-w-2xl overflow-auto h-96">
-          {series.map(({ label, original, csv, jcamp }, index) => (
+          {series.map(({ label, original, csv, jcamp, hidden }, index) => (
             <tr key={index}>
+              <td className="p-1 font-medium">
+                <Checkbox
+                  checked={hidden}
+                  onClick={() => onHiddenChange(!hidden, index)}
+                  name={`checkbox-index${label}-units`}
+                />
+              </td>
               <td className="p-1 font-medium">
                 <div className="flex mt-1 rounded-md shadow-sm">
                   <label
@@ -125,7 +136,7 @@ export function Table({ files, data, content, onLabelChange }: TableProps) {
               <td className="p-1">
                 <Button
                   onClick={() =>
-                    setModalContent({ title: 'Original', body: original })
+                    setModalContent({ title: "Original", body: original })
                   }
                 >
                   Original file
@@ -133,7 +144,7 @@ export function Table({ files, data, content, onLabelChange }: TableProps) {
               </td>
               <td className="p-1">
                 <Button
-                  onClick={() => setModalContent({ title: 'CSV', body: csv })}
+                  onClick={() => setModalContent({ title: "CSV", body: csv })}
                 >
                   CSV file
                 </Button>
@@ -141,7 +152,7 @@ export function Table({ files, data, content, onLabelChange }: TableProps) {
               <td className="p-1">
                 <Button
                   onClick={() =>
-                    setModalContent({ title: 'JCAMP', body: jcamp })
+                    setModalContent({ title: "JCAMP", body: jcamp })
                   }
                 >
                   JCAMP file

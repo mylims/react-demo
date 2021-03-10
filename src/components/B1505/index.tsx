@@ -131,6 +131,13 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
             }),
           )
         }
+        onHiddenChange={(hidden, index) =>
+          setData(
+            produce(data, (draft) => {
+              draft.series[index].hidden = hidden;
+            }),
+          )
+        }
       />
     </div>
   );
