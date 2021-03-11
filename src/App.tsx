@@ -45,17 +45,7 @@ export default function App() {
             <Route path="/b1505/breakdown">
               <BaseMultiple
                 dirName="breakdown"
-                maxIndex={9}
-                xLabel="Vd"
-                xUnits="V"
-                yLabel="Id_dens"
-                yUnits="mA/mm"
-              />
-            </Route>
-            <Route path="/b1505/hemt-breakdown">
-              <BaseMultiple
-                dirName="HEMT_breakdown"
-                maxIndex={8}
+                maxIndex={18}
                 xLabel="Vd"
                 xUnits="V"
                 yLabel="Id_dens"
@@ -65,18 +55,8 @@ export default function App() {
             <Route path="/b1505/capacitance">
               <BaseMultiple
                 dirName="capacitance"
-                maxIndex={20}
+                maxIndex={33}
                 xLabel="Vd"
-                xUnits="V"
-                yLabel="C_dens"
-                yUnits="pF/mm"
-              />
-            </Route>
-            <Route path="/b1505/mos-capacitance">
-              <BaseMultiple
-                dirName="MOS_capacitance"
-                maxIndex={13}
-                xLabel="VBias"
                 xUnits="V"
                 yLabel="C_dens"
                 yUnits="pF/mm"
@@ -85,47 +65,17 @@ export default function App() {
             <Route path="/b1505/transfer">
               <BaseMultiple
                 dirName="transfer"
-                maxIndex={14}
+                maxIndex={52}
                 xLabel="Vg"
                 xUnits="V"
                 yLabel="Id_dens"
                 yUnits="mA/mm"
               />
             </Route>
-            <Route path="/b1505/noff-transfer">
+            <Route path="/b1505/output">
               <BaseMultiple
-                dirName="noff_transfer"
-                maxIndex={38}
-                xLabel="Vg"
-                xUnits="V"
-                yLabel="Id_dens"
-                yUnits="mA/mm"
-              />
-            </Route>
-            <Route path="/b1505/noff-output">
-              <BaseMultiple
-                dirName="noff_output"
-                maxIndex={11}
-                xLabel="Vd"
-                xUnits="V"
-                yLabel="Id_dens"
-                yUnits="mA/mm"
-              />
-            </Route>
-            <Route path="/b1505/f-implant-output">
-              <BaseMultiple
-                dirName="f_implant_output"
-                maxIndex={13}
-                xLabel="Vd"
-                xUnits="V"
-                yLabel="Id_dens"
-                yUnits="mA/mm"
-              />
-            </Route>
-            <Route path="/b1505/LPCVD-output">
-              <BaseMultiple
-                dirName="LPCVD_output"
-                maxIndex={20}
+                dirName="output"
+                maxIndex={44}
                 xLabel="Vd"
                 xUnits="V"
                 yLabel="Id_dens"
