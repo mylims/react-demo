@@ -68,8 +68,12 @@ export function Table({
   return (
     <div className="p-5 m-2 shadow sm:rounded-lg">
       <div className="flex flex-row">
-        <Button onClick={() => bulkHiddenChange(false)}>Select all</Button>
-        <Button onClick={() => bulkHiddenChange(true)}>Unselect all</Button>
+        <Button className="mx-1" onClick={() => bulkHiddenChange(false)}>
+          Select all
+        </Button>
+        <Button className="mx-1" onClick={() => bulkHiddenChange(true)}>
+          Unselect all
+        </Button>
       </div>
       <Modal
         isOpen={!!modalContent}
