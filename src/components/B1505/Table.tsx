@@ -1,13 +1,13 @@
-import { Analysis, toJcamp, toText } from "common-spectrum";
-import React, { useEffect, useState } from "react";
-import { PlotObjectType } from "react-plot";
+import { Analysis, toJcamp, toText } from 'common-spectrum';
+import React, { useEffect, useState } from 'react';
+import { PlotObjectType } from 'react-plot';
 import {
   Button,
   Checkbox,
   Color,
   Modal,
   SvgOutlineInformationCircle,
-} from "../tailwind-ui";
+} from '../tailwind-ui';
 
 interface SeriesType {
   hidden: boolean;
@@ -23,9 +23,17 @@ interface TableProps {
   content: string[];
   onLabelChange: (label: string, index: number) => void;
   onHiddenChange: (hidden: boolean, index: number) => void;
+  bulkHiddenChange: (hidden: boolean) => void;
 }
 
-export function Table({ files, data, content, onLabelChange, onHiddenChange }: TableProps) {
+export function Table({
+  files,
+  data,
+  content,
+  onLabelChange,
+  onHiddenChange,
+  bulkHiddenChange,
+}: TableProps) {
   const [modalContent, setModalContent] = useState<{
     body: string;
     title: string;
@@ -49,7 +57,7 @@ export function Table({ files, data, content, onLabelChange, onHiddenChange }: T
           hidden,
           original,
           label,
-          csv: toText(analysis).join("\n"),
+          csv: toText(analysis).join('\n'),
           jcamp: toJcamp(analysis),
         });
       }
@@ -59,6 +67,10 @@ export function Table({ files, data, content, onLabelChange, onHiddenChange }: T
 
   return (
     <div className="p-5 m-2 shadow sm:rounded-lg">
+      <div className="flex flex-row">
+        <Button onClick={() => bulkHiddenChange(false)}>Select all</Button>
+        <Button onClick={() => bulkHiddenChange(true)}>Unselect all</Button>
+      </div>
       <Modal
         isOpen={!!modalContent}
         onRequestClose={() => {
@@ -107,7 +119,7 @@ export function Table({ files, data, content, onLabelChange, onHiddenChange }: T
             <tr key={index}>
               <td className="p-1 font-medium">
                 <Checkbox
-                  checked={hidden}
+                  checked={!hidden}
                   onChange={() => onHiddenChange(!hidden, index)}
                   name={`checkbox-index${label}-units`}
                 />
@@ -116,7 +128,7 @@ export function Table({ files, data, content, onLabelChange, onHiddenChange }: T
                 <div className="flex mt-1 rounded-md shadow-sm">
                   <label
                     htmlFor={`label-index${label}-units`}
-                    className="relative flex flex-row items-center flex-1 px-3 py-2 text-base bg-white border placeholder-opacity-100 rounded-md shadow-sm focus-within:ring-1 placeholder-neutral-500 sm:text-sm focus-within:ring-primary-500 focus-within:border-primary-500 border-neutral-300 disabled:bg-neutral-50 disabled:text-neutral-500"
+                    className="relative flex flex-row items-center flex-1 px-3 py-2 text-base placeholder-opacity-100 bg-white border rounded-md shadow-sm focus-within:ring-1 placeholder-neutral-500 sm:text-sm focus-within:ring-primary-500 focus-within:border-primary-500 border-neutral-300 disabled:bg-neutral-50 disabled:text-neutral-500"
                   >
                     <input
                       id={`label-index${label}-units`}
@@ -129,14 +141,14 @@ export function Table({ files, data, content, onLabelChange, onHiddenChange }: T
                         onLabelChange(e.currentTarget.value, index)
                       }
                     />
-                    <div className="inline-flex flex-row items-center cursor-default space-x-1"></div>
+                    <div className="inline-flex flex-row items-center space-x-1 cursor-default"></div>
                   </label>
                 </div>
               </td>
               <td className="p-1">
                 <Button
                   onClick={() =>
-                    setModalContent({ title: "Original", body: original })
+                    setModalContent({ title: 'Original', body: original })
                   }
                 >
                   Original file
@@ -144,7 +156,7 @@ export function Table({ files, data, content, onLabelChange, onHiddenChange }: T
               </td>
               <td className="p-1">
                 <Button
-                  onClick={() => setModalContent({ title: "CSV", body: csv })}
+                  onClick={() => setModalContent({ title: 'CSV', body: csv })}
                 >
                   CSV file
                 </Button>
@@ -152,7 +164,7 @@ export function Table({ files, data, content, onLabelChange, onHiddenChange }: T
               <td className="p-1">
                 <Button
                   onClick={() =>
-                    setModalContent({ title: "JCAMP", body: jcamp })
+                    setModalContent({ title: 'JCAMP', body: jcamp })
                   }
                 >
                   JCAMP file

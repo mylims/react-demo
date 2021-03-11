@@ -1,6 +1,6 @@
-import React from "react";
-import { AxisProps } from "react-plot";
-import { Input, Select, Toggle } from "../tailwind-ui";
+import React from 'react';
+import { AxisProps } from 'react-plot';
+import { Input, Select, Toggle } from '../tailwind-ui';
 
 interface DataSelect {
   label: string;

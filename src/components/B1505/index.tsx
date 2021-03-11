@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { fromB1505 } from "iv-spectrum";
-import { Analysis, JSGraph } from "common-spectrum";
-import { AxisProps, PlotObject, PlotObjectType } from "react-plot";
-import produce from "immer";
+import React, { useEffect, useMemo, useState } from 'react';
+import { fromB1505 } from 'iv-spectrum';
+import { Analysis, JSGraph } from 'common-spectrum';
+import { AxisProps, PlotObject, PlotObjectType } from 'react-plot';
+import produce from 'immer';
 
-import { Variables } from "./Variables";
-import { Table } from "./Table";
+import { Variables } from './Variables';
+import { Table } from './Table';
 
 const { getReactPlotJSON } = JSGraph;
 interface B1505Props {
@@ -25,13 +25,14 @@ const options = {
   series: { displayMarker: false },
   dimensions: { width: 950, height: 500, margin },
 };
+const INITIAL_SELECTED_RANGE = 5;
 
 function listVariables(analyses: Analysis[]) {
   let list: Record<string, string> = {};
   for (const analysis of analyses) {
     const variables = analysis.spectra[0].variables;
     for (const key in variables) {
-      const { label, units = "" } = variables[key];
+      const { label, units = '' } = variables[key];
       const { name = label } = separateNameUnits(label);
       list[name] = units;
     }
@@ -55,27 +56,33 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
   const optionsVariables = useMemo(
     () =>
       Object.keys(variables).map((val: string) => {
-        const label = val.replace(/(?<label>.+) \[(?<units>.+)\]/, "$<label>");
+        const label = val.replace(/(?<label>.+) \[(?<units>.+)\]/, '$<label>');
         return { label, value: label };
       }),
-    [variables]
+    [variables],
   );
 
   // Creates the data plot from the analyses
   useEffect(() => {
     const { xLabel, yLabel } = query;
-    const parserOptions = { xLabel, yLabel, scale: "linear" as const };
+    const parserOptions = { xLabel, yLabel, scale: 'linear' as const };
     const parsed = content.map((text) => fromB1505(text, parserOptions));
 
     const analyses = parsed.reduce((acc, curr) => acc.concat(curr), []);
-    const data = getReactPlotJSON(analyses, query, {
+    let data = getReactPlotJSON(analyses, query, {
       ...options,
       xAxis,
       yAxis,
     });
 
+    // Hidde all series except for the N first ones
+    data.series = data.series.map((series, index) => ({
+      ...series,
+      hidden: index >= INITIAL_SELECTED_RANGE,
+    }));
+
     setFiles(parsed);
-    setData({ legend: { position: "right" }, ...data });
+    setData({ legend: { position: 'right' }, ...data });
     setVariables(listVariables(analyses));
   }, [content, query, defaultQuery, xAxis, yAxis]);
 
@@ -128,16 +135,23 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
           setData(
             produce(data, (draft) => {
               draft.series[index].label = label;
-            })
+            }),
           )
         }
         onHiddenChange={(hidden, index) =>
           setData(
             produce(data, (draft) => {
               draft.series[index].hidden = hidden;
-            })
+            }),
           )
         }
+        bulkHiddenChange={(hidden) => {
+          setData(
+            produce(data, (draft) => {
+              draft.series.forEach((series) => (series.hidden = hidden));
+            }),
+          );
+        }}
       />
     </div>
   );
