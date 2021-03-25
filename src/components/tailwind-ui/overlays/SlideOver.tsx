@@ -6,11 +6,12 @@ import React, {
   createElement,
   useRef,
 } from 'react';
-import ReactDOM from 'react-dom';
 
 import { useOnClickOutside } from '../hooks/useOnClickOutside';
 import { SvgOutlineX } from '../svg/heroicon/outline';
 import { PropsOf } from '../types';
+
+import { Portal } from './Portal';
 
 export interface SlideOverProps<T extends ElementType> {
   isOpen: boolean;
@@ -108,8 +109,4 @@ SlideOver.Footer = function (props: { children: ReactNode }) {
       {props.children}
     </div>
   );
-};
-
-const Portal: React.FC = ({ children }) => {
-  return ReactDOM.createPortal(children, document.body);
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /*
  * Use this function to create a Component with ref button
@@ -9,8 +9,8 @@ export function forwardRefWithAs<T>(component: T): T {
   return React.forwardRef((component as unknown) as any) as any;
 }
 
-const _userAgent = typeof navigator !== "undefined" ? navigator.userAgent : "";
+const _userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : '';
 export const commandKeyExists =
-  _userAgent.includes("Macintosh") ||
-  _userAgent.includes("iPad") ||
-  _userAgent.includes("iPhone");
+  _userAgent.includes('Macintosh') ||
+  _userAgent.includes('iPad') ||
+  _userAgent.includes('iPhone');
