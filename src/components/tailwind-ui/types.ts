@@ -1,24 +1,24 @@
 export enum Color {
-  primary = "primary",
-  neutral = "neutral",
-  success = "success",
-  warning = "warning",
-  danger = "danger",
-  alternative = "alternative",
+  primary = 'primary',
+  neutral = 'neutral',
+  success = 'success',
+  warning = 'warning',
+  danger = 'danger',
+  alternative = 'alternative',
 }
 
 export enum Size {
-  xSmall = "xSmall",
-  small = "small",
-  medium = "medium",
-  large = "large",
-  xLarge = "xLarge",
+  xSmall = 'xSmall',
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+  xLarge = 'xLarge',
 }
 
 export enum Variant {
-  primary = "primary",
-  secondary = "secondary",
-  white = "white",
+  primary = 'primary',
+  secondary = 'secondary',
+  white = 'white',
 }
 
 export type ActionType<Action, Payload = void> = Payload extends void

@@ -1,9 +1,9 @@
-import { v4 as uuid } from "@lukeed/uuid";
-import { useContext, useEffect, useMemo } from "react";
+import { v4 as uuid } from '@lukeed/uuid';
+import { useContext, useEffect, useMemo } from 'react';
 
-import { dispatchContext } from "../shortcuts/KeyboardActionContext";
-import { KeyboardAction } from "../shortcuts/KeyboardActionProvider";
-import { commandKeyExists } from "../util";
+import { dispatchContext } from '../shortcuts/KeyboardActionContext';
+import { KeyboardAction } from '../shortcuts/KeyboardActionProvider';
+import { commandKeyExists } from '../util';
 
 export function useGlobalKeyboardActions(options: KeyboardAction[]) {
   const { dispatch, disabled } = useContext(dispatchContext);
@@ -27,7 +27,7 @@ export function useGlobalKeyboardActions(options: KeyboardAction[]) {
       }
       if (event.target) {
         const tagName = (event.target as HTMLElement).tagName;
-        if (tagName === "INPUT" || tagName === "TEXTAREA") {
+        if (tagName === 'INPUT' || tagName === 'TEXTAREA') {
           return;
         }
       }
@@ -36,10 +36,10 @@ export function useGlobalKeyboardActions(options: KeyboardAction[]) {
       handler(event);
     });
     handlers.forEach((handler) => {
-      document.addEventListener("keydown", handler, true);
+      document.addEventListener('keydown', handler, true);
     });
     dispatch({
-      type: "ADD_ACTIONS",
+      type: 'ADD_ACTIONS',
       payload: {
         actions: options,
         hookId,
@@ -48,11 +48,11 @@ export function useGlobalKeyboardActions(options: KeyboardAction[]) {
 
     return () => {
       dispatch({
-        type: "REMOVE_ACTIONS",
+        type: 'REMOVE_ACTIONS',
         payload: hookId,
       });
       handlers.forEach((handler) =>
-        document.removeEventListener("keydown", handler, true)
+        document.removeEventListener('keydown', handler, true),
       );
     };
   }, [options, hookId, dispatch, disabled]);
@@ -64,12 +64,12 @@ export function useGlobalKeyboardOnOff() {
     return [
       () => {
         dispatch({
-          type: "ENABLE",
+          type: 'ENABLE',
         });
       },
       () => {
         dispatch({
-          type: "DISABLE",
+          type: 'DISABLE',
         });
       },
     ];

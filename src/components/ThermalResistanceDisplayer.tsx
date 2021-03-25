@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { JSGraph } from 'common-spectrum';
+import { getReactPlotJSON } from 'common-spectrum';
 import { fromPressureSweep } from 'thermal-resistance-sepctrum';
 import SinglePlot from './SinglePlot';
 
-const { getReactPlotJSON } = JSGraph;
 interface MultipleProps {
   textList: string[];
 }

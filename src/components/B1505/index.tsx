@@ -1,13 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { fromB1505 } from 'iv-spectrum';
-import { Analysis, JSGraph } from 'common-spectrum';
+import { Analysis, getReactPlotJSON } from 'common-spectrum';
 import { AxisProps, PlotObject, PlotObjectType } from 'react-plot';
 import produce from 'immer';
 
 import { Variables } from './Variables';
 import { Table } from './Table';
 
-const { getReactPlotJSON } = JSGraph;
 interface B1505Props {
   content: string[];
   defaultQuery: QueryType;
