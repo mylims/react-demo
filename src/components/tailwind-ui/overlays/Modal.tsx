@@ -171,8 +171,9 @@ export function Modal<T extends ElementType>(props: ModalProps<T>) {
                 transform: 'translate(0, -50%)',
                 maxHeight: 'calc((100% - 6px) - 2em)',
                 overflow: 'auto',
+                maxWidth: '80vh',
               }
-            : undefined
+            : { maxWidth: '80vh' }
         }
         className={clsx(
           'text-left align-bottom bg-white rounded-lg shadow-xl',
