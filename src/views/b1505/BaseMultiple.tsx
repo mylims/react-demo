@@ -79,7 +79,7 @@ export default function BaseMultiple({
               for (const file of newFiles) {
                 state[file.name] = await file.text();
               }
-              setContent({ ...content, ...state });
+              setContent({ ...state, ...content });
               onDrop(newFiles);
             }}
           />
@@ -96,12 +96,7 @@ export default function BaseMultiple({
       {!!Object.keys(content).length && (
         <B1505
           content={Object.values(content)}
-          defaultQuery={{
-            xLabel,
-            xUnits,
-            yLabel,
-            yUnits,
-          }}
+          defaultQuery={{ xLabel, xUnits, yLabel, yUnits }}
         />
       )}
     </div>
