@@ -85,8 +85,17 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
     setVariables(listVariables(analyses));
   }, [content, query, defaultQuery, xAxis, yAxis]);
 
+  const filteredData: PlotObjectType | null = useMemo(
+    () =>
+      data && {
+        ...data,
+        series: data.series.filter(({ hidden }) => !hidden),
+      },
+    [data],
+  );
+
   // Data validation
-  if (!data) return null;
+  if (!data || !filteredData) return null;
   if (data.series.length === 0) {
     return (
       <div className="flex flex-col items-center">
@@ -125,7 +134,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
           onChangeAxis={(val) => setYAxis(val)}
         />
       </div>
-      <PlotObject plot={data} />
+      <PlotObject plot={filteredData} />
       <Table
         files={files}
         content={content}
