@@ -26,6 +26,41 @@ interface TableProps {
   bulkHiddenChange: (hidden: boolean) => void;
 }
 
+function toCsv(plot: PlotObjectType): string {
+  // Extracts headers and data from selected series
+  const series = plot.series
+    .filter(({ hidden }) => !hidden)
+    .map(({ data, label, xAxis = 'x', yAxis = 'y' }) => {
+      const xName = plot.axes.find(({ id }) => id === xAxis)?.label || xAxis;
+      const yName = plot.axes.find(({ id }) => id === yAxis)?.label || yAxis;
+      return [
+        { header: `${xName} (${label})`, data: data.map(({ x }) => x) },
+        { header: `${yName} (${label})`, data: data.map(({ y }) => y) },
+      ];
+    })
+    .reduce((acc, curr) => [...acc, ...curr], []);
+
+  // Transpose data matrix
+  const maxLen = series.reduce(
+    (acc, { data }) => Math.max(acc, data.length),
+    0,
+  );
+  let rows: string[][] = [];
+  for (let i = 0; i < maxLen; i++) {
+    rows.push([]);
+    for (let j = 0; j < series.length; j++) {
+      rows[i].push(
+        series[j].data[i] !== undefined ? String(series[j].data[i]) : '',
+      );
+    }
+  }
+
+  // Concatenates to CSV
+  return [series.map(({ header }) => header), ...rows]
+    .map((row) => row.join(','))
+    .join('\n');
+}
+
 export function Table({
   files,
   data,
@@ -73,6 +108,14 @@ export function Table({
         </Button>
         <Button className="mx-1" onClick={() => bulkHiddenChange(true)}>
           Unselect all
+        </Button>
+        <Button
+          className="mx-1"
+          onClick={() => {
+            setModalContent({ title: 'Selected series', body: toCsv(data) });
+          }}
+        >
+          Export all to CSV
         </Button>
       </div>
       <Modal
