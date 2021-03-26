@@ -81,7 +81,8 @@ export function Table({
     let titles: string[] = [];
     for (let index = 0; index < content.length; index++) {
       const original = content[index];
-      for (const analysis of files[index]) {
+      const file = files[index] || [];
+      for (const analysis of file) {
         const spectrum = data.series[index];
         let { label = `spectrum ${index}`, hidden = false } = spectrum || {};
         while (titles.includes(label)) {
