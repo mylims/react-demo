@@ -127,11 +127,11 @@ export function Table({
         }}
         icon={<SvgOutlineInformationCircle />}
         iconColor={Color.primary}
-        fluid={false}
+        fluid={true}
       >
         <Modal.Header>{modalContent?.title} file</Modal.Header>
         <Modal.Body>
-          <div className="inline-block overflow-auto font-mono whitespace-pre h-96">
+          <div className="inline-block overflow-visible font-mono whitespace-pre h-96">
             {modalContent?.body}
           </div>
         </Modal.Body>

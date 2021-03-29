@@ -212,7 +212,7 @@ Modal.Header = function ModalHeader(props: { children: ReactNode }) {
 
 Modal.Body = function ModalBody(props: { children: ReactNode }) {
   return (
-    <div className="max-w-full min-h-0 mt-2 overflow-auto">
+    <div className="max-w-full min-h-0 mt-2 overflow-auto h-96 ">
       {props.children}
     </div>
   );
