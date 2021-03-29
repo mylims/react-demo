@@ -10,6 +10,7 @@ import { Table } from './Table';
 interface B1505Props {
   content: string[];
   defaultQuery: QueryType;
+  scale: 'linear' | 'log';
 }
 interface QueryType {
   xLabel: string;
@@ -44,13 +45,16 @@ function separateNameUnits(val: string) {
   return { name: query?.groups?.name, units: query?.groups?.units };
 }
 
-export default function B1505({ content, defaultQuery }: B1505Props) {
+export default function B1505({ content, defaultQuery, scale }: B1505Props) {
   const [data, setData] = useState<PlotObjectType | null>(null);
   const [variables, setVariables] = useState<Record<string, string>>({});
   const [query, setQuery] = useState<QueryType>(defaultQuery);
   const [files, setFiles] = useState<Analysis[][]>([]);
-  const [xAxis, setXAxis] = useState<Partial<AxisProps>>({});
-  const [yAxis, setYAxis] = useState<Partial<AxisProps>>({ labelSpace: 52 });
+  const [xAxis, setXAxis] = useState<Partial<AxisProps>>({ scale: 'linear' });
+  const [yAxis, setYAxis] = useState<Partial<AxisProps>>({
+    labelSpace: 52,
+    scale,
+  });
 
   const optionsVariables = useMemo(
     () =>
@@ -64,7 +68,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
   // Creates the data plot from the analyses
   useEffect(() => {
     const { xLabel, yLabel } = query;
-    const parserOptions = { xLabel, yLabel, scale: 'linear' as const };
+    const parserOptions = { xLabel, yLabel, scale };
     const parsed = content.map((text) => fromB1505(text, parserOptions));
 
     const analyses = parsed.reduce((acc, curr) => acc.concat(curr), []);
@@ -83,13 +87,16 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
     setFiles(parsed);
     setData({ legend: { position: 'right' }, ...data });
     setVariables(listVariables(analyses));
-  }, [content, query, defaultQuery, xAxis, yAxis]);
+  }, [content, query, defaultQuery, scale, xAxis, yAxis]);
 
   const filteredData: PlotObjectType | null = useMemo(
     () =>
       data && {
         ...data,
-        series: data.series.filter(({ hidden }) => !hidden),
+        series: data.series.map(({ data: series, ...other }) => ({
+          ...other,
+          data: series.filter(({ y }) => y > 0),
+        })),
       },
     [data],
   );
@@ -119,6 +126,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
           onChangeUnits={(xUnits) => setQuery({ ...query, xUnits })}
           axis={xAxis}
           onChangeAxis={(val) => setXAxis(val)}
+          logScale={false}
         />
         <Variables
           label="Y"
@@ -132,6 +140,7 @@ export default function B1505({ content, defaultQuery }: B1505Props) {
           onChangeUnits={(yUnits) => setQuery({ ...query, yUnits })}
           axis={yAxis}
           onChangeAxis={(val) => setYAxis(val)}
+          logScale={true}
         />
       </div>
       <PlotObject plot={filteredData} />

@@ -16,6 +16,7 @@ interface BaseMultipleProps {
   xUnits: string;
   yLabel: string;
   yUnits: string;
+  scale: 'linear' | 'log';
 }
 
 export default function BaseMultiple({
@@ -25,6 +26,7 @@ export default function BaseMultiple({
   xUnits,
   yLabel,
   yUnits,
+  scale,
 }: BaseMultipleProps) {
   const {
     dropzoneProps: { onDrop, ...dropzoneProps },
@@ -97,6 +99,7 @@ export default function BaseMultiple({
         <B1505
           content={Object.values(content)}
           defaultQuery={{ xLabel, xUnits, yLabel, yUnits }}
+          scale={scale}
         />
       )}
     </div>

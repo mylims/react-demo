@@ -15,6 +15,7 @@ interface VariablesProps {
   onChangeUnits: (units: string) => void;
   axis: Partial<AxisProps>;
   onChangeAxis: (value: Partial<AxisProps>) => void;
+  logScale: boolean;
 }
 
 export function Variables({
@@ -26,6 +27,7 @@ export function Variables({
   onChangeUnits,
   axis,
   onChangeAxis,
+  logScale,
 }: VariablesProps) {
   return (
     <div className="flex flex-row flex-wrap items-center my-1 shadow sm:rounded-lg">
@@ -46,6 +48,16 @@ export function Variables({
           value={units}
           onChange={(e) => onChangeUnits(e.currentTarget.value)}
         />
+        {logScale && (
+          <Toggle
+            className="m-2 w-44"
+            label="Logscale"
+            activated={axis.scale === 'log'}
+            onToggle={(val) =>
+              onChangeAxis({ ...axis, scale: val ? 'log' : 'linear' })
+            }
+          />
+        )}
       </div>
       <div className="flex flex-row">
         <Toggle

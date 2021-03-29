@@ -50,6 +50,7 @@ export default function App() {
                 xUnits="V"
                 yLabel="Id_dens"
                 yUnits="mA/mm"
+                scale="log"
               />
             </Route>
             <Route path="/b1505/capacitance">
@@ -60,6 +61,7 @@ export default function App() {
                 xUnits="V"
                 yLabel="C_dens"
                 yUnits="pF/mm"
+                scale="linear"
               />
             </Route>
             <Route path="/b1505/transfer">
@@ -70,6 +72,7 @@ export default function App() {
                 xUnits="V"
                 yLabel="Id_dens"
                 yUnits="mA/mm"
+                scale="log"
               />
             </Route>
             <Route path="/b1505/output">
@@ -80,6 +83,7 @@ export default function App() {
                 xUnits="V"
                 yLabel="Id_dens"
                 yUnits="mA/mm"
+                scale="linear"
               />
             </Route>
             <Route path="/b1505/iv">
@@ -90,6 +94,7 @@ export default function App() {
                 xUnits="V"
                 yLabel="Id_dens"
                 yUnits="mA/mm"
+                scale="linear"
               />
             </Route>
             <Route path="/b1505/iv-diode">
@@ -100,6 +105,7 @@ export default function App() {
                 xUnits="V"
                 yLabel="Id_dens"
                 yUnits="mA/mm"
+                scale="linear"
               />
             </Route>
             <Route path="/*">
