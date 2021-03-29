@@ -52,7 +52,7 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
   const [files, setFiles] = useState<Analysis[][]>([]);
   const [xAxis, setXAxis] = useState<Partial<AxisProps>>({ scale: 'linear' });
   const [yAxis, setYAxis] = useState<Partial<AxisProps>>({
-    labelSpace: 52,
+    labelSpace: scale === 'log' ? 60 : 52,
     scale,
   });
 
@@ -93,10 +93,12 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     () =>
       data && {
         ...data,
-        series: data.series.map(({ data: series, ...other }) => ({
-          ...other,
-          data: series.filter(({ y }) => y > 0),
-        })),
+        series: data.series
+          .filter(({ hidden }) => !hidden)
+          .map(({ data: series, ...other }) => ({
+            ...other,
+            data: series.filter(({ y }) => y > 0),
+          })),
       },
     [data],
   );

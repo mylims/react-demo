@@ -54,7 +54,11 @@ export function Variables({
             label="Logscale"
             activated={axis.scale === 'log'}
             onToggle={(val) =>
-              onChangeAxis({ ...axis, scale: val ? 'log' : 'linear' })
+              onChangeAxis({
+                ...axis,
+                scale: val ? 'log' : 'linear',
+                labelSpace: val ? 60 : 52,
+              })
             }
           />
         )}
