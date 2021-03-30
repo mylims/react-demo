@@ -16,7 +16,19 @@ interface VariablesProps {
   axis: Partial<AxisProps>;
   onChangeAxis: (value: Partial<AxisProps>) => void;
   logScale: boolean;
+  logFilter?: string;
+  onChangeLog?: (value?: string) => void;
 }
+
+const logFilters: Record<string, string> = {
+  remove: 'Remove non-positives',
+  abs: 'Take absolute value',
+};
+
+const logOptions: DataSelect[] = Object.keys(logFilters).map((value) => ({
+  value,
+  label: logFilters[value],
+}));
 
 export function Variables({
   label,
@@ -28,6 +40,8 @@ export function Variables({
   axis,
   onChangeAxis,
   logScale,
+  logFilter = 'remove',
+  onChangeLog,
 }: VariablesProps) {
   return (
     <div className="flex flex-row flex-wrap items-center my-1 shadow sm:rounded-lg">
@@ -48,20 +62,6 @@ export function Variables({
           value={units}
           onChange={(e) => onChangeUnits(e.currentTarget.value)}
         />
-        {logScale && (
-          <Toggle
-            className="m-2 w-44"
-            label="Logscale"
-            activated={axis.scale === 'log'}
-            onToggle={(val) =>
-              onChangeAxis({
-                ...axis,
-                scale: val ? 'log' : 'linear',
-                labelSpace: val ? 60 : 52,
-              })
-            }
-          />
-        )}
       </div>
       <div className="flex flex-row">
         <Toggle
@@ -84,6 +84,31 @@ export function Variables({
           activated={!!axis.tickEmbedded}
           onToggle={(val) => onChangeAxis({ ...axis, tickEmbedded: val })}
         />
+      </div>
+      <div className="flex flex-row">
+        {logScale && (
+          <Toggle
+            className="m-2 w-44"
+            label="Logscale"
+            activated={axis.scale === 'log'}
+            onToggle={(val) =>
+              onChangeAxis({
+                ...axis,
+                scale: val ? 'log' : 'linear',
+                labelSpace: val ? 60 : 52,
+              })
+            }
+          />
+        )}
+        {logScale && axis.scale === 'log' && (
+          <Select
+            className="m-2 w-52"
+            label="Non-positive values"
+            options={logOptions}
+            selected={{ label: logFilter, value: logFilter }}
+            onSelect={(selected) => onChangeLog?.(selected?.value)}
+          />
+        )}
       </div>
     </div>
   );
