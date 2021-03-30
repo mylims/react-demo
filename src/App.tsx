@@ -109,7 +109,15 @@ export default function App() {
               />
             </Route>
             <Route path="/*">
-              <IVCurve />
+              <BaseMultiple
+                dirName="breakdown"
+                maxIndex={18}
+                xLabel="Vd"
+                xUnits="V"
+                yLabel="Id_dens"
+                yUnits="mA/mm"
+                scale="log"
+              />
             </Route>
           </Switch>
         </SidebarLayout.Body>
