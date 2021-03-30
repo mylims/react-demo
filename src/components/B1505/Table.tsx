@@ -116,7 +116,7 @@ export function Table({
             setModalContent({ title: 'Selected series', body: toCsv(data) });
           }}
         >
-          Export all to CSV
+          Export selected to CSV
         </Button>
       </div>
       <Modal
