@@ -6,6 +6,7 @@ import { Plot, LineSeries, Axis } from 'react-plot';
 import MetaTable from './MetaTable';
 import { Input, Select, Toggle } from './tailwind-ui';
 import { VariableType } from 'common-spectrum/lib/types';
+import { separateNameUnits } from './B1505';
 
 interface InfoProps {
   text: string;
@@ -15,7 +16,8 @@ function listVariables(variables: Record<string, VariableType>) {
   let list: Record<string, string> = {};
   for (const key in variables) {
     const { label, units } = variables[key];
-    list[label] = units || '';
+    const { name = label } = separateNameUnits(label);
+    list[name] = units || '';
   }
   return list;
 }
@@ -71,13 +73,13 @@ export default function ExtractedInfo({ text }: InfoProps) {
                 <Axis
                   id="x"
                   position="bottom"
-                  label={`${variables.x.label} [${variables.x.units}]`}
+                  label={variables.x.label}
                   displayGridLines={plotState.showGridLines}
                 />
                 <Axis
                   id="y"
                   position="left"
-                  label={`${variables.y.label} [${variables.y.units}]`}
+                  label={variables.y.label}
                   displayGridLines={plotState.showGridLines}
                   labelSpace={60}
                 />
