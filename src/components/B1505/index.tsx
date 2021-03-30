@@ -40,7 +40,7 @@ function listVariables(analyses: Analysis[]) {
   return list;
 }
 
-function separateNameUnits(val: string) {
+export function separateNameUnits(val: string) {
   const query = /(?<name>.+)\s\[(?<units>.+)\]/.exec(val);
   return { name: query?.groups?.name, units: query?.groups?.units };
 }
@@ -55,6 +55,7 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     labelSpace: scale === 'log' ? 60 : 52,
     scale,
   });
+  const [logFilter, setLogFilter] = useState<string | undefined>(undefined);
 
   const optionsVariables = useMemo(
     () =>
@@ -89,19 +90,30 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     setVariables(listVariables(analyses));
   }, [content, query, defaultQuery, scale, xAxis, yAxis]);
 
-  const filteredData: PlotObjectType | null = useMemo(
-    () =>
-      data && {
-        ...data,
-        series: data.series
-          .filter(({ hidden }) => !hidden)
-          .map(({ data: series, ...other }) => ({
+  const filteredData: PlotObjectType | null = useMemo(() => {
+    if (!data) return data;
+    let series = data.series.filter(({ hidden }) => !hidden);
+    if (scale === 'log') {
+      switch (logFilter) {
+        case 'abs': {
+          series = series.map(({ data: series, ...other }) => ({
+            ...other,
+            data: series.map(({ x, y }) => ({ x, y: Math.abs(y) })),
+          }));
+          break;
+        }
+        case 'remove':
+        default: {
+          series = series.map(({ data: series, ...other }) => ({
             ...other,
             data: series.filter(({ y }) => y > 0),
-          })),
-      },
-    [data],
-  );
+          }));
+          break;
+        }
+      }
+    }
+    return { ...data, series };
+  }, [data, logFilter, scale]);
 
   // Data validation
   if (!data || !filteredData) return null;
@@ -143,6 +155,8 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
           axis={yAxis}
           onChangeAxis={(val) => setYAxis(val)}
           logScale={true}
+          logFilter={logFilter}
+          onChangeLog={(val) => setLogFilter(val)}
         />
       </div>
       <PlotObject plot={filteredData} />
