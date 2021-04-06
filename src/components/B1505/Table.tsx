@@ -26,7 +26,7 @@ interface TableProps {
   bulkHiddenChange: (hidden: boolean) => void;
 }
 
-function toCsv(plot: PlotObjectType): string {
+function toCsv(plot: PlotObjectType, separator = ','): string {
   // Extracts headers and data from selected series
   const series = plot.series
     .filter(({ hidden }) => !hidden)
@@ -57,7 +57,7 @@ function toCsv(plot: PlotObjectType): string {
 
   // Concatenates to CSV
   return [series.map(({ header }) => header), ...rows]
-    .map((row) => row.join(','))
+    .map((row) => row.join(separator))
     .join('\n');
 }
 
@@ -104,19 +104,41 @@ export function Table({
   return (
     <div className="p-5 m-2 shadow sm:rounded-lg">
       <div className="flex flex-row">
-        <Button className="mx-1" onClick={() => bulkHiddenChange(false)}>
+        <Button
+          className="mx-1"
+          onClick={() => bulkHiddenChange(false)}
+          color={Color.success}
+        >
           Select all
         </Button>
-        <Button className="mx-1" onClick={() => bulkHiddenChange(true)}>
+        <Button
+          className="mx-1"
+          onClick={() => bulkHiddenChange(true)}
+          color={Color.danger}
+        >
           Unselect all
         </Button>
         <Button
           className="mx-1"
           onClick={() => {
-            setModalContent({ title: 'Selected series', body: toCsv(data) });
+            setModalContent({
+              title: 'Selected series',
+              body: toCsv(data, ','),
+            });
           }}
         >
           Export selected to CSV
+        </Button>
+        <Button
+          className="mx-1"
+          onClick={() => {
+            setModalContent({
+              title: 'Selected series',
+              body: toCsv(data, '\t'),
+            });
+          }}
+        >
+          Export selected to TSV
         </Button>
       </div>
       <Modal
@@ -137,6 +159,22 @@ export function Table({
         </Modal.Body>
         <Modal.Footer align="right">
           <Button
+            onClick={() => {
+              if (modalContent) {
+                const element = document.createElement('a');
+                const file = new Blob([modalContent.body], {
+                  type: 'text/plain',
+                });
+                element.href = URL.createObjectURL(file);
+                element.download = `${modalContent.title}.txt`;
+                document.body.appendChild(element); // Required for this to work in FireFox
+                element.click();
+              }
+            }}
+          >
+            Download file
+          </Button>
+          <Button
             color={copied ? Color.success : Color.neutral}
             onClick={() => {
               if (modalContent?.body) {
@@ -149,6 +187,7 @@ export function Table({
             Copy text
           </Button>
           <Button
+            color={Color.danger}
             onClick={() => {
               setCopied(false);
               setModalContent(null);
