@@ -45,6 +45,37 @@ export function separateNameUnits(val: string) {
   return { name: query?.groups?.name, units: query?.groups?.units };
 }
 
+function filterAxis(
+  data: PlotObjectType,
+  axisName: 'x' | 'y',
+  filter: string,
+  series: PlotObjectType['series'],
+): PlotObjectType['series'] {
+  const log = data.axes.find(({ id }) => id === axisName)?.scale === 'log';
+
+  if (log) {
+    switch (filter) {
+      case 'remove': {
+        return series.map(({ data: series, ...other }) => ({
+          ...other,
+          data: series.filter((point) => point[axisName] > 0),
+        }));
+      }
+      case 'abs':
+      default: {
+        return series.map(({ data: series, ...other }) => ({
+          ...other,
+          data: series.map((point) => ({
+            ...point,
+            [axisName]: Math.abs(point[axisName]),
+          })),
+        }));
+      }
+    }
+  }
+  return series;
+}
+
 export default function B1505({ content, defaultQuery, scale }: B1505Props) {
   const [data, setData] = useState<PlotObjectType | null>(null);
   const [variables, setVariables] = useState<Record<string, string>>({});
@@ -55,7 +86,10 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     labelSpace: scale === 'log' ? 60 : 52,
     scale,
   });
-  const [logFilter, setLogFilter] = useState<string | undefined>(undefined);
+  const [logFilter, setLogFilter] = useState<Record<'x' | 'y', string>>({
+    x: 'abs',
+    y: 'abs',
+  });
 
   const optionsVariables = useMemo(
     () =>
@@ -93,27 +127,11 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
   const filteredData: PlotObjectType | null = useMemo(() => {
     if (!data) return data;
     let series = data.series.filter(({ hidden }) => !hidden);
-    if (scale === 'log') {
-      switch (logFilter) {
-        case 'abs': {
-          series = series.map(({ data: series, ...other }) => ({
-            ...other,
-            data: series.map(({ x, y }) => ({ x, y: Math.abs(y) })),
-          }));
-          break;
-        }
-        case 'remove':
-        default: {
-          series = series.map(({ data: series, ...other }) => ({
-            ...other,
-            data: series.filter(({ y }) => y > 0),
-          }));
-          break;
-        }
-      }
-    }
+    series = filterAxis(data, 'x', logFilter.x, series);
+    series = filterAxis(data, 'y', logFilter.y, series);
+
     return { ...data, series };
-  }, [data, logFilter, scale]);
+  }, [data, logFilter]);
 
   // Data validation
   if (!data || !filteredData) return null;
@@ -140,7 +158,9 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
           onChangeUnits={(xUnits) => setQuery({ ...query, xUnits })}
           axis={xAxis}
           onChangeAxis={(val) => setXAxis(val)}
-          logScale={false}
+          logScale={true}
+          logFilter={logFilter.x}
+          onChangeLog={(x) => setLogFilter((prev) => ({ ...prev, x }))}
         />
         <Variables
           label="Y"
@@ -155,8 +175,8 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
           axis={yAxis}
           onChangeAxis={(val) => setYAxis(val)}
           logScale={true}
-          logFilter={logFilter}
-          onChangeLog={(val) => setLogFilter(val)}
+          logFilter={logFilter.y}
+          onChangeLog={(y) => setLogFilter((prev) => ({ ...prev, y }))}
         />
       </div>
       <PlotObject plot={filteredData} />
