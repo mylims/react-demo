@@ -17,18 +17,20 @@ interface VariablesProps {
   onChangeAxis: (value: Partial<AxisProps>) => void;
   logScale: boolean;
   logFilter?: string;
-  onChangeLog?: (value?: string) => void;
+  onChangeLog?: (value: string) => void;
 }
 
 const logFilters: Record<string, string> = {
-  remove: 'Remove non-positives',
   abs: 'Take absolute value',
+  remove: 'Remove non-positives',
 };
 
 const logOptions: DataSelect[] = Object.keys(logFilters).map((value) => ({
   value,
   label: logFilters[value],
 }));
+
+const defaultFilter = 'abs';
 
 export function Variables({
   label,
@@ -40,7 +42,7 @@ export function Variables({
   axis,
   onChangeAxis,
   logScale,
-  logFilter = 'remove',
+  logFilter = defaultFilter,
   onChangeLog,
 }: VariablesProps) {
   return (
@@ -106,7 +108,9 @@ export function Variables({
             label="Non-positive values"
             options={logOptions}
             selected={{ label: logFilter, value: logFilter }}
-            onSelect={(selected) => onChangeLog?.(selected?.value)}
+            onSelect={(selected) =>
+              onChangeLog?.(selected?.value || defaultFilter)
+            }
           />
         )}
       </div>
