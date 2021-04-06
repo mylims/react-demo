@@ -7,6 +7,7 @@ interface DataSelect {
   label: string;
   value: string;
 }
+type StateAxis = Partial<AxisProps> & { duplicate: boolean };
 interface VariablesProps {
   label: string;
   optionsVariables: DataSelect[];
@@ -14,8 +15,8 @@ interface VariablesProps {
   onChangeName: (name?: string) => void;
   units: string;
   onChangeUnits: (units: string) => void;
-  axis: Partial<AxisProps>;
-  onChangeAxis: (value: Partial<AxisProps>) => void;
+  axis: StateAxis;
+  onChangeAxis: (value: StateAxis) => void;
   logScale: boolean;
   logFilter?: string;
   onChangeLog?: (value: string) => void;
@@ -84,6 +85,12 @@ export function Variables({
           label="Embed ticks"
           activated={!!axis.tickEmbedded}
           onToggle={(val) => onChangeAxis({ ...axis, tickEmbedded: val })}
+        />
+        <Toggle
+          className="m-2 w-44"
+          label="Duplicate axis"
+          activated={!!axis.duplicate}
+          onToggle={(val) => onChangeAxis({ ...axis, duplicate: val })}
         />
       </div>
       <div className="flex flex-row">

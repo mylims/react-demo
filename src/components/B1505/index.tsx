@@ -18,6 +18,7 @@ interface QueryType {
   yLabel: string;
   yUnits: string;
 }
+type StateAxis = Partial<AxisProps> & { duplicate: boolean };
 
 const margin = { bottom: 50, left: 90, top: 20, right: 400 };
 const options = {
@@ -81,10 +82,16 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
   const [variables, setVariables] = useState<Record<string, string>>({});
   const [query, setQuery] = useState<QueryType>(defaultQuery);
   const [files, setFiles] = useState<Analysis[][]>([]);
-  const [xAxis, setXAxis] = useState<Partial<AxisProps>>({ scale: 'linear' });
-  const [yAxis, setYAxis] = useState<Partial<AxisProps>>({
+  const [xAxis, setXAxis] = useState<StateAxis>({
+    scale: 'linear',
+    tickEmbedded: true,
+    duplicate: true,
+  });
+  const [yAxis, setYAxis] = useState<StateAxis>({
     labelSpace: scale === 'log' ? 60 : 52,
     scale,
+    tickEmbedded: true,
+    duplicate: true,
   });
   const [logFilter, setLogFilter] = useState<Record<'x' | 'y', string>>({
     x: 'abs',
@@ -107,11 +114,36 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     const parsed = content.map((text) => fromB1505(text, parserOptions));
 
     const analyses = parsed.reduce((acc, curr) => acc.concat(curr), []);
+    const { duplicate: xDupl, ...xAxisPartial } = xAxis;
+    const { duplicate: yDupl, ...yAxisPartial } = yAxis;
     let data = getReactPlotJSON(analyses, query, {
       ...options,
-      xAxis,
-      yAxis,
+      xAxis: xAxisPartial,
+      yAxis: yAxisPartial,
     });
+
+    if (xDupl) {
+      const x = data.axes.find(({ id }) => id === 'x');
+      if (x) {
+        data.axes.push({
+          ...x,
+          position: 'top',
+          label: undefined,
+          tickStyle: { display: 'none' },
+        });
+      }
+    }
+    if (yDupl) {
+      const y = data.axes.find(({ id }) => id === 'y');
+      if (y) {
+        data.axes.push({
+          ...y,
+          position: 'right',
+          label: undefined,
+          tickStyle: { display: 'none' },
+        });
+      }
+    }
 
     // Hidde all series except for the N first ones
     data.series = data.series.map((series, index) => ({
