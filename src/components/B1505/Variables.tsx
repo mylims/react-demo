@@ -1,6 +1,7 @@
 import React from 'react';
 import { AxisProps } from 'react-plot';
-import { Input, Select, Toggle } from '../tailwind-ui';
+import { Select, Toggle } from '../tailwind-ui';
+import InputDebounce from './InputDebounce';
 
 interface DataSelect {
   label: string;
@@ -56,13 +57,11 @@ export function Variables({
           selected={{ label: name, value: name }}
           onSelect={(selected) => onChangeName(selected?.label)}
         />
-        <Input
-          className="m-2 w-44"
+        <InputDebounce
           name={`${label}-units`}
           label="Units"
-          placeholder="Units"
           value={units}
-          onChange={(e) => onChangeUnits(e.currentTarget.value)}
+          onChange={(val) => onChangeUnits(val)}
         />
       </div>
       <div className="flex flex-row">
@@ -85,6 +84,24 @@ export function Variables({
           label="Embed ticks"
           activated={!!axis.tickEmbedded}
           onToggle={(val) => onChangeAxis({ ...axis, tickEmbedded: val })}
+        />
+      </div>
+      <div className="flex flex-row">
+        <InputDebounce
+          name={`${label}-min`}
+          label="Min value"
+          value={axis.min !== undefined ? String(axis.min) : ''}
+          onChange={(value) =>
+            onChangeAxis({ ...axis, min: value ? Number(value) : undefined })
+          }
+        />
+        <InputDebounce
+          name={`${label}-max`}
+          label="Max value"
+          value={axis.max !== undefined ? String(axis.max) : ''}
+          onChange={(value) =>
+            onChangeAxis({ ...axis, max: value ? Number(value) : undefined })
+          }
         />
       </div>
       <div className="flex flex-row">
