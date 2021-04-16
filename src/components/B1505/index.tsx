@@ -6,6 +6,8 @@ import produce from 'immer';
 
 import { Variables } from './Variables';
 import { Table } from './Table';
+import { ReactPlotOptions } from 'common-spectrum/lib/reactPlot/getReactPlotJSON';
+import { ClosestInfo, TrackingResult } from 'react-plot/lib-esm/types';
 
 interface B1505Props {
   content: string[];
@@ -21,10 +23,11 @@ interface QueryType {
 type StateAxis = Partial<AxisProps> & { duplicate: boolean };
 
 const margin = { bottom: 50, left: 90, top: 20, right: 400 };
-const options = {
+const options: ReactPlotOptions = {
   enforceGrowing: true,
   series: { displayMarker: false },
   dimensions: { width: 950, height: 500, margin },
+  legend: { position: 'right' },
 };
 const INITIAL_SELECTED_RANGE = 5;
 
@@ -77,6 +80,10 @@ function filterAxis(
   return series;
 }
 
+function roundNum(num: number): string {
+  return String(Math.round(num * 100) / 100);
+}
+
 export default function B1505({ content, defaultQuery, scale }: B1505Props) {
   const [data, setData] = useState<PlotObjectType | null>(null);
   const [variables, setVariables] = useState<Record<string, string>>({});
@@ -97,6 +104,10 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     x: 'abs',
     y: 'abs',
   });
+  const [hover, setHover] = useState<{
+    coordinates: TrackingResult['coordinates'];
+    closest: Record<string, ClosestInfo>;
+  } | null>(null);
 
   const optionsVariables = useMemo(
     () =>
@@ -120,6 +131,13 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       ...options,
       xAxis: xAxisPartial,
       yAxis: yAxisPartial,
+      svg: {
+        style: {},
+        onMouseMove: ({ getClosest, coordinates }) => {
+          setHover({ coordinates, closest: getClosest('x') });
+        },
+        // onMouseLeave: () => setHover(null),
+      },
     });
 
     if (xDupl) {
@@ -152,7 +170,7 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     }));
 
     setFiles(parsed);
-    setData({ legend: { position: 'right' }, ...data });
+    setData(data);
     setVariables(listVariables(analyses));
   }, [content, query, defaultQuery, scale, xAxis, yAxis]);
 
@@ -211,6 +229,16 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
           onChangeLog={(y) => setLogFilter((prev) => ({ ...prev, y }))}
         />
       </div>
+      {hover && (
+        <div>
+          {Object.keys(hover.closest).map((key) => (
+            <div key={key}>
+              <b>{key}: </b>
+              <span>{roundNum(hover.closest[key].point.y)}</span>
+            </div>
+          ))}
+        </div>
+      )}
       <PlotObject plot={filteredData} />
       <Table
         files={files}
