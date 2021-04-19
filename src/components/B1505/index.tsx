@@ -7,7 +7,7 @@ import produce from 'immer';
 import { Variables } from './Variables';
 import { Table } from './Table';
 import { ReactPlotOptions } from 'common-spectrum/lib/reactPlot/getReactPlotJSON';
-import { ClosestInfo, TrackingResult } from 'react-plot/lib-esm/types';
+import { ClosestInfo } from 'react-plot/lib-esm/types';
 
 interface B1505Props {
   content: string[];
@@ -105,7 +105,7 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     y: 'abs',
   });
   const [hover, setHover] = useState<{
-    coordinates: TrackingResult['coordinates'];
+    position: Record<'x' | 'y', number>;
     closest: Record<string, ClosestInfo>;
   } | null>(null);
 
@@ -133,10 +133,13 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       yAxis: yAxisPartial,
       svg: {
         style: {},
-        onMouseMove: ({ getClosest, coordinates }) => {
-          setHover({ coordinates, closest: getClosest('x') });
+        onMouseMove: ({ getClosest, event: { pageX, pageY } }) => {
+          setHover({
+            position: { x: pageX, y: pageY },
+            closest: getClosest('x'),
+          });
         },
-        // onMouseLeave: () => setHover(null),
+        onMouseLeave: () => setHover(null),
       },
     });
 
@@ -230,11 +233,25 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
         />
       </div>
       {hover && (
-        <div>
+        <div
+          style={{
+            position: 'fixed',
+            left: hover.position.x + 5,
+            top: hover.position.y + 5,
+            border: '2px dotted black',
+            padding: '5px',
+            backgroundColor: 'white',
+          }}
+        >
+          <span>
+            {roundNum(Object.values(hover.closest)[0].point.x)} [{query.xUnits}]
+          </span>
           {Object.keys(hover.closest).map((key) => (
             <div key={key}>
               <b>{key}: </b>
-              <span>{roundNum(hover.closest[key].point.y)}</span>
+              <span>
+                {roundNum(hover.closest[key].point.y)} [{query.yUnits}]
+              </span>
             </div>
           ))}
         </div>
