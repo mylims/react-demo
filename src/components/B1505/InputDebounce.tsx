@@ -7,6 +7,10 @@ interface InputDebounceProps {
   value: string;
   onChange: (value: string) => void;
 }
+interface State {
+  value: string;
+  trigger: 'event' | 'parent';
+}
 
 export default function InputDebounce({
   name,
@@ -14,22 +18,17 @@ export default function InputDebounce({
   value,
   onChange,
 }: InputDebounceProps) {
-  const [state, setState] = useState(value);
+  const [state, setState] = useState<State>({ value, trigger: 'parent' });
 
   // Update parent state after 100ms
-  const debounced = useDebounce(state, 100);
+  const debounced = useDebounce(state, 500);
   useEffect(() => {
-    if (debounced !== value && Number(debounced) !== Number(value)) {
-      onChange(debounced);
-    }
-
-    // Each time that value gets updated it was triggered
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (debounced.trigger === 'event') onChange(debounced.value);
   }, [onChange, debounced]);
 
   // The value of the input is the same for the one in the parent
   useEffect(() => {
-    setState(value);
+    setState({ value, trigger: 'parent' });
   }, [value]);
 
   return (
@@ -38,8 +37,10 @@ export default function InputDebounce({
       name={name}
       label={label}
       placeholder={label}
-      value={state}
-      onChange={(e) => setState(e.currentTarget.value)}
+      value={state.value}
+      onChange={({ currentTarget: { value } }) => {
+        setState({ value, trigger: 'event' });
+      }}
     />
   );
 }
