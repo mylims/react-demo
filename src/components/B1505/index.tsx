@@ -134,6 +134,13 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       yAxis: yAxisPartial,
     });
 
+    if (data.content.length !== content.length) {
+      console.warn('Differences in the query', query, {
+        data: data.content.length,
+        content: content.length,
+      });
+    }
+
     if (xDupl) {
       const x = data.axes.find(({ id }) => id === 'x');
       if (x) {

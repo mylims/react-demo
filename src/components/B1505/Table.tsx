@@ -92,7 +92,8 @@ export function Table({
   useEffect(() => {
     let series: SeriesType[] = [];
     let titles: string[] = [];
-    for (let index = 0; index < content.length; index++) {
+    const len = Math.min(content.length, data.content.length);
+    for (let index = 0; index < len; index++) {
       const original = content[index];
       const file = files[index] || [];
       for (const analysis of file) {
