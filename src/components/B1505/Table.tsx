@@ -1,6 +1,6 @@
 import { Analysis, toJcamp, toText } from 'common-spectrum';
 import React, { useEffect, useState } from 'react';
-import { PlotObjectType } from 'react-plot';
+import type { PlotObjectType } from 'react-plot';
 import {
   Button,
   Checkbox,
@@ -27,36 +27,49 @@ interface TableProps {
 }
 
 function toCsv(plot: PlotObjectType, separator = ','): string {
-  // Extracts headers and data from selected series
-  const series = plot.series
-    .filter(({ hidden }) => !hidden)
-    .map(({ data, label, xAxis = 'x', yAxis = 'y' }) => {
-      const xName = plot.axes.find(({ id }) => id === xAxis)?.label || xAxis;
-      const yName = plot.axes.find(({ id }) => id === yAxis)?.label || yAxis;
+  // Extracts headers and data from selected content
+  const content = plot.content
+    .filter((element) => element.type !== 'annotation' && !element.hidden)
+    .map((element) => {
+      if (element.type === 'annotation') return [];
+      const xName =
+        plot.axes.find(({ id }) => id === element.xAxis)?.label ||
+        element.xAxis ||
+        'x';
+      const yName =
+        plot.axes.find(({ id }) => id === element.yAxis)?.label ||
+        element.yAxis ||
+        'y';
       return [
-        { header: `${xName} (${label})`, data: data.map(({ x }) => x) },
-        { header: `${yName} (${label})`, data: data.map(({ y }) => y) },
+        {
+          header: `${xName} (${element.label})`,
+          data: element.data.map(({ x }) => x),
+        },
+        {
+          header: `${yName} (${element.label})`,
+          data: element.data.map(({ y }) => y),
+        },
       ];
     })
     .reduce((acc, curr) => [...acc, ...curr], []);
 
   // Transpose data matrix
-  const maxLen = series.reduce(
+  const maxLen = content.reduce(
     (acc, { data }) => Math.max(acc, data.length),
     0,
   );
   let rows: string[][] = [];
   for (let i = 0; i < maxLen; i++) {
     rows.push([]);
-    for (let j = 0; j < series.length; j++) {
+    for (let j = 0; j < content.length; j++) {
       rows[i].push(
-        series[j].data[i] !== undefined ? String(series[j].data[i]) : '',
+        content[j].data[i] !== undefined ? String(content[j].data[i]) : '',
       );
     }
   }
 
   // Concatenates to CSV
-  return [series.map(({ header }) => header), ...rows]
+  return [content.map(({ header }) => header), ...rows]
     .map((row) => row.join(separator))
     .join('\n');
 }
@@ -83,19 +96,21 @@ export function Table({
       const original = content[index];
       const file = files[index] || [];
       for (const analysis of file) {
-        const spectrum = data.series[index];
-        let { label = `spectrum ${index}`, hidden = false } = spectrum || {};
-        while (titles.includes(label)) {
-          label = label + index;
+        const spectrum = data.content[index];
+        if (spectrum.type !== 'annotation') {
+          let { label = `spectrum ${index}`, hidden = false } = spectrum || {};
+          while (titles.includes(label)) {
+            label = label + index;
+          }
+          titles.push(label);
+          series.push({
+            hidden,
+            original,
+            label,
+            csv: toText(analysis).join('\n'),
+            jcamp: toJcamp(analysis),
+          });
         }
-        titles.push(label);
-        series.push({
-          hidden,
-          original,
-          label,
-          csv: toText(analysis).join('\n'),
-          jcamp: toJcamp(analysis),
-        });
       }
     }
     setSeries(series);
@@ -201,7 +216,7 @@ export function Table({
         Series
       </div>
       <table>
-        <tbody className="inline-block max-w-2xl overflow-auto h-96">
+        <tbody className="inline-block overflow-auto h-96">
           {series.map(({ label, original, csv, jcamp, hidden }, index) => (
             <tr key={index}>
               <td className="p-1 font-medium">

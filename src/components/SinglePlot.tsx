@@ -17,7 +17,7 @@ const legend = { position: 'embedded' as const };
 
 export default function SinglePlot({ query, analyses }: SinglePlotProps) {
   const initState: PlotState = {
-    series: [],
+    content: [],
     meta: [],
     axes: [],
     dimensions: { width: 500, height: 500 },

@@ -13,7 +13,7 @@ const colorScheme = schemeRdYlBu[11].concat().reverse();
 const query = { xLabel: 'Vd', xUnits: 'V', yLabel: 'Id', yUnits: 'mA' };
 const margin = { bottom: 50, left: 80, top: 20, right: 130 };
 const options: ReactPlotOptions = {
-  series: { displayMarker: false },
+  content: { displayMarker: false },
   dimensions: { width: 700, height: 500, margin },
 };
 

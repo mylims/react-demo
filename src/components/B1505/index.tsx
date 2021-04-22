@@ -6,6 +6,7 @@ import produce from 'immer';
 
 import { Variables } from './Variables';
 import { Table } from './Table';
+import type { ReactPlotOptions } from 'common-spectrum/lib/reactPlot/getReactPlotJSON';
 
 interface B1505Props {
   content: string[];
@@ -21,9 +22,9 @@ interface QueryType {
 type StateAxis = Partial<AxisProps> & { duplicate: boolean };
 
 const margin = { bottom: 50, left: 90, top: 20, right: 400 };
-const options = {
+const options: Partial<ReactPlotOptions> = {
   enforceGrowing: true,
-  series: { displayMarker: false },
+  content: { displayMarker: false },
   dimensions: { width: 950, height: 500, margin },
 };
 const INITIAL_SELECTED_RANGE = 5;
@@ -50,31 +51,42 @@ function filterAxis(
   data: PlotObjectType,
   axisName: 'x' | 'y',
   filter: string,
-  series: PlotObjectType['series'],
-): PlotObjectType['series'] {
-  const log = data.axes.find(({ id }) => id === axisName)?.scale === 'log';
+  content: PlotObjectType['content'],
+): PlotObjectType['content'] {
+  const log =
+    (data.axes.find(
+      (axis) => axis.id === axisName && axis.type === 'main',
+    ) as AxisProps)?.scale === 'log';
 
   if (log) {
     switch (filter) {
       case 'remove': {
-        return series.map(({ data: series, ...other }) => ({
-          ...other,
-          data: series.filter((point) => point[axisName] > 0),
-        }));
+        return content.map((element) => {
+          if (element.type === 'annotation') return element;
+          const { data: list, ...other } = element;
+          return {
+            ...other,
+            data: list.filter((point) => point[axisName] > 0),
+          };
+        });
       }
       case 'abs':
       default: {
-        return series.map(({ data: series, ...other }) => ({
-          ...other,
-          data: series.map((point) => ({
-            ...point,
-            [axisName]: Math.abs(point[axisName]),
-          })),
-        }));
+        return content.map((element) => {
+          if (element.type === 'annotation') return element;
+          const { data: list, ...other } = element;
+          return {
+            ...other,
+            data: list.map((point) => ({
+              ...point,
+              [axisName]: Math.abs(point[axisName]),
+            })),
+          };
+        });
       }
     }
   }
-  return series;
+  return content;
 }
 
 export default function B1505({ content, defaultQuery, scale }: B1505Props) {
@@ -126,10 +138,10 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       const x = data.axes.find(({ id }) => id === 'x');
       if (x) {
         data.axes.push({
-          ...x,
-          position: 'top',
-          label: undefined,
+          id: 'x',
+          type: 'secondary',
           tickStyle: { display: 'none' },
+          tickEmbedded: x.tickEmbedded,
         });
       }
     }
@@ -137,17 +149,17 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       const y = data.axes.find(({ id }) => id === 'y');
       if (y) {
         data.axes.push({
-          ...y,
-          position: 'right',
-          label: undefined,
+          id: 'y',
+          type: 'secondary',
           tickStyle: { display: 'none' },
+          tickEmbedded: y.tickEmbedded,
         });
       }
     }
 
-    // Hidde all series except for the N first ones
-    data.series = data.series.map((series, index) => ({
-      ...series,
+    // Hidde all content except for the N first ones
+    data.content = data.content.map((content, index) => ({
+      ...content,
       hidden: index >= INITIAL_SELECTED_RANGE,
     }));
 
@@ -158,16 +170,19 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
 
   const filteredData: PlotObjectType | null = useMemo(() => {
     if (!data) return data;
-    let series = data.series.filter(({ hidden }) => !hidden);
-    series = filterAxis(data, 'x', logFilter.x, series);
-    series = filterAxis(data, 'y', logFilter.y, series);
+    let content = data.content.filter((element) => {
+      if (element.type === 'annotation') return true;
+      return !element.hidden;
+    });
+    content = filterAxis(data, 'x', logFilter.x, content);
+    content = filterAxis(data, 'y', logFilter.y, content);
 
-    return { ...data, series };
+    return { ...data, content };
   }, [data, logFilter]);
 
   // Data validation
   if (!data || !filteredData) return null;
-  if (data.series.length === 0) {
+  if (data.content.length === 0) {
     return (
       <div className="flex flex-col items-center">
         <span>Your data is empty</span>
@@ -219,21 +234,25 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
         onLabelChange={(label, index) =>
           setData(
             produce(data, (draft) => {
-              draft.series[index].label = label;
+              let element = draft.content[index];
+              if (element.type !== 'annotation') element.label = label;
             }),
           )
         }
         onHiddenChange={(hidden, index) =>
           setData(
             produce(data, (draft) => {
-              draft.series[index].hidden = hidden;
+              let element = draft.content[index];
+              if (element.type !== 'annotation') element.hidden = hidden;
             }),
           )
         }
         bulkHiddenChange={(hidden) => {
           setData(
             produce(data, (draft) => {
-              draft.series.forEach((series) => (series.hidden = hidden));
+              draft.content.forEach((content) => {
+                if (content.type !== 'annotation') content.hidden = hidden;
+              });
             }),
           );
         }}
