@@ -7,6 +7,7 @@ import produce from 'immer';
 import { Variables } from './Variables';
 import { Table } from './Table';
 import type { ReactPlotOptions } from 'common-spectrum/lib/reactPlot/getReactPlotJSON';
+import { ClosestInfoResult } from 'react-plot/lib-esm/types';
 
 interface B1505Props {
   content: string[];
@@ -20,6 +21,11 @@ interface QueryType {
   yUnits: string;
 }
 type StateAxis = Partial<AxisProps> & { duplicate: boolean };
+interface Hover {
+  position: Record<'x' | 'y', number>;
+  coordinates: Record<'x' | 'y', number>;
+  closest: ClosestInfoResult;
+}
 
 const margin = { bottom: 50, left: 90, top: 20, right: 400 };
 const options: Partial<ReactPlotOptions> = {
@@ -109,6 +115,7 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
     x: 'abs',
     y: 'abs',
   });
+  const [hover, setHover] = useState<Hover | null>(null);
 
   const optionsVariables = useMemo(
     () =>
@@ -132,6 +139,16 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       ...options,
       xAxis: xAxisPartial,
       yAxis: yAxisPartial,
+      svg: {
+        onMouseLeave: () => setHover(null),
+        onMouseMove: ({ event, coordinates, getClosest }) => {
+          setHover({
+            coordinates,
+            closest: getClosest('x'),
+            position: { x: event.pageX, y: event.pageY },
+          });
+        },
+      },
     });
 
     if (data.content.length !== content.length) {
@@ -196,6 +213,7 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       </div>
     );
   }
+  console.log(hover);
 
   return (
     <div className="flex flex-col items-center">
@@ -233,6 +251,22 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
           onChangeLog={(y) => setLogFilter((prev) => ({ ...prev, y }))}
         />
       </div>
+      {hover && (
+        <div
+          style={{
+            position: 'fixed',
+            left: hover.position.x + 5,
+            top: hover.position.y + 5,
+            borderStyle: 'solid',
+            padding: '5px',
+            backgroundColor: 'white',
+          }}
+        >
+          <b>VALUES</b>
+          <div>x: {Math.round(hover.coordinates.x * 100) / 100}</div>
+          <div>y: {Math.round(hover.coordinates.y * 100) / 100}</div>
+        </div>
+      )}
       <PlotObject plot={filteredData} />
       <Table
         files={files}
