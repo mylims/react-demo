@@ -8,7 +8,6 @@ import { Variables } from './Variables';
 import { Table } from './Table';
 import type { ReactPlotOptions } from 'common-spectrum/lib/reactPlot/getReactPlotJSON';
 import { ClosestInfoResult } from 'react-plot/lib-esm/types';
-import { Button } from '../tailwind-ui';
 import ImageInfo from './ImageInfo';
 
 interface B1505Props {
