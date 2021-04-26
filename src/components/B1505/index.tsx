@@ -8,6 +8,8 @@ import { Variables } from './Variables';
 import { Table } from './Table';
 import type { ReactPlotOptions } from 'common-spectrum/lib/reactPlot/getReactPlotJSON';
 import { ClosestInfoResult } from 'react-plot/lib-esm/types';
+import { Button } from '../tailwind-ui';
+import ImageInfo from './ImageInfo';
 
 interface B1505Props {
   content: string[];
@@ -145,6 +147,7 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       xAxis: xAxisPartial,
       yAxis: yAxisPartial,
       svg: {
+        id: 'b1505',
         onMouseLeave: () => setHover(null),
         onMouseMove: ({ event, coordinates, getClosest }) => {
           setHover({
@@ -286,6 +289,7 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
             />
           ))}
       </PlotObject>
+      <ImageInfo data={data} />
       {hover &&
         Object.keys(hover.closest).map((key) => (
           <div key={key}>
