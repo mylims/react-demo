@@ -14,3 +14,4 @@ For each kind of experiment (breakdown, capacitance, etc) is possible to
 - Visualize original file, CSV file or JCAMP file
 - Export all series to CSV format, compatible with Origin
 - Tracking values with mouse over
+- Download as PNG or SVG
