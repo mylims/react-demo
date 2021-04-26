@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { fromB1505 } from 'iv-spectrum';
 import { Analysis, getReactPlotJSON } from 'common-spectrum';
-import { AxisProps, PlotObject, PlotObjectType } from 'react-plot';
+import { AxisProps, PlotObject, PlotObjectType, Annotation } from 'react-plot';
 import produce from 'immer';
 
 import { Variables } from './Variables';
@@ -93,6 +93,11 @@ function filterAxis(
     }
   }
   return content;
+}
+
+function formatNumber(num: number, scale: 'linear' | 'log' = 'linear') {
+  if (scale === 'linear') return num.toFixed(2);
+  return num.toExponential(2);
 }
 
 export default function B1505({ content, defaultQuery, scale }: B1505Props) {
@@ -213,7 +218,6 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
       </div>
     );
   }
-  console.log(hover);
 
   return (
     <div className="flex flex-col items-center">
@@ -263,11 +267,32 @@ export default function B1505({ content, defaultQuery, scale }: B1505Props) {
           }}
         >
           <b>VALUES</b>
-          <div>x: {Math.round(hover.coordinates.x * 100) / 100}</div>
-          <div>y: {Math.round(hover.coordinates.y * 100) / 100}</div>
+          <div>
+            x: {formatNumber(hover.coordinates.x)} [{query.xUnits}]
+          </div>
+          <div>
+            y: {formatNumber(hover.coordinates.y, scale)} [{query.yUnits}]
+          </div>
         </div>
       )}
-      <PlotObject plot={filteredData} />
+      <PlotObject plot={filteredData}>
+        {hover &&
+          Object.keys(hover.closest).map((key) => (
+            <Annotation.Circle
+              key={key}
+              cx={hover.closest[key].point.x}
+              cy={hover.closest[key].point.y}
+              r="3"
+            />
+          ))}
+      </PlotObject>
+      {hover &&
+        Object.keys(hover.closest).map((key) => (
+          <div key={key}>
+            <b>{hover.closest[key].label}</b>:{' '}
+            {formatNumber(hover.closest[key].point.y, scale)} [{query.yUnits}]
+          </div>
+        ))}
       <Table
         files={files}
         content={content}
