@@ -49,6 +49,7 @@ function DropzonListRow({ value: props }: DropzoneListRowProps) {
       className={clsx(
         'w-full min-w-full bg-transparent shadow-none border-neutral-300 border-dashed rounded-md',
       )}
+      title={props.file.name}
     >
       <DropzoneTd style={{ maxWidth: 300 }} className="px-2 truncate">
         {props.file.name}
